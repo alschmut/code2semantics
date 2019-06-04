@@ -4,6 +4,7 @@ from Java9Listener import Java9Listener
 from Java9Parser import Java9Parser
 from Java9Visitor import Java9Visitor
 import sys
+import os
 
 class IdentifierListener(Java9Listener):
 	identifiers = []
@@ -35,14 +36,10 @@ class IdentifierListener(Java9Listener):
 	def enterIdentifier(self, ctx):
 		self.setIdentifiers("Identifier", ctx.getText())
 
-def txtget(filename):
-	try:
-		with open(filename, 'r') as file:
-			file_content = file.read()
-			return file_content
-	except Exception as err:
-		print("Could not open file: ", type(err), ":", err)
-		return None
+def get_file_content(filename):
+	with open(filename, "r") as file:
+		file_content = file.read()
+		return file_content
 	
 def parseFile(input_stream):
 	lexer = Java9Lexer(input_stream)
@@ -58,10 +55,21 @@ def printIdentifier(identifiers):
 	for identifier in sorted(identifiers, key=lambda k: k["type"]):
 		print(identifier["type"] + ": " + identifier["name"])
 
+def hasFileExtension(file, extension):
+	return file.split(".")[-1] == extension
+
+def traverseCurrentDir():
+	for path, dirs, files in os.walk("."):
+		for file in files:
+			if hasFileExtension(file, "java"):
+				filepath = path + os.sep + file
+				file_content = get_file_content(filepath)
+				input_stream = InputStream(file_content)
+				identifiers = parseFile(input_stream)
+				printIdentifier(identifiers)
+
 def main():
-	input_stream = InputStream(txtget("AJavaExample.java"))
-	identifiers = parseFile(input_stream)
-	printIdentifier(identifiers)
+	traverseCurrentDir()
 
 if __name__ == '__main__':
     main()
