@@ -11,47 +11,29 @@ class IdentifierListener(Java9Listener):
 	def getIdentifiers(self):
 		return self.identifiers
 
+	def setIdentifiers(self, type, name):
+		self.identifiers.append({"type": type, "name": name})
+
 	def enterNormalClassDeclaration(self, ctx):
-		print("Class: %s" % ctx.identifier().getText())
-		self.identifiers.append({"type": "Class", "name": ctx.identifier().getText()})
+		self.setIdentifiers("Class", ctx.identifier().getText())
 		
 	def enterSuperclass(self, ctx):
-		print("SuperClass: %s" % ctx.classType().identifier().getText())
+		self.setIdentifiers("SuperClass", ctx.classType().identifier().getText())
 
 	def enterNormalInterfaceDeclaration(self, ctx):
-		print("Normal Interface: %s" % ctx.identifier().getText())
+		self.setIdentifiers("Normal Interface", ctx.identifier().getText())
 
 	def enterAnnotationTypeDeclaration(self, ctx):
-		print("Annotation Interface: %s" % ctx.identifier().getText())
+		self.setIdentifiers("Annotation Interface", ctx.identifier().getText())
 		
 	def enterVariableDeclaratorId(self, ctx):
-		print("Variable: %s" % ctx.identifier().getText())
+		self.setIdentifiers("Variable", ctx.identifier().getText())
 
 	def enterMethodDeclarator(self, ctx):
-		print("Method: %s" % ctx.identifier().getText())
-		self.identifiers.append({"type": "Method", "name": ctx.identifier().getText()})
+		self.setIdentifiers("Method", ctx.identifier().getText())
 		
 	def enterIdentifier(self, ctx):
-		print("Identifier: %s" % ctx.getText())
-		
-		
-
-class IdentifierVisitor(Java9Visitor):
-	identifiers = []
-
-	def visitNormalClassDeclaration(self, ctx:Java9Parser.NormalClassDeclarationContext):
-		print("Class: %s" % ctx.identifier().getText())
-		self.identifiers.append({"type": "Class", "name": ctx.identifier().getText()})
-		self.visitChildren(ctx)
-		return self.identifiers
-
-	def visitMethodDeclaration(self, ctx:Java9Parser.MethodDeclarationContext):
-		print("Method: %s" % ctx.identifier().getText())
-		self.identifiers.append({"type": "Method", "name": ctx.identifier().getText()})
-		self.visitChildren(ctx)
-		return self.identifiers
-		
-
+		self.setIdentifiers("Identifier", ctx.getText())
 
 def txtget(filename):
 	try:
@@ -63,6 +45,10 @@ def txtget(filename):
 	except Exception as err:
 		print("Could not open file: ", type(err), ":", err)
 		return None
+
+def printIdentifier(identifiers):
+	for identifier in sorted(identifiers, key=lambda k: k["type"]):
+		print(identifier["type"] + ": " + identifier["name"])
 	
 def main():
 	input_stream = InputStream(txtget("AJavaExample.java"))
@@ -70,15 +56,11 @@ def main():
 	stream = CommonTokenStream(lexer)
 	parser = Java9Parser(stream)
 	tree = parser.compilationUnit()
-	#visitor = IdentifierVisitor()
-	#identifiers = visitor.visit(tree)
-	#print(identifiers)
-	#return identifiers
-
-	printer = IdentifierListener()
+	listener = IdentifierListener()
 	walker = ParseTreeWalker()
-	walker.walk(printer, tree)
-	print(printer.getIdentifiers())
+	walker.walk(listener, tree)
+	identifiers = listener.getIdentifiers()
+	printIdentifier(identifiers)
 
 if __name__ == '__main__':
     main()
