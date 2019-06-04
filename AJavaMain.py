@@ -37,21 +37,14 @@ class IdentifierListener(Java9Listener):
 
 def txtget(filename):
 	try:
-		# open file read-only, get file content and close
 		with open(filename, 'r') as file:
 			file_content = file.read()
 			return file_content
-
 	except Exception as err:
 		print("Could not open file: ", type(err), ":", err)
 		return None
-
-def printIdentifier(identifiers):
-	for identifier in sorted(identifiers, key=lambda k: k["type"]):
-		print(identifier["type"] + ": " + identifier["name"])
 	
-def main():
-	input_stream = InputStream(txtget("AJavaExample.java"))
+def parseFile(input_stream):
 	lexer = Java9Lexer(input_stream)
 	stream = CommonTokenStream(lexer)
 	parser = Java9Parser(stream)
@@ -59,7 +52,15 @@ def main():
 	listener = IdentifierListener()
 	walker = ParseTreeWalker()
 	walker.walk(listener, tree)
-	identifiers = listener.getIdentifiers()
+	return listener.getIdentifiers()
+
+def printIdentifier(identifiers):
+	for identifier in sorted(identifiers, key=lambda k: k["type"]):
+		print(identifier["type"] + ": " + identifier["name"])
+
+def main():
+	input_stream = InputStream(txtget("AJavaExample.java"))
+	identifiers = parseFile(input_stream)
 	printIdentifier(identifiers)
 
 if __name__ == '__main__':
