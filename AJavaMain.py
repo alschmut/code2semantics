@@ -59,7 +59,7 @@ def hasFileExtension(file, extension):
 	return file.split(".")[-1] == extension
 
 def traverseCurrentDir():
-	for path, dirs, files in os.walk("."):
+	for path, dirs, files in os.walk("/Users/alexandersch/Documents/Beruf/Master/7 Thesis/Antlr/java_test_dir"):
 		for file in files:
 			if hasFileExtension(file, "java"):
 				filepath = path + os.sep + file
