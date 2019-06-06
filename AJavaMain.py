@@ -1,26 +1,13 @@
 from antlr4 import *
-from Java9Lexer import Java9Lexer
-from Java9Parser import Java9Parser
-from Java9ListenerExtended import Java9ListenerExtended
-import sys
-import os
+import sys, os
+from AllParser import AllParser
 
 def get_supported_extensions():
 	return ["java"]
 
-def parseJava9File(input_stream):
-	lexer = Java9Lexer(input_stream)
-	stream = CommonTokenStream(lexer)
-	parser = Java9Parser(stream)
-	tree = parser.compilationUnit()
-	listener = Java9ListenerExtended()
-	walker = ParseTreeWalker()
-	walker.walk(listener, tree)
-	return listener.getIdentifiers()
-
 def parseFile(file_extension, input_stream):
 	if file_extension == "java":
-		return parseJava9File(input_stream)
+		return AllParser.parseJava9File(None, input_stream)
 
 def get_file_content(filename):
 	try:

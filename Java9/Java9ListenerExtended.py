@@ -1,4 +1,4 @@
-from Java9Listener import Java9Listener
+from .Java9Listener import Java9Listener
 
 class Java9ListenerExtended(Java9Listener):
 	identifiers = []
