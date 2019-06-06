@@ -1,14 +1,7 @@
 from .Java9Listener import Java9Listener
+from BaseListener import BaseListener
 
-class Java9ListenerExtended(Java9Listener):
-	identifiers = []
-
-	def getIdentifiers(self):
-		return self.identifiers
-
-	def setIdentifiers(self, type, name):
-		self.identifiers.append({"type": type, "name": name})
-
+class Java9ListenerExtended(Java9Listener, BaseListener):
 	def enterNormalClassDeclaration(self, ctx):
 		self.setIdentifiers("Class", ctx.identifier().getText())
 		
