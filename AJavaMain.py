@@ -37,9 +37,13 @@ class IdentifierListener(Java9Listener):
 		self.setIdentifiers("Identifier", ctx.getText())
 
 def get_file_content(filename):
-	with open(filename, "r") as file:
-		file_content = file.read()
-		return file_content
+	try:
+		with open(filename, "r") as file:
+			file_content = file.read()
+			return file_content
+	except Exception as err:
+		print(f"Could not open file: {type(err)}: {err}")
+		return None
 	
 def parseFile(input_stream):
 	lexer = Java9Lexer(input_stream)
@@ -51,6 +55,14 @@ def parseFile(input_stream):
 	walker.walk(listener, tree)
 	return listener.getIdentifiers()
 
+def checkFileToParse(filepath):
+	if hasFileExtension(filepath, "java"):
+		file_content = get_file_content(filepath)
+		if file_content:
+			input_stream = InputStream(file_content)
+			identifiers = parseFile(input_stream)
+			printIdentifier(identifiers)
+
 def printIdentifier(identifiers):
 	for identifier in sorted(identifiers, key=lambda k: k["type"]):
 		print(identifier["type"] + ": " + identifier["name"])
@@ -58,18 +70,28 @@ def printIdentifier(identifiers):
 def hasFileExtension(file, extension):
 	return file.split(".")[-1] == extension
 
-def traverseCurrentDir():
-	for path, dirs, files in os.walk("/Users/alexandersch/Documents/Beruf/Master/7 Thesis/Antlr/java_test_dir"):
-		for file in files:
-			if hasFileExtension(file, "java"):
-				filepath = path + os.sep + file
-				file_content = get_file_content(filepath)
-				input_stream = InputStream(file_content)
-				identifiers = parseFile(input_stream)
-				printIdentifier(identifiers)
+def getFilePath(path, filename):
+	return path + os.sep + filename
+
+def traverseDirectory(directory_path):
+	for basepath, directories, filenames in os.walk(directory_path):
+		for filename in filenames:
+			filepath = getFilePath(basepath, filename)
+			checkFileToParse(filepath)
 
 def main():
-	traverseCurrentDir()
+	
+	if len(sys.argv) != 2:
+		print("[-] Usage: absolute_path")
+		print("[-] Use default test directory '7 Thesis/Antlr/java_test_dir'")
+		sys.argv.append("/Users/alexandersch/Documents/Beruf/Master/7 Thesis/Antlr/java_test_dir")
+
+	path = sys.argv[1]
+
+	if os.path.isdir(path):
+		traverseDirectory(path)
+	else:
+		checkFileToParse(path)
 
 if __name__ == '__main__':
     main()
