@@ -34,7 +34,7 @@ def checkFileToParse(filepath):
 
 def printIdentifier(identifiers):
 	for identifier in sorted(identifiers, key=lambda k: k["type"]):
-		print(identifier["type"] + ": " + identifier["name"])
+		print(f'{identifier["type"]}: {identifier["name"]}')
 
 def hasFileExtension(file, extension):
 	return file.split(".")[-1] == extension
@@ -51,9 +51,10 @@ def traverseDirectory(directory_path):
 def main():
 	
 	if len(sys.argv) != 2:
-		print("[-] Usage: absolute_path")
-		print("[-] Use default test directory '7 Thesis/Antlr/java_test_dir'")
-		sys.argv.append("/Users/alexandersch/Documents/Beruf/Master/7 Thesis/Antlr/java_test_dir")
+		print(f'[-] Usage: python {sys.argv[0]} <file_or_directory_path>')
+		test_dir = "/Users/alexandersch/Documents/Beruf/Master/7 Thesis/Antlr/java_test_dir/subdir1/subdir2/"
+		print(f'[-] Use default test directory "{test_dir}"')
+		sys.argv.append(test_dir)
 
 	path = sys.argv[1]
 
