@@ -21,7 +21,7 @@ def get_file_content(filename):
 def getFileExtension(filepath):
 	return filepath.split(".")[-1]
 
-def checkFileToParse(filepath):
+def parseFileIfSupported(filepath):
 	file_extension = getFileExtension(filepath)
 	if file_extension in get_supported_extensions():
 		file_content = get_file_content(filepath)
@@ -41,7 +41,7 @@ def traverseDirectory(directory_path):
 	for basepath, directories, filenames in os.walk(directory_path):
 		for filename in filenames:
 			filepath = getFilePath(basepath, filename)
-			checkFileToParse(filepath)
+			parseFileIfSupported(filepath)
 
 def main():
 	if len(sys.argv) != 2:
@@ -55,7 +55,7 @@ def main():
 	if os.path.isdir(path):
 		traverseDirectory(path)
 	else:
-		checkFileToParse(path)
+		parseFileIfSupported(path)
 
 if __name__ == '__main__':
     main()
