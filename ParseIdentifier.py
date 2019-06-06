@@ -3,11 +3,13 @@ import sys, os
 from AllParser import AllParser
 
 def get_supported_extensions():
-	return ["java"]
+	return ["java", "kt"]
 
 def parseFile(file_extension, input_stream):
 	if file_extension == "java":
 		return AllParser.parseJava9File(None, input_stream)
+	elif file_extension == "kt":
+		return AllParser.parseKotlinFile(None, input_stream)
 
 def get_file_content(filename):
 	try:
