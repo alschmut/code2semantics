@@ -1,40 +1,9 @@
 from antlr4 import *
 from Java9Lexer import Java9Lexer
-from Java9Listener import Java9Listener
 from Java9Parser import Java9Parser
-from Java9Visitor import Java9Visitor
+from Java9ListenerExtended import Java9ListenerExtended
 import sys
 import os
-
-class IdentifierListener(Java9Listener):
-	identifiers = []
-
-	def getIdentifiers(self):
-		return self.identifiers
-
-	def setIdentifiers(self, type, name):
-		self.identifiers.append({"type": type, "name": name})
-
-	def enterNormalClassDeclaration(self, ctx):
-		self.setIdentifiers("Class", ctx.identifier().getText())
-		
-	def enterSuperclass(self, ctx):
-		self.setIdentifiers("SuperClass", ctx.classType().identifier().getText())
-
-	def enterNormalInterfaceDeclaration(self, ctx):
-		self.setIdentifiers("Normal Interface", ctx.identifier().getText())
-
-	def enterAnnotationTypeDeclaration(self, ctx):
-		self.setIdentifiers("Annotation Interface", ctx.identifier().getText())
-		
-	def enterVariableDeclaratorId(self, ctx):
-		self.setIdentifiers("Variable", ctx.identifier().getText())
-
-	def enterMethodDeclarator(self, ctx):
-		self.setIdentifiers("Method", ctx.identifier().getText())
-		
-	def enterIdentifier(self, ctx):
-		self.setIdentifiers("Identifier", ctx.getText())
 
 def get_file_content(filename):
 	try:
@@ -50,7 +19,7 @@ def parseFile(input_stream):
 	stream = CommonTokenStream(lexer)
 	parser = Java9Parser(stream)
 	tree = parser.compilationUnit()
-	listener = IdentifierListener()
+	listener = Java9ListenerExtended()
 	walker = ParseTreeWalker()
 	walker.walk(listener, tree)
 	return listener.getIdentifiers()
