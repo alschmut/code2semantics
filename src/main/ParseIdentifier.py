@@ -29,8 +29,7 @@ def printStatus(filepath):
 def printIdentifier(file_extension, identifier_data):
 	print(f"    Extension: {file_extension}")
 	print(f"    Keywords: {identifier_data.keywords}")
-	for key in identifier_data.identifier:
-		print(f"    {key}: {identifier_data.identifier[key]}")
+	identifier_data.identifier.printAll()
 
 def parseFileIfSupported(filepath):
 	file_extension = getFileExtension(filepath)
