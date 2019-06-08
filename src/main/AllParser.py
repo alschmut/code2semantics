@@ -16,9 +16,12 @@ class AllParser():
         parser = Java9Parser(stream)
         tree = parser.compilationUnit()
         listener = Java9ListenerExtended()
+
         walker = ParseTreeWalker()
         walker.walk(listener, tree)
-        return listener.getAllIdentifier()
+        keywords = lexer.literalNames
+        identifier = listener.getAllIdentifier()
+        return IdentifierData(identifier, keywords)
 
     def parseKotlinFile(self, input_stream):
         lexer = KotlinLexer(input_stream)
@@ -26,6 +29,20 @@ class AllParser():
         parser = KotlinParser(stream)
         tree = parser.kotlinFile()
         listener = KotlinParserListenerExtended()
+
         walker = ParseTreeWalker()
         walker.walk(listener, tree)
-        return listener.getAllIdentifier()
+        keywords = lexer.literalNames
+        identifier = listener.getAllIdentifier()
+        return IdentifierData(identifier, keywords)
+
+class IdentifierData():
+    identifier = {}
+    keywords = []
+
+    def __init__(self, identifier, keywords):
+        self.identifier = identifier
+        self.keywords = keywords
+
+
+

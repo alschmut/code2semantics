@@ -26,10 +26,11 @@ def getFileExtension(filepath):
 def printStatus(filepath):
 	print(f"[+] Analyzing: {filepath}")
 
-def printIdentifier(file_extension, all_identifier):
+def printIdentifier(file_extension, identifier_data):
 	print(f"    Extension: {file_extension}")
-	for key in all_identifier:
-		print(f"    {key}: {all_identifier[key]}")
+	print(f"    Keywords: {identifier_data.keywords}")
+	for key in identifier_data.identifier:
+		print(f"    {key}: {identifier_data.identifier[key]}")
 
 def parseFileIfSupported(filepath):
 	file_extension = getFileExtension(filepath)
@@ -38,8 +39,8 @@ def parseFileIfSupported(filepath):
 		if file_content:
 			printStatus(filepath)
 			input_stream = InputStream(file_content)
-			all_identifier = parseFile(file_extension, input_stream)
-			printIdentifier(file_extension, all_identifier)		
+			identifier_data = parseFile(file_extension, input_stream)
+			printIdentifier(file_extension, identifier_data)		
 
 def getFilePath(path, filename):
 	return path + os.sep + filename
