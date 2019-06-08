@@ -3,11 +3,11 @@ from BaseListener import BaseListener
 
 from Java9.Java9Lexer import Java9Lexer
 from Java9.Java9Parser import Java9Parser
-from Java9.Java9ListenerExtended import Java9ListenerExtended
+from ExtendedListener.Java9ListenerExtended import Java9ListenerExtended
 
 from Kotlin.KotlinLexer import KotlinLexer
 from Kotlin.KotlinParser import KotlinParser
-from Kotlin.KotlinParserListenerExtended import KotlinParserListenerExtended
+from ExtendedListener.KotlinParserListenerExtended import KotlinParserListenerExtended
 
 class AllParser():
     def parseJava9File(self, input_stream):

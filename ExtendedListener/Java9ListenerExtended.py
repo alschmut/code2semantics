@@ -1,4 +1,4 @@
-from .Java9Listener import Java9Listener
+from Java9.Java9Listener import Java9Listener
 from BaseListener import BaseListener
 
 class Java9ListenerExtended(Java9Listener, BaseListener):

@@ -1,5 +1,5 @@
-from .KotlinParserListener import KotlinParserListener
-from .KotlinParser import KotlinParser
+from Kotlin.KotlinParserListener import KotlinParserListener
+from Kotlin.KotlinParser import KotlinParser
 from BaseListener import BaseListener
 
 class KotlinParserListenerExtended(KotlinParserListener, BaseListener):
