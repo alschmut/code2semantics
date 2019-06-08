@@ -18,7 +18,7 @@ class AllParser():
         listener = Java9ListenerExtended()
         walker = ParseTreeWalker()
         walker.walk(listener, tree)
-        return listener.getIdentifiers()
+        return listener.getAllIdentifier()
 
     def parseKotlinFile(self, input_stream):
         lexer = KotlinLexer(input_stream)
@@ -28,4 +28,4 @@ class AllParser():
         listener = KotlinParserListenerExtended()
         walker = ParseTreeWalker()
         walker.walk(listener, tree)
-        return listener.getIdentifiers()
+        return listener.getAllIdentifier()

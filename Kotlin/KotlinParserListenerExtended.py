@@ -4,13 +4,13 @@ from BaseListener import BaseListener
 
 class KotlinParserListenerExtended(KotlinParserListener, BaseListener):
     def enterClassDeclaration(self, ctx:KotlinParser.ClassDeclarationContext):
-        self.setIdentifiers("Class", ctx.simpleIdentifier().getText())
+        self.setClassName(ctx.simpleIdentifier().getText())
 	
-    def enterMultiVariableDeclaration(self, ctx:KotlinParser.MultiVariableDeclarationContext):
-        self.setIdentifiers("Variable", ctx.simpleIdentifier().getText())
-
     def enterFunctionDeclaration(self, ctx:KotlinParser.FunctionDeclarationContext):
-        self.setIdentifiers("Method", ctx.identifier().getText())
+        self.setMethodName(ctx.identifier().getText())
+
+    def enterMultiVariableDeclaration(self, ctx:KotlinParser.MultiVariableDeclarationContext):
+        self.setVariableName(ctx.simpleIdentifier().getText())
 		
     def enterSimpleIdentifier(self, ctx:KotlinParser.SimpleIdentifierContext):
-        self.setIdentifiers("Identifier", ctx.getText())
+        self.setAnyIdentifier(ctx.getText())
