@@ -53,7 +53,7 @@ def traverseDirectory(directory_path):
 def main():
 	if len(sys.argv) != 2:
 		print(f'[-] Usage: python {sys.argv[0]} <file_or_directory_path>')
-		test_dir = "/Users/alexandersch/Documents/Beruf/Master/7 Thesis/Antlr/java_test_dir/subdir1/subdir2"
+		test_dir = "/Users/alexandersch/Documents/Beruf/Master/7 Thesis/Antlr/test_directory/subdir1/subdir2"
 		print(f'[-] Use default test directory "{test_dir}"')
 		sys.argv.append(test_dir)
 
