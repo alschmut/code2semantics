@@ -1,21 +1,25 @@
 from antlr4 import *
 import sys, os
 from AllParser import AllParser
+from enum import Enum
+
+class Language(Enum):
+	Java = "java"
+	Kotlin = "kt"
 
 def get_supported_extensions():
-	return ["java", "kt"]
+	return [language for language in Language]
 
 def parseFile(file_extension, input_stream):
-	if file_extension == "java":
+	if file_extension == Language.Java:
 		return AllParser.parseJava9File(None, input_stream)
-	elif file_extension == "kt":
+	elif file_extension == Language.Kotlin:
 		return AllParser.parseKotlinFile(None, input_stream)
 
 def get_file_content(filename):
 	try:
 		with open(filename, "r") as file:
-			file_content = file.read()
-			return file_content
+			return file.read()
 	except Exception as err:
 		print(f"Could not open file: {type(err)}: {err}")
 		return None
