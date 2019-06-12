@@ -1,5 +1,6 @@
 from antlr4 import *
 from BaseListener import BaseListener
+from Language import Language
 
 from Java9.Java9Lexer import Java9Lexer
 from Java9.Java9Parser import Java9Parser
@@ -9,7 +10,7 @@ from Kotlin.KotlinLexer import KotlinLexer
 from Kotlin.KotlinParser import KotlinParser
 from ExtendedListener.KotlinParserListenerExtended import KotlinParserListenerExtended
 
-class AllParser():
+class AllParser(object):
     def parseJava9File(self, input_stream):
         lexer = Java9Lexer(input_stream)
         stream = CommonTokenStream(lexer)
@@ -35,6 +36,12 @@ class AllParser():
         keywords = lexer.literalNames
         identifier = listener.getAllIdentifier()
         return IdentifierData(identifier, keywords)
+
+    def parseFile(self, file_extension, input_stream):
+        if file_extension == Language.Java.value:
+            return AllParser.parseJava9File(self, input_stream)
+        elif file_extension == Language.Kotlin.value:
+            return AllParser.parseKotlinFile(self, input_stream)
 
 class IdentifierData():
     identifier = {}

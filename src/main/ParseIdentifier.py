@@ -1,20 +1,7 @@
 from antlr4 import *
 import sys, os
 from AllParser import AllParser
-from enum import Enum
-
-class Language(Enum):
-	Java = "java"
-	Kotlin = "kt"
-
-def get_supported_extensions():
-	return [language for language in Language]
-
-def parseFile(file_extension, input_stream):
-	if file_extension == Language.Java:
-		return AllParser.parseJava9File(None, input_stream)
-	elif file_extension == Language.Kotlin:
-		return AllParser.parseKotlinFile(None, input_stream)
+from Language import Language
 
 def get_file_content(filename):
 	try:
@@ -35,6 +22,9 @@ def printIdentifier(file_extension, identifier_data):
 	print(f"    Keywords: {identifier_data.keywords}")
 	identifier_data.identifier.printAll()
 
+def get_supported_extensions():
+	return [extension.value for extension in Language]
+
 def parseFileIfSupported(filepath):
 	file_extension = getFileExtension(filepath)
 	if file_extension in get_supported_extensions():
@@ -42,7 +32,7 @@ def parseFileIfSupported(filepath):
 		if file_content:
 			printStatus(filepath)
 			input_stream = InputStream(file_content)
-			identifier_data = parseFile(file_extension, input_stream)
+			identifier_data = AllParser.parseFile(None, file_extension, input_stream)
 			printIdentifier(file_extension, identifier_data)		
 
 def getFilePath(path, filename):
