@@ -17,11 +17,6 @@ def get_file_extension(filepath):
 def print_status(filepath):
 	print(f"[+] Analyzing: {filepath}")
 
-def print_identifier(file_extension, identifier_data):
-	print(f"    Extension: {file_extension}")
-	print(f"    Keywords: {identifier_data.keywords}")
-	identifier_data.identifier.print_all()
-
 def get_supported_extensions():
 	return [extension.value for extension in Language]
 
@@ -33,7 +28,7 @@ def parse_file_if_supported(filepath):
 			print_status(filepath)
 			input_stream = InputStream(file_content)
 			identifier_data = AllParser.parse_file(None, file_extension, input_stream)
-			print_identifier(file_extension, identifier_data)		
+			print(identifier_data)	
 
 def get_file_path(path, filename):
 	return path + os.sep + filename

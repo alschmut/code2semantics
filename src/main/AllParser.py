@@ -22,7 +22,7 @@ class AllParser(object):
         walker.walk(listener, tree)
         keywords = lexer.literalNames
         identifier = listener.get_all_identifier()
-        return IdentifierData(identifier, keywords)
+        return AllParser.combine_as_map(self, identifier, keywords)
 
     def parse_kotlin_file(self, input_stream):
         lexer = KotlinLexer(input_stream)
@@ -35,21 +35,19 @@ class AllParser(object):
         walker.walk(listener, tree)
         keywords = lexer.literalNames
         identifier = listener.get_all_identifier()
-        return IdentifierData(identifier, keywords)
+        return AllParser.combine_as_map(self, identifier, keywords)
+
+    def combine_as_map(self, identifier, keywords):
+        return {
+            "identifier": identifier,
+            "keywords": keywords
+        }
 
     def parse_file(self, file_extension, input_stream):
         if file_extension == Language.Java.value:
             return AllParser.parse_java9_file(self, input_stream)
         elif file_extension == Language.Kotlin.value:
             return AllParser.parse_kotlin_file(self, input_stream)
-
-class IdentifierData():
-    identifier = {}
-    keywords = []
-
-    def __init__(self, identifier, keywords):
-        self.identifier = identifier
-        self.keywords = keywords
 
 
 
