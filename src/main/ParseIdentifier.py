@@ -29,8 +29,8 @@ def parse_file_if_supported(filepath):
 			print_status(filepath)
 			input_stream = InputStream(file_content)
 			parser_data = LanguageParser.parse_file(None, file_extension, input_stream)
-			extracted_data = WordExtractor.extract_multi_words(None, parser_data)
-			print(extracted_data)
+			parser_data["identifier"] = WordExtractor.extract_multi_words(None, parser_data.get("identifier"))
+			print(parser_data)
 
 def get_file_path(path, filename):
 	return path + os.sep + filename

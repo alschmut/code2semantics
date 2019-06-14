@@ -1,45 +1,39 @@
 class WordExtractor(object):
-    def extract_multi_words(self, parser_data):
-        extracted_identifier = {}
-        
-        for identifier_type in parser_data.get("identifier").keys():
-            extracted_identifier[identifier_type] = []
-            for multi_word in parser_data.get("identifier").get(identifier_type):
-                separated_word = multi_word
-                last_character = ""
-                index = 0
-                while index < len(separated_word):
-                    current_last_character = separated_word[index]
-                    if last_character.islower() and separated_word[index].isupper():
-                        separated_word = separated_word[:index] + "_" + separated_word[index:]
-                        index += 1
+    def extract_multi_words(self, identifier):
+        new_identifier = {}
+        for identifier_type in identifier.keys():
+            new_identifier[identifier_type] = []
+            for multi_word in identifier.get(identifier_type):
+                separated_word = WordExtractor.get_separated_word(self, multi_word)
+                separated_word_object = WordExtractor.get_separated_word_object(self, multi_word, separated_word)
+                new_identifier[identifier_type].append(separated_word_object)
+        return new_identifier
 
-                    if last_character.isupper() and separated_word[index].islower():
-                        separated_word = separated_word[:index - 1] + "_" + separated_word[index - 1:]
-                        index += 1
+    def get_separated_word(self, multi_word):
+        last_char = multi_word[0]
+        index = 1
+        while index < len(multi_word):
+            current_char = multi_word[index]
+            if last_char.islower() and current_char.isupper():
+                multi_word = WordExtractor.insert_underscore(self, multi_word, index)
+                index += 1
 
-                    index += 1
-                    last_character = current_last_character
+            if last_char.isupper() and current_char.islower():
+                multi_word = WordExtractor.insert_underscore_before(self, multi_word, index)
+                index += 1
 
-                extracted_word_object = {
-                    "name": multi_word,
-                    "partial": [word for word in separated_word.lower().split("_") if len(word) > 0]
-                }
-                extracted_identifier[identifier_type].append(extracted_word_object)
+            index += 1
+            last_char = current_char
+        return multi_word
 
-        parser_data["identifier"] = extracted_identifier
-        return parser_data
+    def insert_underscore(self, separated_word, index):
+        return separated_word[:index] + "_" + separated_word[index:]
 
-    def parse_kotlin_file(self, input_stream):
-        pass
+    def insert_underscore_before(self, separated_word, index):
+        return separated_word[:index - 1] + "_" + separated_word[index - 1:]
 
-    def combine_as_map(self, identifier, keywords):
+    def get_separated_word_object(self, multi_word, separated_word):
         return {
-            "identifier": identifier,
-            "keywords": keywords
+            "name": multi_word,
+            "partial": [word for word in separated_word.lower().split("_") if len(word) > 0]
         }
-
-# groß groß -> nichts
-# groß klein -> füge vor dem großen ein
-# klein klein -> nichts
-# klein groß -> füge zwischen drin ein
