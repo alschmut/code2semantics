@@ -11,7 +11,7 @@ from Kotlin.KotlinParser import KotlinParser
 from ExtendedListener.KotlinParserListenerExtended import KotlinParserListenerExtended
 
 class AllParser(object):
-    def parseJava9File(self, input_stream):
+    def parse_java9_file(self, input_stream):
         lexer = Java9Lexer(input_stream)
         stream = CommonTokenStream(lexer)
         parser = Java9Parser(stream)
@@ -21,10 +21,10 @@ class AllParser(object):
         walker = ParseTreeWalker()
         walker.walk(listener, tree)
         keywords = lexer.literalNames
-        identifier = listener.getAllIdentifier()
+        identifier = listener.get_all_identifier()
         return IdentifierData(identifier, keywords)
 
-    def parseKotlinFile(self, input_stream):
+    def parse_kotlin_file(self, input_stream):
         lexer = KotlinLexer(input_stream)
         stream = CommonTokenStream(lexer)
         parser = KotlinParser(stream)
@@ -34,14 +34,14 @@ class AllParser(object):
         walker = ParseTreeWalker()
         walker.walk(listener, tree)
         keywords = lexer.literalNames
-        identifier = listener.getAllIdentifier()
+        identifier = listener.get_all_identifier()
         return IdentifierData(identifier, keywords)
 
-    def parseFile(self, file_extension, input_stream):
+    def parse_file(self, file_extension, input_stream):
         if file_extension == Language.Java.value:
-            return AllParser.parseJava9File(self, input_stream)
+            return AllParser.parse_java9_file(self, input_stream)
         elif file_extension == Language.Kotlin.value:
-            return AllParser.parseKotlinFile(self, input_stream)
+            return AllParser.parse_kotlin_file(self, input_stream)
 
 class IdentifierData():
     identifier = {}

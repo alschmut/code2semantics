@@ -11,38 +11,38 @@ def get_file_content(filename):
 		print(f"Could not open file: {type(err)}: {err}")
 		return None
 
-def getFileExtension(filepath):
+def get_file_extension(filepath):
 	return filepath.split(".")[-1]
 
-def printStatus(filepath):
+def print_status(filepath):
 	print(f"[+] Analyzing: {filepath}")
 
-def printIdentifier(file_extension, identifier_data):
+def print_identifier(file_extension, identifier_data):
 	print(f"    Extension: {file_extension}")
 	print(f"    Keywords: {identifier_data.keywords}")
-	identifier_data.identifier.printAll()
+	identifier_data.identifier.print_all()
 
 def get_supported_extensions():
 	return [extension.value for extension in Language]
 
-def parseFileIfSupported(filepath):
-	file_extension = getFileExtension(filepath)
+def parse_file_if_supported(filepath):
+	file_extension = get_file_extension(filepath)
 	if file_extension in get_supported_extensions():
 		file_content = get_file_content(filepath)
 		if file_content:
-			printStatus(filepath)
+			print_status(filepath)
 			input_stream = InputStream(file_content)
-			identifier_data = AllParser.parseFile(None, file_extension, input_stream)
-			printIdentifier(file_extension, identifier_data)		
+			identifier_data = AllParser.parse_file(None, file_extension, input_stream)
+			print_identifier(file_extension, identifier_data)		
 
-def getFilePath(path, filename):
+def get_file_path(path, filename):
 	return path + os.sep + filename
 
-def traverseDirectory(directory_path):
+def traverse_directory(directory_path):
 	for basepath, directories, filenames in os.walk(directory_path):
 		for filename in filenames:
-			filepath = getFilePath(basepath, filename)
-			parseFileIfSupported(filepath)
+			filepath = get_file_path(basepath, filename)
+			parse_file_if_supported(filepath)
 
 def main():
 	if len(sys.argv) != 2:
@@ -54,9 +54,9 @@ def main():
 	path = sys.argv[1]
 
 	if os.path.isdir(path):
-		traverseDirectory(path)
+		traverse_directory(path)
 	else:
-		parseFileIfSupported(path)
+		parse_file_if_supported(path)
 
 if __name__ == '__main__':
     main()
