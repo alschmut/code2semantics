@@ -1,6 +1,6 @@
 from antlr4 import *
 import sys, os
-from AllParser import AllParser
+from LanguageParser import LanguageParser
 from Language import Language
 
 def get_file_content(filename):
@@ -27,8 +27,8 @@ def parse_file_if_supported(filepath):
 		if file_content:
 			print_status(filepath)
 			input_stream = InputStream(file_content)
-			identifier_data = AllParser.parse_file(None, file_extension, input_stream)
-			print(identifier_data)	
+			parser_data = LanguageParser.parse_file(None, file_extension, input_stream)
+			print(parser_data)
 
 def get_file_path(path, filename):
 	return path + os.sep + filename

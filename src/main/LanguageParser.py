@@ -1,3 +1,4 @@
+import re
 from antlr4 import *
 from BaseListener import BaseListener
 from Language import Language
@@ -10,7 +11,7 @@ from Kotlin.KotlinLexer import KotlinLexer
 from Kotlin.KotlinParser import KotlinParser
 from ExtendedListener.KotlinParserListenerExtended import KotlinParserListenerExtended
 
-class AllParser(object):
+class LanguageParser(object):
     def parse_java9_file(self, input_stream):
         lexer = Java9Lexer(input_stream)
         stream = CommonTokenStream(lexer)
@@ -20,9 +21,9 @@ class AllParser(object):
 
         walker = ParseTreeWalker()
         walker.walk(listener, tree)
-        keywords = lexer.literalNames
+        keywords = LanguageParser.get_keywords(self, lexer)
         identifier = listener.get_all_identifier()
-        return AllParser.combine_as_map(self, identifier, keywords)
+        return LanguageParser.combine_as_map(self, identifier, keywords)
 
     def parse_kotlin_file(self, input_stream):
         lexer = KotlinLexer(input_stream)
@@ -33,9 +34,9 @@ class AllParser(object):
 
         walker = ParseTreeWalker()
         walker.walk(listener, tree)
-        keywords = lexer.literalNames
+        keywords = LanguageParser.get_keywords(self, lexer)
         identifier = listener.get_all_identifier()
-        return AllParser.combine_as_map(self, identifier, keywords)
+        return LanguageParser.combine_as_map(self, identifier, keywords)
 
     def combine_as_map(self, identifier, keywords):
         return {
@@ -43,11 +44,14 @@ class AllParser(object):
             "keywords": keywords
         }
 
+    def get_keywords(self, lexer):
+        return [word.replace("'", "").replace('"', '') for word in lexer.literalNames if re.search('[a-zA-Z]', word)]
+
     def parse_file(self, file_extension, input_stream):
         if file_extension == Language.Java.value:
-            return AllParser.parse_java9_file(self, input_stream)
+            return LanguageParser.parse_java9_file(self, input_stream)
         elif file_extension == Language.Kotlin.value:
-            return AllParser.parse_kotlin_file(self, input_stream)
+            return LanguageParser.parse_kotlin_file(self, input_stream)
 
 
 
