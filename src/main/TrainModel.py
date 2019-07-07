@@ -14,7 +14,6 @@ def trim_unneeded_RAM(model):
 	return model
 
 def train_model(file_path):
-	output_model = get_output_model(file_path)
 	size = 100
 	window = 5
 	min_count = 5
@@ -24,7 +23,7 @@ def train_model(file_path):
 		size=size, window=window, min_count=min_count, workers=multiprocessing.cpu_count())
 
 	model = trim_unneeded_RAM(model)
-	model.save(output_model)
+	model.save(get_output_model(file_path))
 
 def get_time_duration(start):
 	end = time.time()
