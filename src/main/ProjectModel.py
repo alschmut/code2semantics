@@ -1,8 +1,11 @@
 from IdentifierModel import IdentifierModel
 
 class ProjectModel():
-	files = []
+	files: [] = None
 	
+	def __init__(self):
+		self.files = []
+		
 	def get_all_files(self):
 		return self.files
 

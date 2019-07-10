@@ -3,6 +3,7 @@ import sys, os, time
 from LanguageParser import LanguageParser
 from Language import Language
 from ProjectModel import ProjectModel
+import IdentifierModel
 
 def get_file_content(file_name: str):
 	try:
@@ -29,14 +30,14 @@ def print_finished(file_path: str, start: float):
 	print(f"\r[+] Finished ({get_time_duration(start)}s): {file_path}")
 
 def parse_file_if_supported(file_path: str):
-	start = time.time()
-	file_extension = get_file_extension(file_path)
+	start: float = time.time()
+	file_extension: str = get_file_extension(file_path)
 	if file_extension in get_supported_extensions():
 		file_content = get_file_content(file_path)
 		if file_content:
 			print_analyzing(file_path)
 			input_stream = InputStream(file_content)
-			identifiers = LanguageParser.parse_file(None, file_extension, input_stream)
+			identifiers: IdentifierModel = LanguageParser.parse_file(None, file_extension, input_stream)
 			print_finished(file_path, start)
 			return identifiers
 

@@ -1,4 +1,5 @@
 import re
+from antlr4 import Lexer
 from Language import Language
 from Java.JavaLexer import JavaLexer
 from Java9.Java9Lexer import Java9Lexer
@@ -19,7 +20,7 @@ class LanguageKeywords(object):
     def get_kotlin_keywords(self):
         return LanguageKeywords.get_keywords(self, KotlinLexer())
 
-    def get_keywords(self, lexer):
+    def get_keywords(self, lexer: Lexer):
         return [word.replace("'", "").replace('"', '') for word in lexer.literalNames if re.search('[a-zA-Z]', word) and len(word) > 0]
 
     def parse_file(self, used_extensions: []):
