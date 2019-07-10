@@ -1,5 +1,5 @@
 import re
-from antlr4 import *
+from antlr4 import CommonTokenStream, ParseTreeWalker
 from BaseListener import BaseListener
 from Language import Language
 
@@ -26,9 +26,7 @@ class LanguageParser(object):
 
         walker = ParseTreeWalker()
         walker.walk(listener, tree)
-        keywords = LanguageParser.get_keywords(self, lexer)
-        identifier = listener.get_all_identifier()
-        return LanguageParser.combine_as_map(self, identifier, keywords)
+        return listener.get_all_identifier()
 
     def parse_java9_file(self, input_stream):
         lexer = Java9Lexer(input_stream)
@@ -39,9 +37,7 @@ class LanguageParser(object):
 
         walker = ParseTreeWalker()
         walker.walk(listener, tree)
-        keywords = LanguageParser.get_keywords(self, lexer)
-        identifier = listener.get_all_identifier()
-        return LanguageParser.combine_as_map(self, identifier, keywords)
+        return listener.get_all_identifier()
 
     def parse_kotlin_file(self, input_stream):
         lexer = KotlinLexer(input_stream)
@@ -52,24 +48,10 @@ class LanguageParser(object):
 
         walker = ParseTreeWalker()
         walker.walk(listener, tree)
-        keywords = LanguageParser.get_keywords(self, lexer)
-        identifier = listener.get_all_identifier()
-        return LanguageParser.combine_as_map(self, identifier, keywords)
-
-    def combine_as_map(self, identifier, keywords):
-        return {
-            "identifier": identifier,
-            "keywords": keywords
-        }
-
-    def get_keywords(self, lexer):
-        return [word.replace("'", "").replace('"', '') for word in lexer.literalNames if re.search('[a-zA-Z]', word)]
+        return listener.get_all_identifier()
 
     def parse_file(self, file_extension, input_stream):
         if file_extension == Language.Java.value:
             return LanguageParser.parse_java_file(self, input_stream)
         elif file_extension == Language.Kotlin.value:
             return LanguageParser.parse_kotlin_file(self, input_stream)
-
-
-
