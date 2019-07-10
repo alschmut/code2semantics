@@ -1,10 +1,16 @@
 from WordModel import WordModel
 
 class IdentifierModel():
-	classNames = []
-	methodNames = []
-	variableNames = []
-	anyIdentifiers = []
+	classNames = None
+	methodNames = None
+	variableNames = None
+	anyIdentifiers = None
+
+	def __init__(self):
+		self.classNames = []
+		self.methodNames = []
+		self.variableNames = []
+		self.anyIdentifiers = []
 	
 	def get_all_identifiers(self):
 		return {
