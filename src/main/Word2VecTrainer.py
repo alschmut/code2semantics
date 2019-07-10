@@ -3,17 +3,17 @@ from gensim.models import Word2Vec
 from gensim.models.word2vec import LineSentence
 import sys, os, time
 
-def get_output_model(file_path):
+def get_output_model(file_path: str):
 	file_name = file_path.split("/")[-1]
 	language_code = file_name.split(".")[1]
 	output_file_name = f"wiki.{language_code}.word2vec.model"
 	return open(output_file_name, 'wb')
 
-def trim_unneeded_RAM(model):
+def trim_unneeded_RAM(model: Word2Vec):
 	model.init_sims(replace=True)
 	return model
 
-def train_model(file_path):
+def train_model(file_path: str):
 	size = 100
 	window = 5
 	min_count = 5
@@ -25,7 +25,7 @@ def train_model(file_path):
 	model = trim_unneeded_RAM(model)
 	model.save(get_output_model(file_path))
 
-def get_time_duration(start):
+def get_time_duration(start: float):
 	end = time.time()
 	return round(end - start, 2)
 

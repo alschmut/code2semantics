@@ -3,13 +3,13 @@ from BaseListener import BaseListener
 
 class Java9ListenerExtended(Java9Listener, BaseListener):
 	def enterNormalClassDeclaration(self, ctx):
-		self.set_class_name(ctx.identifier().getText())
+		self.identifiers.set_class_name(ctx.identifier().getText())
 		
 	def enterVariableDeclaratorId(self, ctx):
-		self.set_variable_name(ctx.identifier().getText())
+		self.identifiers.set_variable_name(ctx.identifier().getText())
 
 	def enterMethodDeclarator(self, ctx):
-		self.set_method_name(ctx.identifier().getText())
+		self.identifiers.set_method_name(ctx.identifier().getText())
 		
 	def enterIdentifier(self, ctx):
-		self.set_any_identifier(ctx.getText())
+		self.identifiers.set_any_identifier(ctx.getText())

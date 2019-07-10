@@ -1,7 +1,6 @@
 from antlr4 import InputStream
 import sys, os, time
 from LanguageParser import LanguageParser
-from WordExtractor import WordExtractor
 from Language import Language
 from ProjectModel import ProjectModel
 
@@ -37,9 +36,9 @@ def parse_file_if_supported(file_path: str):
 		if file_content:
 			print_analyzing(file_path)
 			input_stream = InputStream(file_content)
-			parser_data = LanguageParser.parse_file(None, file_extension, input_stream)
+			identifiers = LanguageParser.parse_file(None, file_extension, input_stream)
 			print_finished(file_path, start)
-			return parser_data
+			return identifiers
 
 def get_file_path(path: str, file_name: str):
 	return path + os.sep + file_name
@@ -49,9 +48,9 @@ def traverse_directory(directory_path: str):
 	for basepath, _, file_names in os.walk(directory_path):
 		for file_name in file_names:
 			file_path = get_file_path(basepath, file_name)
-			parsed_file = parse_file_if_supported(file_path)
-			if parsed_file:
-				project.add_file(file_path, parsed_file)
+			identifiers = parse_file_if_supported(file_path)
+			if identifiers:
+				project.add_file(file_path, identifiers)
 	return project
 
 def parse_file(file_path: str):

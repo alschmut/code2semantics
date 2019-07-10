@@ -1,6 +1,4 @@
-import re
-from antlr4 import CommonTokenStream, ParseTreeWalker
-from BaseListener import BaseListener
+from antlr4 import CommonTokenStream, ParseTreeWalker, InputStream
 from Language import Language
 
 from Java.JavaLexer import JavaLexer
@@ -15,9 +13,9 @@ from Kotlin.KotlinLexer import KotlinLexer
 from Kotlin.KotlinParser import KotlinParser
 from ExtendedListener.KotlinParserListenerExtended import KotlinParserListenerExtended
 
-class LanguageParser(object):
+class LanguageParser():
 
-    def parse_java_file(self, input_stream):
+    def parse_java_file(self, input_stream: InputStream):
         lexer = JavaLexer(input_stream)
         stream = CommonTokenStream(lexer)
         parser = JavaParser(stream)
@@ -26,9 +24,9 @@ class LanguageParser(object):
 
         walker = ParseTreeWalker()
         walker.walk(listener, tree)
-        return listener.get_all_identifier()
+        return listener.get_identifiers()
 
-    def parse_java9_file(self, input_stream):
+    def parse_java9_file(self, input_stream: InputStream):
         lexer = Java9Lexer(input_stream)
         stream = CommonTokenStream(lexer)
         parser = Java9Parser(stream)
@@ -37,9 +35,9 @@ class LanguageParser(object):
 
         walker = ParseTreeWalker()
         walker.walk(listener, tree)
-        return listener.get_all_identifier()
+        return listener.get_identifiers()
 
-    def parse_kotlin_file(self, input_stream):
+    def parse_kotlin_file(self, input_stream: InputStream):
         lexer = KotlinLexer(input_stream)
         stream = CommonTokenStream(lexer)
         parser = KotlinParser(stream)
@@ -48,9 +46,9 @@ class LanguageParser(object):
 
         walker = ParseTreeWalker()
         walker.walk(listener, tree)
-        return listener.get_all_identifier()
+        return listener.get_identifiers()
 
-    def parse_file(self, file_extension, input_stream):
+    def parse_file(self, file_extension: [str], input_stream: InputStream):
         if file_extension == Language.Java.value:
             return LanguageParser.parse_java_file(self, input_stream)
         elif file_extension == Language.Kotlin.value:
