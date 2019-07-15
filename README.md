@@ -1,12 +1,14 @@
 # What is *code2semantics*?
 
-Source code contains a lot more than just the logic structure. Developsers sometimes take a deep breath while having a coffee, when a new identifier needs a good, precise and meaningful name. Have you ever had to read code, where identifiers were cryptic and not comprehensible at all? *code2semantics* aims to find those hotspots using Word2Vec machine learning models. It calculates semantic distances between identifiers and the overall file context. In more detail, this means, the project...
+Source code contains a lot more than just the logic structure. Developsers sometimes take a deep breath while having a coffee, when a new identifier* needs a good, precise and meaningful name. Have you ever had to read code, where identifiers were cryptic and not comprehensible at all? *code2semantics* aims to find those hotspots using Word2Vec machine learning models. It calculates semantic distances between identifiers and the overall file context. In more detail, this means, the project...
 
 - extracts identifiers from source code using [antlr4](https://www.antlr.org)
 - splits each identifier into separated words when using underscores or CamelCase notation
 - extracts 16GB (4,600,000 wiki articles) of training data from [Wikipedia dumps](https://dumps.wikimedia.org/enwiki/latest/) *enwiki-latest-pages-articles.xml.bz2*
 - trains the [Gensim](https://github.com/rare-technologies/gensim) Word2Vec model with the wikipedia training data
 - evaluates the identifier words using the Word2Vec model
+
+###### \* identifier can be a class name, method name, interface name or any other variable name, which can be set by the developer
 
 ## Requirements
 
