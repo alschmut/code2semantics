@@ -13,7 +13,7 @@ code2semantics analyses all used identifiers inside source code files by means o
 
   `pip install -U gensim`
 
-- Install the antlr4 runnable and and it to the classpath. This allows using the predefined antlr4 parser
+- Install the antlr4 runnable and add it to the classpath. This allows using the predefined antlr4 parser
 
   ```
   cd /usr/local/lib
