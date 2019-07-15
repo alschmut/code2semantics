@@ -14,7 +14,7 @@ Source code contains a lot more than just the logic structure. Developsers somet
 
   `pip install -U gensim`
 
-- Install the antlr4 runnable and add it to the classpath. This allows using the predefined antlr4 parser
+- Install the [antlr4](https://www.antlr.org) runnable and add it to the classpath. This allows using the predefined antlr4 parser
 
   ```
   cd /usr/local/lib
@@ -24,7 +24,7 @@ Source code contains a lot more than just the logic structure. Developsers somet
 
 ## How to extract semantics from source code
 
-- Extract identifiers and split into words by underscore
+- Extract identifiers and split those into words by underscore and CamelCase notation
   
   `python FileParser.py <file_or_directory_path>`
 
