@@ -17,9 +17,9 @@ def get_avg_distance(model: str, word_list: [str]):
 
 def get_word_list(model, file):
 	word_list = []
-	idewntifiers = file.get("identifiers")
-	for type in idewntifiers:
-		for word_obj in idewntifiers.get(type):
+	identifiers = file.get("identifiers")
+	for type in identifiers:
+		for word_obj in identifiers.get(type):
 			filtered_words = [word for word in word_obj.get("partial") if model.wv.vocab.get(word) != None]
 			word_list.extend(filtered_words)
 	return word_list
