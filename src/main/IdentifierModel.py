@@ -20,6 +20,24 @@ class IdentifierModel():
 			"anyIdentifiers": self.anyIdentifiers
         }
 
+	def get_word_list(self):
+		word_list = []
+		identifiers = self.get_all_identifiers()
+		for type in identifiers:
+			for word_obj in identifiers.get(type):
+				for word in word_obj.get("partial"):
+					word_list.append(word)
+		return word_list
+
+	def get_word_dictionary(self):
+		dictionary = {}
+		for word in self.get_word_list():
+			if dictionary.get(word) == None:
+				dictionary[word] =  1
+			else:
+				dictionary[word] = dictionary.get(word) + 1
+		return dictionary
+
 	def set_class_name(self, name: str):
 		self.classNames.append(WordModel(name).get_separated_word_obj())
 

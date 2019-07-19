@@ -9,8 +9,11 @@ class ProjectModel():
 	def get_all_files(self):
 		return self.files
 
-	def add_file(self, path, identfiers: IdentifierModel):
+	def add_file(self, path, identifiers: IdentifierModel):
 		self.files.append({
 			"name": path,
-			"identifiers": identfiers.get_all_identifiers()
+			"identifiers": identifiers.get_all_identifiers(),
+			"dictionary": identifiers.get_word_dictionary(),
+			"word_list": identifiers.get_word_list(),
+			"word_join": ", ".join(identifiers.get_word_list())
 		})
