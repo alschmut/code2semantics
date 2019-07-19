@@ -1,9 +1,9 @@
 import sys, os, time, json
-import IdentifierModel
 from antlr4 import InputStream
 from LanguageParser import LanguageParser
 from Language import Language
 from ProjectModel import ProjectModel
+from IdentifierModel import IdentifierModel
 from FileOpener import FileOpener
 
 def get_file_extension(file_path: str):
@@ -11,6 +11,9 @@ def get_file_extension(file_path: str):
 
 def get_supported_extensions():
 	return [extension.value for extension in Language]
+
+def get_file_name(file_path: str):
+	return file_path.split("/")[-1]
 
 def print_analyzing(file_path: str):
 	print(f"\r[+] Analyzing: {file_path}", end="")
@@ -57,19 +60,20 @@ def get_path_without_trailing_slash(path: str):
 		path = path[:-1]
 	return path
 
-def save_file_as_json(project: ProjectModel):
-	output_file_name = "project.json"
+def save_file_as_json(project: ProjectModel, project_name: str):
+	output_file_name = f"{project_name}.json"
 	with open(output_file_name, 'w') as f:
 		f.write(json.dumps(project.get_all_files()))
 
 def parse(is_file: bool, is_dir: bool, path: str):
 	if is_file:
 		print(f'[+] Parse file "{path}"')
-		save_file_as_json(parse_file(path))
+		file_name_without_extension = "".join(get_file_name(path).split(".")[:-1])
+		save_file_as_json(parse_file(path), file_name_without_extension)
 
 	elif is_dir:
 		print(f'[+] Parse all supported files in directory "{path}"')
-		save_file_as_json(traverse_directory(path))
+		save_file_as_json(traverse_directory(path), get_file_name(path))
 
 def main():
 	if len(sys.argv) != 2:
