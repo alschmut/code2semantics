@@ -1,7 +1,8 @@
 import multiprocessing
+import sys, os
 from gensim.models import Word2Vec
 from gensim.models.word2vec import LineSentence
-import sys, os, time
+from util.Timer import Timer
 
 def get_output_model(file_path: str):
 	file_name = file_path.split("/")[-1]
@@ -25,10 +26,6 @@ def train_model(file_path: str):
 	model = trim_unneeded_RAM(model)
 	model.save(get_output_model(file_path))
 
-def get_time_duration(start: float):
-	end = time.time()
-	return round(end - start, 2)
-
 def main():
 	if len(sys.argv) != 2:
 		print(f'[-] Usage: python {sys.argv[0]} <wiki.<LANG>.text>')
@@ -39,9 +36,9 @@ def main():
 	if os.path.isfile(file_path):
 		print(f'[+] Use corpus "{file_path}"')
 		print("[+] Starting to train word2vec model")
-		start = time.time()
+		timer = Timer()
 		train_model(file_path)
-		print(f"[+] Finished: {get_time_duration(start)} seconds")
+		print(f"[+] Finished: {timer.get_duration()} seconds")
 	else:
 		print(f"[-] Could not find file: {file_path}")
 

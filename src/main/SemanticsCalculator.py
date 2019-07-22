@@ -1,8 +1,9 @@
 import multiprocessing
-import sys, os, time, json
+import sys, os, json
 from gensim.models import Word2Vec
 from gensim.models.word2vec import LineSentence
 from util.FileOpener import FileOpener
+from util.Timer import Timer
 from model.ProjectModel import ProjectModel
 
 def get_avg_distance(model: str, word_list: [str]):
@@ -42,10 +43,6 @@ def calculate_semantic_distance(model_file_path: str, project_file_path: str):
 		avg_distance = get_avg_distance(model, word_list)
 		output_file.writelines(file.get("name") + "," + str(avg_distance) + "\n")
 
-def get_time_duration(start: float):
-	end: float = time.time()
-	return round(end - start, 2)
-
 def main():
 	if len(sys.argv) != 3:
 		print(f'[-] Usage: python {sys.argv[0]} <word2vec.model> <project_data.json>')
@@ -58,9 +55,9 @@ def main():
 		print(f'[+] Use model "{model_file_path}"')
 		print(f'[+] Use project_data "{project_file_path}"')
 		print("[+] Starting to calculate semantic distance")
-		start: float = time.time()
+		timer = Timer()
 		calculate_semantic_distance(model_file_path, project_file_path)
-		print(f"[+] Finished: {get_time_duration(start)}s")
+		print(f"[+] Finished: {timer.get_duration()}s")
 	else:
 		print(f"[-] Could not find file: {project_file_path}")
 

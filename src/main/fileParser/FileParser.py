@@ -7,6 +7,7 @@ from Language import Language
 from model.ProjectModel import ProjectModel
 from model.IdentifierModel import IdentifierModel
 from util.FileOpener import FileOpener
+from util.Timer import Timer
 
 def get_file_extension(file_path: str):
 	return file_path.split(".")[-1]
@@ -20,15 +21,11 @@ def get_file_name(file_path: str):
 def print_analyzing(file_path: str):
 	print(f"\r[+] Analyzing: {file_path}", end="")
 
-def get_time_duration(start: float):
-	end = time.time()
-	return round(end - start, 2)
-
-def print_finished(file_path: str, start: float):
-	print(f"\r[+] Finished ({get_time_duration(start)}s): {file_path}")
+def print_finished(file_path: str, timer: Timer):
+	print(f"\r[+] Finished ({timer.get_duration()}s): {file_path}")
 
 def parse_file_if_supported(file_path: str):
-	start: float = time.time()
+	timer = Timer()
 	file_extension: str = get_file_extension(file_path)
 	if file_extension in get_supported_extensions():
 		file_content = FileOpener().get_file_content(file_path)
@@ -36,7 +33,7 @@ def parse_file_if_supported(file_path: str):
 			print_analyzing(file_path)
 			input_stream = InputStream(file_content)
 			identifiers: IdentifierModel = LanguageParser().parse_file(file_extension, input_stream)
-			print_finished(file_path, start)
+			print_finished(file_path, timer)
 			return identifiers
 
 def get_file_path(path: str, file_name: str):
@@ -83,13 +80,13 @@ def main():
 		return
 
 	path = get_path_without_trailing_slash(sys.argv[1])
-	start = time.time()
+	timer = Timer()
 	is_file = os.path.isfile(path)
 	is_dir = os.path.isdir(path)
 
 	if is_file or is_dir:
 		parse(is_file, is_dir, path)
-		print(f"[+] Finished: {get_time_duration(start)}s")
+		print(f"[+] Finished: {timer.get_duration()}s")
 	else: 
 		print(f'[-] Could not find file or directory: "{path}"')
 

@@ -1,5 +1,7 @@
 from gensim.corpora import WikiCorpus
-import sys, os, time
+import sys, os
+
+from util.Timer import Timer
 
 def get_output_file(file_path: str):
 	file_name = file_path.split("/")[-1]
@@ -24,10 +26,6 @@ def get_corpus(file_path: str):
 	output_file.close()
 	print_status(i)
 
-def get_time_duration(start: float):
-	end: float = time.time()
-	return round(end - start, 2)
-
 def main():
 	if len(sys.argv) != 2:
 		print(f'[-] Usage: python {sys.argv[0]} <<LANG>wiki-latest-pages-articles.xml.bz2>')
@@ -37,9 +35,9 @@ def main():
 
 	if os.path.isfile(file_path):
 		print(f'[+] Starting to create wiki corpus from "{file_path}"')
-		start: float = time.time()
+		timer = Timer()
 		get_corpus(file_path)
-		print(f"[+] Finished: {get_time_duration(start)} seconds")
+		print(f"[+] Finished: {timer.get_duration()} seconds")
 	else:
 		print(f"[-] Could not find file: {file_path}")
 
