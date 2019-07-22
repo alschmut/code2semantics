@@ -1,5 +1,6 @@
 import sys, os, time, json
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
+sys.path.append(os.path.join(os.path.dirname(__file__), 'fileParser'))
 
 from antlr4 import InputStream
 from LanguageParser import LanguageParser
@@ -54,11 +55,6 @@ def parse_file(file_path: str):
 	project.add_file(file_path, parse_file_if_supported(file_path))
 	return project
 
-def get_path_without_trailing_slash(path: str):
-	if path[-1] == "/":
-		path = path[:-1]
-	return path
-
 def save_file_as_json(project: ProjectModel, project_name: str):
 	output_file_name = f"{project_name}.json"
 	with open(output_file_name, 'w') as f:
@@ -75,13 +71,17 @@ def parse(is_file: bool, is_dir: bool, path: str):
 		save_file_as_json(traverse_directory(path), get_file_name(path))
 
 def main():
+
 	if len(sys.argv) != 2:
 		print(f'[-] Usage: python {sys.argv[0]} <file_or_directory_path>')
 		return
 
-	path = get_path_without_trailing_slash(sys.argv[1])
+	path = os.path.abspath(sys.argv[1])
 	is_file = os.path.isfile(path)
 	is_dir = os.path.isdir(path)
+
+	print(path)
+	return
 
 	if is_file or is_dir:
 		timer = Timer()
