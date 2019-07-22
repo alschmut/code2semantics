@@ -80,9 +80,6 @@ def main():
 	is_file = os.path.isfile(path)
 	is_dir = os.path.isdir(path)
 
-	print(path)
-	return
-
 	if is_file or is_dir:
 		timer = Timer()
 		parse(is_file, is_dir, path)
