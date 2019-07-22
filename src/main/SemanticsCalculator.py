@@ -3,7 +3,7 @@ import sys, os, time, json
 from gensim.models import Word2Vec
 from gensim.models.word2vec import LineSentence
 from FileOpener import FileOpener
-from ProjectModel import ProjectModel
+from model.ProjectModel import ProjectModel
 
 def get_avg_distance(model: str, word_list: [str]):
 	most_similar_word_pair = model.wv.most_similar(positive=word_list, topn=1)

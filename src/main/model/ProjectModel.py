@@ -1,4 +1,4 @@
-from IdentifierModel import IdentifierModel
+from model.IdentifierModel import IdentifierModel
 
 class ProjectModel():
 	files: [] = None

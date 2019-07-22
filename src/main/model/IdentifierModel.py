@@ -1,4 +1,4 @@
-from WordModel import WordModel
+from model.WordModel import WordModel
 
 class IdentifierModel():
 	classNames = None

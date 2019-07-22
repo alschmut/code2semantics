@@ -2,8 +2,8 @@ import sys, os, time, json
 from antlr4 import InputStream
 from LanguageParser import LanguageParser
 from Language import Language
-from ProjectModel import ProjectModel
-from IdentifierModel import IdentifierModel
+from model.ProjectModel import ProjectModel
+from model.IdentifierModel import IdentifierModel
 from FileOpener import FileOpener
 
 def get_file_extension(file_path: str):
