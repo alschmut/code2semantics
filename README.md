@@ -16,6 +16,12 @@ Source code contains a lot more than just the logic structure. Developsers somet
 
   `pip install -U gensim`
 
+- Install [spaCy](https://github.com/explosion/spaCy) module and its english vocabulary
+
+  `pip install -U spacy`
+  
+  `python -m spacy download en`
+
 - Install the [antlr4](https://www.antlr.org) runnable and add it to the classpath. This allows using the predefined antlr4 parser
 
   ```

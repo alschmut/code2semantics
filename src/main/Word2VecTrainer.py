@@ -3,6 +3,7 @@ import sys, os
 from gensim.models import Word2Vec
 from gensim.models.word2vec import LineSentence
 from util.Timer import Timer
+from util.FileOpener import FileOpener
 
 def trim_unneeded_RAM(model: Word2Vec):
 	model.init_sims(replace=True)
@@ -32,7 +33,7 @@ def main():
 		print("[+] Starting to train word2vec model")
 		timer = Timer()
 		train_model(file_path)
-		print(f"[+] Finished: {timer.get_duration()} seconds")
+		print(f"[+] Finished: {timer.get_duration()}s")
 	else:
 		print(f"[-] Could not find file: {file_path}")
 
