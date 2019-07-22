@@ -2,7 +2,7 @@ import multiprocessing
 import sys, os, time, json
 from gensim.models import Word2Vec
 from gensim.models.word2vec import LineSentence
-from FileOpener import FileOpener
+from util.FileOpener import FileOpener
 from model.ProjectModel import ProjectModel
 
 def get_avg_distance(model: str, word_list: [str]):

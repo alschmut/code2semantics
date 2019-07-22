@@ -6,7 +6,7 @@ from LanguageParser import LanguageParser
 from Language import Language
 from model.ProjectModel import ProjectModel
 from model.IdentifierModel import IdentifierModel
-from FileOpener import FileOpener
+from util.FileOpener import FileOpener
 
 def get_file_extension(file_path: str):
 	return file_path.split(".")[-1]
