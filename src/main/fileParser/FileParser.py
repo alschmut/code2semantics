@@ -1,4 +1,6 @@
 import sys, os, time, json
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
 from antlr4 import InputStream
 from LanguageParser import LanguageParser
 from Language import Language
