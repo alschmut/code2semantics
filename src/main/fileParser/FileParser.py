@@ -80,11 +80,11 @@ def main():
 		return
 
 	path = get_path_without_trailing_slash(sys.argv[1])
-	timer = Timer()
 	is_file = os.path.isfile(path)
 	is_dir = os.path.isdir(path)
 
 	if is_file or is_dir:
+		timer = Timer()
 		parse(is_file, is_dir, path)
 		print(f"[+] Finished: {timer.get_duration()}s")
 	else: 

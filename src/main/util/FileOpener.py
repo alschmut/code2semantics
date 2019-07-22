@@ -8,3 +8,6 @@ class FileOpener():
         except Exception as err:
             print(f"Could not open file: {type(err)}: {err}")
             return None
+
+    def get_new_file(self, file_path: str, flags: str = "w"):
+        return open(file_path, flags)

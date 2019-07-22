@@ -25,16 +25,10 @@ def get_word_list(model, file):
 			word_list.extend(filtered_words)
 	return word_list
 
-def get_output_file(file_path: str):
-	file_name = file_path.split("/")[-1]
-	language_code = file_name.split(".")[1]
-	output_file_name = f"wiki.{language_code}.semantic_distance.csv"
-	return open(output_file_name, 'w')
-
 def calculate_semantic_distance(model_file_path: str, project_file_path: str):
 	model: Word2Vec = Word2Vec.load(model_file_path)
 	project: ProjectModel = json.loads(FileOpener().get_file_content(project_file_path))
-	output_file = get_output_file(model_file_path)
+	output_file = FileOpener().get_new_file("wiki.en.semantic_distance.csv")
 	output_file.writelines("path,semantic_distance\n")
 
 	for file in project:
@@ -59,7 +53,7 @@ def main():
 		calculate_semantic_distance(model_file_path, project_file_path)
 		print(f"[+] Finished: {timer.get_duration()}s")
 	else:
-		print(f"[-] Could not find file: {project_file_path}")
+		print(f"[-] Could not find file: {model_file_path} or {project_file_path}")
 
 if __name__ == '__main__':
     main()

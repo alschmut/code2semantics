@@ -1,19 +1,13 @@
-from gensim.corpora import WikiCorpus
 import sys, os
-
+from gensim.corpora import WikiCorpus
+from util.FileOpener import FileOpener
 from util.Timer import Timer
-
-def get_output_file(file_path: str):
-	file_name = file_path.split("/")[-1]
-	language_code = file_name[:2]
-	output_file_name = f"wiki.{language_code}.text"
-	return open(output_file_name, 'w')
 
 def print_status(num_articles: int):
 	print(f"\r... Saved {str(num_articles)} articles", end="")
 
 def get_corpus(file_path: str):
-	output_file = get_output_file(file_path)
+	output_file = FileOpener().get_new_file("wiki.en.text")
 	wiki: WikiCorpus = WikiCorpus(file_path, lemmatize=False, dictionary={})
 	i = 0
 
@@ -28,7 +22,7 @@ def get_corpus(file_path: str):
 
 def main():
 	if len(sys.argv) != 2:
-		print(f'[-] Usage: python {sys.argv[0]} <<LANG>wiki-latest-pages-articles.xml.bz2>')
+		print(f'[-] Usage: python {sys.argv[0]} <en.wiki-latest-pages-articles.xml.bz2>')
 		return
 
 	file_path: str = sys.argv[1]
