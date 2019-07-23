@@ -14,7 +14,7 @@ class IdentifierModel():
 		self.variableNames = []
 		self.anyIdentifiers = []
 	
-	def get_all_identifiers(self):
+	def to_print(self):
 		return {
             "classNames": self.classNames,
             "methodNames": self.methodNames,
@@ -24,17 +24,6 @@ class IdentifierModel():
 
 	def get_word_dictionary(self):
 		return self.dictionary
-
-	def extract_identifier(self):
-		identifiers = self.get_all_identifiers()
-		for type in identifiers:
-			for identifier in identifiers.get(type):
-				name = identifier.get("name")
-				if self.dictionary.get(name) == None:
-					self.dictionary[name] = WordModel(identifier).get_separated_word_obj()
-				else:
-					line = identifier.get("line")
-					self.dictionary[name]["lineNumbers"].append(line)
 
 	def set_class_name(self, name: str, line: int):
 		self.classNames.append({"name": name, "line": line})

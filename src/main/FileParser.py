@@ -7,6 +7,7 @@ from LanguageParser import LanguageParser
 from Language import Language
 from model.ProjectModel import ProjectModel
 from model.IdentifierModel import IdentifierModel
+from model.DictionaryModel import DictionaryModel
 from util.FileOpener import FileOpener
 from util.Timer import Timer
 
@@ -33,10 +34,10 @@ def parse_file_if_supported(file_path: str):
 		if file_content:
 			print_analyzing(file_path)
 			input_stream = InputStream(file_content)
-			identifiers: IdentifierModel = LanguageParser().parse_file(file_extension, input_stream)
-			identifiers.extract_identifier()
+			identifier_model: IdentifierModel = LanguageParser().parse_file(file_extension, input_stream)
+			dictionary_model: DictionaryModel = DictionaryModel(identifier_model)
 			print_finished(file_path, timer)
-			return identifiers
+			return (identifier_model, dictionary_model)
 
 def get_file_path(path: str, file_name: str):
 	return path + os.sep + file_name
@@ -46,14 +47,15 @@ def traverse_directory(directory_path: str):
 	for basepath, _, file_names in os.walk(directory_path):
 		for file_name in file_names:
 			file_path = get_file_path(basepath, file_name)
-			identifiers = parse_file_if_supported(file_path)
-			if identifiers:
-				project.add_file(file_path, identifiers)
+			identifier_model, dictionary_model = parse_file_if_supported(file_path)
+			if identifier_model and dictionary_model:
+				project.add_file(file_path, identifier_model, dictionary_model)
 	return project
 
 def parse_file(file_path: str):
 	project = ProjectModel()
-	project.add_file(file_path, parse_file_if_supported(file_path))
+	identifier_model, dictionary_model = parse_file_if_supported(file_path)
+	project.add_file(file_path, identifier_model, dictionary_model)
 	return project
 
 def save_file_as_json(project: ProjectModel, project_name: str):
