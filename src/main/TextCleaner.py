@@ -6,13 +6,13 @@ from nltk.corpus import stopwords
 RAW_WIKI_LINES = 4672758
 
 def print_status(num_articles: int):
-	percent = round(100 / RAW_WIKI_LINES * num_articles, 2)
+	percent = round(100 / RAW_WIKI_LINES * num_articles, 3)
 	print(f"\r... Saved {percent}% {str(num_articles)} articles", end="")
 
 def remove_stopwords_lemmatize_wiki(file_path: str):
 	sp = spacy.load("en")
 	stop_words = set(stopwords.words('english'))
-	output_file = FileOpener().get_new_file("wiki.en.lemmatised.txt", "a")
+	output_file = FileOpener().get_new_file("wiki.en.clean.txt", "a")
 	with open(file_path, "r") as file:
 		i = 0
 		for line in file:
@@ -21,13 +21,13 @@ def remove_stopwords_lemmatize_wiki(file_path: str):
 			lemmazized_line = " ".join(lemmatized_list)
 			output_file.write(lemmazized_line)
 			i = i + 1
-			if (i % 100 == 0):
+			if (i % 10 == 0):
 				print_status(i)
 	print_status(i)
 
 def main():
 	if len(sys.argv) != 2:
-		print(f'[-] Usage: python {sys.argv[0]} <wiki.en.raw.text>')
+		print(f'[-] Usage: python {sys.argv[0]} <wiki.en.raw.txt>')
 		return
 
 	file_path = sys.argv[1]

@@ -23,7 +23,7 @@ def train_model(file_path: str):
 
 def main():
 	if len(sys.argv) != 2:
-		print(f'[-] Usage: python {sys.argv[0]} <wiki.en.text>')
+		print(f'[-] Usage: python {sys.argv[0]} <wiki.en.clean.txt>')
 		return
 
 	file_path = sys.argv[1]

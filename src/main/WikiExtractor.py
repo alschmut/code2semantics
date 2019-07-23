@@ -7,7 +7,7 @@ def print_status(num_articles: int):
 	print(f"\r... Saved {str(num_articles)} articles", end="")
 
 def get_corpus(file_path: str):
-	output_file = FileOpener().get_new_file("wiki.en.text")
+	output_file = FileOpener().get_new_file("wiki.en.raw.txt")
 	wiki: WikiCorpus = WikiCorpus(file_path, lemmatize=False, dictionary={})
 	i = 0
 
