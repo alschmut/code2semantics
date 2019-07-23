@@ -41,9 +41,13 @@ Source code contains a lot more than just the logic structure. Developsers somet
   
   `python WikiExtractor.py <<LANG>wiki-latest-pages-articles.xml.bz2>`
   
-- Train Word2Vec model using train data (takes 5-6 hours for the raw wiki text)
+- Clean the wiki articles removing stopwords (use of nltk) and lemmatizing (use of spaCy) words
+
+  `python TextCleaner.py <wiki.en.raw.txt>`
+
+- Train a gensim Word2Vec model using train data (takes 5-6 hours for the raw wiki text)
   
-  `python Word2VecTrainer.py <wiki.<LANG>.text>`
+  `python Word2VecTrainer.py <wiki.en.clean.txt>`
   
 - Evaluate identifiers using the Word2Vec model. This currently just calculates the average semantic distance for each file between each identifier and the files context and creates a *CSV*-file containing the path and the overall semantic distance per file
   
