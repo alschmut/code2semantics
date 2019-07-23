@@ -1,9 +1,11 @@
 class WordModel():
     name: str = None
+    line: int = None
     partial = None
 
-    def __init__(self, name: str):
+    def __init__(self, name: str, line: int):
         self.name = name
+        self.line = line
         self.partial = []
 
     def get_separated_word_obj(self):
@@ -11,6 +13,7 @@ class WordModel():
         self.split_word_at_underscores()
         return {
             "name": self.name,
+            "line": self.line,
             "partial": self.partial
         }
     

@@ -38,14 +38,14 @@ class IdentifierModel():
 				dictionary[word] = dictionary.get(word) + 1
 		return dictionary
 
-	def set_class_name(self, name: str):
-		self.classNames.append(WordModel(name).get_separated_word_obj())
+	def set_class_name(self, name: str, line: int):
+		self.classNames.append(WordModel(name, line).get_separated_word_obj())
 
-	def set_method_name(self, name: str):
-		self.methodNames.append(WordModel(name).get_separated_word_obj())
+	def set_method_name(self, name: str, line: int):
+		self.methodNames.append(WordModel(name, line).get_separated_word_obj())
 
-	def set_variable_name(self, name: str):
-		self.variableNames.append(WordModel(name).get_separated_word_obj())
+	def set_variable_name(self, name: str, line: int):
+		self.variableNames.append(WordModel(name, line).get_separated_word_obj())
 
-	def set_any_identifier(self, name: str):
-		self.anyIdentifiers.append(WordModel(name).get_separated_word_obj())
+	def set_any_identifier(self, name: str, line: int):
+		self.anyIdentifiers.append(WordModel(name, line).get_separated_word_obj())
