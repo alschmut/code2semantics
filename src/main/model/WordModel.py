@@ -1,19 +1,18 @@
 class WordModel():
     name: str = None
-    line: int = None
+    lineNumbers: int = None
     partial = None
 
-    def __init__(self, name: str, line: int):
-        self.name = name
-        self.line = line
+    def __init__(self, identifier):
+        self.name = identifier.get("name")
+        self.lineNumbers = [identifier.get("line")]
         self.partial = []
 
     def get_separated_word_obj(self):
         self.separate_identifier()
         self.split_word_at_underscores()
         return {
-            "name": self.name,
-            "line": self.line,
+            "lineNumbers": self.lineNumbers,
             "partial": self.partial
         }
     

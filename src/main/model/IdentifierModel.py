@@ -1,12 +1,14 @@
 from model.WordModel import WordModel
 
 class IdentifierModel():
+	dictionary = None
 	classNames = None
 	methodNames = None
 	variableNames = None
 	anyIdentifiers = None
 
 	def __init__(self):
+		self.dictionary = {}
 		self.classNames = []
 		self.methodNames = []
 		self.variableNames = []
@@ -20,32 +22,28 @@ class IdentifierModel():
 			"anyIdentifiers": self.anyIdentifiers
         }
 
-	def get_word_list(self):
-		word_list = []
+	def get_word_dictionary(self):
+		return self.dictionary
+
+	def extract_identifier(self):
 		identifiers = self.get_all_identifiers()
 		for type in identifiers:
-			for word_obj in identifiers.get(type):
-				for word in word_obj.get("partial"):
-					word_list.append(word)
-		return word_list
-
-	def get_word_dictionary(self):
-		dictionary = {}
-		for word in self.get_word_list():
-			if dictionary.get(word) == None:
-				dictionary[word] =  1
-			else:
-				dictionary[word] = dictionary.get(word) + 1
-		return dictionary
+			for identifier in identifiers.get(type):
+				name = identifier.get("name")
+				if self.dictionary.get(name) == None:
+					self.dictionary[name] = WordModel(identifier).get_separated_word_obj()
+				else:
+					line = identifier.get("line")
+					self.dictionary[name]["lineNumbers"].append(line)
 
 	def set_class_name(self, name: str, line: int):
-		self.classNames.append(WordModel(name, line).get_separated_word_obj())
+		self.classNames.append({"name": name, "line": line})
 
 	def set_method_name(self, name: str, line: int):
-		self.methodNames.append(WordModel(name, line).get_separated_word_obj())
+		self.methodNames.append({"name": name, "line": line})
 
 	def set_variable_name(self, name: str, line: int):
-		self.variableNames.append(WordModel(name, line).get_separated_word_obj())
+		self.variableNames.append({"name": name, "line": line})
 
 	def set_any_identifier(self, name: str, line: int):
-		self.anyIdentifiers.append(WordModel(name, line).get_separated_word_obj())
+		self.anyIdentifiers.append({"name": name, "line": line})

@@ -14,6 +14,4 @@ class ProjectModel():
 			"name": path,
 			"identifiers": identifiers.get_all_identifiers(),
 			"dictionary": identifiers.get_word_dictionary(),
-			"word_list": identifiers.get_word_list(),
-			"word_join": ", ".join(identifiers.get_word_list())
 		})

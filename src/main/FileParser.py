@@ -34,6 +34,7 @@ def parse_file_if_supported(file_path: str):
 			print_analyzing(file_path)
 			input_stream = InputStream(file_content)
 			identifiers: IdentifierModel = LanguageParser().parse_file(file_extension, input_stream)
+			identifiers.extract_identifier()
 			print_finished(file_path, timer)
 			return identifiers
 
