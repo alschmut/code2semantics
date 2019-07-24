@@ -57,7 +57,7 @@ Source code contains a lot more than just the logic structure. Developsers somet
 ## How to add a new programming language with antlr4
 
 ### Generate Python classes for a new grammar
-- Find the <new_language> grammar on (antlr-grammars-v4)[https://github.com/antlr/grammars-v4]
+- Find the <new_language> grammar on [antlr-grammars-v4](https://github.com/antlr/grammars-v4)
 - Create a new folder `<new_language>` inside `src/main/fileParser/`
 - Copy paste all `.g4` files like Parser, Lexer or UnicodeClasses into the <new_language> folder
 - Execute `antlr4 -Dlanguage=Python3 *.g4` inside your <new_language> folder. This generates some Python3 classes and other files.
