@@ -9,9 +9,13 @@ from model.ProjectModel import ProjectModel
 from model.IdentifierModel import IdentifierModel
 from model.DictionaryModel import DictionaryModel
 from model.FileParserModel import FileParserModel
-from model.ProjectParserModel import ProjectParserModel
 from util.FileOpener import FileOpener
 from util.Timer import Timer
+
+def save_file_as_json(project, project_name: str):
+	output_file_name = f"{project_name}.json"
+	with open(output_file_name, 'w') as f:
+		f.write(json.dumps(project))
 
 def get_project_name(is_file: bool, is_dir: bool, path: str):
 	file_name: str = path.split("/")[-1]
@@ -24,15 +28,15 @@ def parse(is_file: bool, is_dir: bool, path: str):
 	project_name = get_project_name(is_file, is_dir, path)
 	if is_file:
 		print(f'[+] Parse file "{project_name}"')
-		project_parser_model = ProjectParserModel(path, project_name)
-		project_parser_model.parse_file()
-		project_parser_model.save_file_as_json()
+		project_model = ProjectModel(path, project_name)
+		project_model.parse_file()
+		save_file_as_json(project_model.to_print(), project_name)
 
 	elif is_dir:
 		print(f'[+] Parse all supported files in directory "{project_name}"')
-		project_parser_model = ProjectParserModel(path, project_name)
-		project_parser_model.traverse_directory()
-		project_parser_model.save_file_as_json()
+		project_model = ProjectModel(path, project_name)
+		project_model.traverse_directory()
+		save_file_as_json(project_model.to_print(), project_name)
 
 def main():
 	if len(sys.argv) != 2:
