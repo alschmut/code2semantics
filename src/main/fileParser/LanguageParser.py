@@ -19,16 +19,18 @@ class LanguageParser():
     def get_supported_extensions(self):
         return [extension.value for extension in Language]
 
+    def walk(self, listener, tree):
+        walker = ParseTreeWalker()
+        walker.walk(listener, tree)
+        return listener.get_identifiers()
+
     def parse_java_file(self, input_stream: InputStream):
         lexer = JavaLexer(input_stream)
         stream = CommonTokenStream(lexer)
         parser = JavaParser(stream)
         tree = parser.compilationUnit()
         listener = JavaParserListenerExtended()
-
-        walker = ParseTreeWalker()
-        walker.walk(listener, tree)
-        return listener.get_identifiers()
+        return self.walk(listener, tree)
 
     def parse_java9_file(self, input_stream: InputStream):
         lexer = Java9Lexer(input_stream)
@@ -36,10 +38,7 @@ class LanguageParser():
         parser = Java9Parser(stream)
         tree = parser.compilationUnit()
         listener = Java9ListenerExtended()
-
-        walker = ParseTreeWalker()
-        walker.walk(listener, tree)
-        return listener.get_identifiers()
+        return self.walk(listener, tree)
 
     def parse_kotlin_file(self, input_stream: InputStream):
         lexer = KotlinLexer(input_stream)
@@ -47,10 +46,7 @@ class LanguageParser():
         parser = KotlinParser(stream)
         tree = parser.kotlinFile()
         listener = KotlinParserListenerExtended()
-
-        walker = ParseTreeWalker()
-        walker.walk(listener, tree)
-        return listener.get_identifiers()
+        return self.walk(listener, tree)
 
     def parse_file(self, file_extension: [str], file_content: str):
         input_stream = InputStream(file_content)
