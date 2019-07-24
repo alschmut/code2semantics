@@ -3,8 +3,8 @@ from model.SeparatedWordModel import SeparatedWordModel
 
 class WordModel():
     name: str = None
-    lineNumbers: [int] = None
-    separatedWords = None
+    line_numbers: [int] = None
+    separated_words = None
 
     def __init__(self, raw_identifier_model: RawIdentifierModel):
         self.init_data(raw_identifier_model)
@@ -12,17 +12,17 @@ class WordModel():
 
     def init_data(self, raw_identifier_model: RawIdentifierModel):
         self.name = raw_identifier_model.get_name()
-        self.lineNumbers = [raw_identifier_model.get_line()]
-        self.separatedWords = []
+        self.line_numbers = [raw_identifier_model.get_line()]
+        self.separated_words = []
 
     def to_print(self):
         return {
-            "line_numbers": self.lineNumbers,
-            "separated_words": [separated_word.to_print() for separated_word in self.separatedWords]
+            "line_numbers": self.line_numbers,
+            "separated_words": [separated_word.to_print() for separated_word in self.separated_words]
         }
 
     def append_line_number(self, line_number: int):
-        self.lineNumbers.append(line_number)
+        self.line_numbers.append(line_number)
     
     def separate_identifier(self):
         separated_word: str = self.name
@@ -48,5 +48,5 @@ class WordModel():
     def insert_underscore_before(self, separated_word, index):
         return separated_word[:index - 1] + "_" + separated_word[index - 1:]
 
-    def split_word_at_underscores(self, separatedWords):
-        self.separatedWords = [SeparatedWordModel(word) for word in separatedWords.lower().split("_") if len(word) > 0]
+    def split_word_at_underscores(self, separated_words):
+        self.separated_words = [SeparatedWordModel(word) for word in separated_words.lower().split("_") if len(word) > 0]
