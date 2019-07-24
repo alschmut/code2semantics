@@ -1,7 +1,7 @@
 import sys, os, spacy
 from util.Timer import Timer
 from util.FileOpener import FileOpener
-from nltk.corpus import stopwords
+from model.StopWordModel import StopWordModel
 
 RAW_WIKI_LINES = 4672758
 
@@ -11,7 +11,7 @@ def print_status(num_articles: int):
 
 def remove_stopwords_lemmatize_wiki(file_path: str):
 	sp = spacy.load("en")
-	stop_words = set(stopwords.words('english'))
+	stop_words = StopWordModel().get_stop_words()
 	output_file = FileOpener().get_new_file("wiki.en.clean.txt", "a")
 	with open(file_path, "r") as file:
 		i = 0
