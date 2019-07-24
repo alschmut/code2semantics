@@ -1,5 +1,6 @@
 from model.WordModel import WordModel
 from model.IdentifierModel import IdentifierModel
+from model.RawIdentifierModel import RawIdentifierModel
 
 class DictionaryModel():
 	dictionary: dict = None
@@ -9,16 +10,13 @@ class DictionaryModel():
 		self.create_dictionary(identifier_model)
 
 	def to_print(self):
-		return self.dictionary
+		return { name: word_model.to_print() for name, word_model in self.dictionary.items() }
 
 	def create_dictionary(self, identifier_model: IdentifierModel):
-		identifier_list = identifier_model.to_print()
-		for type in identifier_list:
-			for identifier in identifier_list.get(type):
-				name = identifier.get("name")
-				if self.dictionary.get(name) == None:
-					self.dictionary[name] = WordModel(identifier).get_separated_word_obj()
-				else:
-					line = identifier.get("line")
-					self.dictionary[name]["lineNumbers"].append(line)
+		for raw_identifier in identifier_model.get_all_identifiers_as_list():
+			name = raw_identifier.get_name()
+			if self.dictionary.get(name) == None:
+				self.dictionary[name] = WordModel(raw_identifier)
+			else:
+				self.dictionary[name].append_line_number(raw_identifier.get_line())
 

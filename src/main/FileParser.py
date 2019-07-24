@@ -61,7 +61,7 @@ def parse_file(file_path: str):
 def save_file_as_json(project: ProjectModel, project_name: str):
 	output_file_name = f"{project_name}.json"
 	with open(output_file_name, 'w') as f:
-		f.write(json.dumps(project.get_all_files()))
+		f.write(json.dumps(project.to_print()))
 
 def parse(is_file: bool, is_dir: bool, path: str):
 	if is_file:

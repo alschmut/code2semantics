@@ -1,20 +1,28 @@
+from model.RawIdentifierModel import RawIdentifierModel
+
 class WordModel():
     name: str = None
-    lineNumbers: int = None
+    lineNumbers: [int] = None
     separatedWords = None
 
-    def __init__(self, identifier):
-        self.name = identifier.get("name")
-        self.lineNumbers = [identifier.get("line")]
-        self.separatedWords = []
-
-    def get_separated_word_obj(self):
+    def __init__(self, raw_identifier_model: RawIdentifierModel):
+        self.init_data(raw_identifier_model)
         self.separate_identifier()
         self.split_word_at_underscores()
+
+    def init_data(self, raw_identifier_model: RawIdentifierModel):
+        self.name = raw_identifier_model.get_name()
+        self.lineNumbers = [raw_identifier_model.get_line()]
+        self.separatedWords = []
+
+    def to_print(self):
         return {
-            "lineNumbers": self.lineNumbers,
-            "separatedWords": self.separatedWords
+            "line_numbers": self.lineNumbers,
+            "separated_words": self.separatedWords
         }
+
+    def append_line_number(self, line_number: int):
+        self.lineNumbers.append(line_number)
     
     def separate_identifier(self):
         separated_word: str = self.name
