@@ -15,11 +15,14 @@ class IdentifierModel():
 	
 	def to_print(self):
 		return {
-            "class_names": [obj.to_print() for obj in self.class_names],
-            "method_names": [obj.to_print() for obj in self.method_names],
-			"variable_names": [obj.to_print() for obj in self.variable_names],
-			"any_identifiers": [obj.to_print() for obj in self.any_identifiers],
+            "class_names": self.get_object_printed(self.class_names),
+            "method_names": self.get_object_printed(self.method_names),
+			"variable_names": self.get_object_printed(self.variable_names),
+			"any_identifiers": self.get_object_printed(self.any_identifiers)
         }
+
+	def get_object_printed(self, obj):
+		return [raw_identifier_model.to_print() for raw_identifier_model in obj]
 
 	def to_object(self):
 		return {
