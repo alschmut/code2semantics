@@ -9,14 +9,15 @@ public class ExampleJavaClass {
     }
 
     public double getBar() {
-        return this.barDoubleNumber;
+        int foo = 42;
+        return this.barDoubleNumber + foo;
     }
 
     public void foo(int fooValue) {
         System.out.println(fooValue);
     }
 
-    private void doSomething(String somethingNew) {
+    public void doSomething(String somethingNew) {
         System.out.println(somethingNew);
     }
 }
