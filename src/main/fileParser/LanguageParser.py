@@ -1,5 +1,6 @@
 from antlr4 import CommonTokenStream, ParseTreeWalker, InputStream
 from Language import Language
+from Language import Language
 
 from Java.JavaLexer import JavaLexer
 from Java.JavaParser import JavaParser
@@ -14,6 +15,9 @@ from Kotlin.KotlinParser import KotlinParser
 from ExtendedListener.KotlinParserListenerExtended import KotlinParserListenerExtended
 
 class LanguageParser():
+
+    def get_supported_extensions(self):
+        return [extension.value for extension in Language]
 
     def parse_java_file(self, input_stream: InputStream):
         lexer = JavaLexer(input_stream)
@@ -48,7 +52,8 @@ class LanguageParser():
         walker.walk(listener, tree)
         return listener.get_identifiers()
 
-    def parse_file(self, file_extension: [str], input_stream: InputStream):
+    def parse_file(self, file_extension: [str], file_content: str):
+        input_stream = InputStream(file_content)
         if file_extension == Language.Java.value:
             return LanguageParser.parse_java_file(self, input_stream)
         elif file_extension == Language.Kotlin.value:
