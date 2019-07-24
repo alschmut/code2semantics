@@ -8,7 +8,6 @@ from Language import Language
 from model.ProjectModel import ProjectModel
 from model.IdentifierModel import IdentifierModel
 from model.DictionaryModel import DictionaryModel
-from model.FileParserModel import FileParserModel
 from util.FileOpener import FileOpener
 from util.Timer import Timer
 
