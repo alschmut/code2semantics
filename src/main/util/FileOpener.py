@@ -1,3 +1,4 @@
+import json
 
 class FileOpener():
 
@@ -11,3 +12,7 @@ class FileOpener():
 
     def get_new_file(self, file_path: str, flags: str = "w"):
         return open(file_path, flags)
+
+    def save_file_as_json(self, project, output_file_name: str):
+	    with open(output_file_name, "w") as file:
+		    file.write(json.dumps(project))
