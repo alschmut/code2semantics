@@ -42,13 +42,17 @@ Source code contains a lot more than just the logic structure. Developsers somet
   
   `python WikiExtractor.py <<LANG>wiki-latest-pages-articles.xml.bz2>`
   
-- Clean the wiki articles removing stopwords (use of nltk) and lemmatizing (use of spaCy) words
+- Remove nltk-stopwords from the wiki articles (takes 8 minutes)
 
-  `python TextCleaner.py <wiki.en.raw.txt>`
+  `python TextStopwordFilter.py <wiki.en.raw.txt>`
+
+- Lemmatize the words using of spaCy inside the wiki articles (takes 10 days)
+
+  `python TextLemmatizer.py <wiki.en.filtered.txt>`
 
 - Train a gensim Word2Vec model using train data (takes 5-6 hours for the raw wiki text)
   
-  `python Word2VecTrainer.py <wiki.en.clean.txt>`
+  `python Word2VecTrainer.py <wiki.en.lemmatized.txt>`
   
 - Evaluate identifiers using the Word2Vec model. This currently just calculates the average semantic distance for each file between each identifier and the files context and creates a *CSV*-file containing the path and the overall semantic distance per file
   
