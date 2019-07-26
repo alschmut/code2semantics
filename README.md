@@ -45,7 +45,7 @@ Source code contains a lot more than just the logic structure. Developsers somet
 - Download the wikipedia dump (16GB) [enwiki-latest-pages-articles.xml.bz2](https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2)
 - Extract the articles text as training data from wikipedia dump (takes between 5-6 hours)
   
-  `python WikiExtractor.py <<LANG>wiki-latest-pages-articles.xml.bz2>`
+  `python WikiExtractor.py <enwiki-latest-pages-articles.xml.bz2>`
   
 - Remove nltk-stopwords from the wiki articles (takes 8 minutes)
 
