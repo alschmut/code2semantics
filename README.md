@@ -10,6 +10,11 @@ Source code contains a lot more than just the logic structure. Developsers somet
 
 ###### \* identifier can be a class name, method name, interface name or any other variable name, which can be set by the developer
 
+## Target Languages
+
+- Java
+- Kotlin
+
 ## Requirements
 
 - Install [Gensim](https://github.com/rare-technologies/gensim)
