@@ -2,11 +2,10 @@ import sys, os
 from gensim.corpora import WikiCorpus
 from util.FileOpener import FileOpener
 from util.Timer import Timer
-
-def print_status(num_articles: int):
-	print(f"\r... Saved {str(num_articles)} articles", end="")
+from util.Logger import Logger
 
 def get_corpus(file_path: str):
+	logger = Logger()
 	output_file = FileOpener().get_new_file("wiki.en.raw.txt")
 	wiki: WikiCorpus = WikiCorpus(file_path, lemmatize=False, dictionary={})
 	i = 0
@@ -14,11 +13,10 @@ def get_corpus(file_path: str):
 	for text in wiki.get_texts():
 		output_file.write(" ".join(text) + "\n")
 		i = i + 1
-		if (i % 100 == 0):
-			print_status(i)
+		logger.log_every_n_wiki_status(i, 100)
 
 	output_file.close()
-	print_status(i)
+	logger.log_wiki_status(i)
 
 def main():
 	if len(sys.argv) != 2:

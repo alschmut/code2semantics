@@ -1,15 +1,11 @@
 import sys, os, spacy
 from util.Timer import Timer
 from util.FileOpener import FileOpener
+from util.Logger import Logger
 from model.StopWordModel import StopWordModel
 
-RAW_WIKI_LINES = 4672758
-
-def print_status(num_articles: int):
-	percent = round(100 / RAW_WIKI_LINES * num_articles, 3)
-	print(f"\r... Saved {percent}% {str(num_articles)} articles", end="")
-
 def lemmatize_text(file_path: str):
+	logger = Logger()
 	sp = spacy.load("en")
 	output_file = FileOpener().get_new_file("wiki.en.lemmatized.txt", "a")
 	with open(file_path, "r") as file:
@@ -20,9 +16,8 @@ def lemmatize_text(file_path: str):
 			lemmazized_line = " ".join(lemmatized_list)
 			output_file.write(lemmazized_line)
 			i = i + 1
-			if (i % 10 == 0):
-				print_status(i)
-	print_status(i)
+			logger.log_every_n_wiki_status(i, 10)
+	logger.log_wiki_status(i)
 
 def main():
 	if len(sys.argv) != 2:
