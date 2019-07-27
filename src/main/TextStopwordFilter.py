@@ -8,16 +8,16 @@ def remove_stopwords(file_path: str):
 	logger = Logger()
 	stop_words = StopWordModel().get_stop_words()
 	output_file = FileOpener().get_new_file("wiki.en.filtered.txt", "a")
+	processed_articles = 0
 	with open(file_path, "r") as file:
-		i = 0
 		for line in file:
 			split_line = line.split(" ")
 			filtered_list = [word for word in split_line if word not in stop_words]
 			filtered_line = " ".join(filtered_list)
 			output_file.write(filtered_line)
-			i = i + 1
-			logger.log_every_n_wiki_status(i, 100)
-	logger.log_wiki_status(i)
+			processed_articles = processed_articles + 1
+			logger.log_every_n_wiki_status(processed_articles, 100)
+	logger.log_wiki_status(processed_articles)
 
 def main():
 	if len(sys.argv) != 2:

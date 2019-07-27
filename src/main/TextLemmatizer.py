@@ -8,16 +8,16 @@ def lemmatize_text(file_path: str):
 	logger = Logger()
 	sp = spacy.load("en")
 	output_file = FileOpener().get_new_file("wiki.en.lemmatized.txt", "a")
+	processed_articles = 0
 	with open(file_path, "r") as file:
-		i = 0
 		for line in file:
 			spacy_line = sp(line)
 			lemmatized_list = [word.lemma_ for word in spacy_line]
 			lemmazized_line = " ".join(lemmatized_list)
 			output_file.write(lemmazized_line)
-			i = i + 1
-			logger.log_every_n_wiki_status(i, 10)
-	logger.log_wiki_status(i)
+			processed_articles = processed_articles + 1
+			logger.log_every_n_wiki_status(processed_articles, 10)
+	logger.log_wiki_status(processed_articles)
 
 def main():
 	if len(sys.argv) != 2:
