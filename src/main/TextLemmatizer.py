@@ -6,12 +6,12 @@ from model.StopWordModel import StopWordModel
 
 def lemmatize_text(file_path: str):
 	logger = Logger()
-	sp = spacy.load("en")
+	nlp = spacy.load("en")
 	output_file = FileOpener().get_new_file("wiki.en.lemmatized.txt", "a")
 	processed_articles = 0
 	with open(file_path, "r") as file:
 		for line in file:
-			spacy_line = sp(line)
+			spacy_line = nlp(line)
 			lemmatized_list = [word.lemma_ for word in spacy_line]
 			lemmazized_line = " ".join(lemmatized_list)
 			output_file.write(lemmazized_line)
