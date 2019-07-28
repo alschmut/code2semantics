@@ -4,19 +4,20 @@ from util.FileOpener import FileOpener
 from util.Logger import Logger
 from model.StopWordModel import StopWordModel
 
-def lemmatize_text(file_path: str):
+def lemmatize_text(file_path: str, timer: Timer):
 	logger = Logger()
-	nlp = spacy.load("en")
+	nlp = spacy.load("en", disable=["parser", "tagger", "ner", "textcat"])
+
 	output_file = FileOpener().get_new_file("wiki.en.lemmatized.txt", "a")
 	processed_articles = 0
 	with open(file_path, "r") as file:
 		for line in file:
 			spacy_line = nlp(line)
-			lemmatized_list = [word.lemma_ for word in spacy_line]
+			lemmatized_list = [word.lemma_ for word in spacy_line if not word.is_stop]
 			lemmazized_line = " ".join(lemmatized_list)
 			output_file.write(lemmazized_line)
 			processed_articles = processed_articles + 1
-			logger.log_every_n_wiki_status(processed_articles, 10)
+			logger.log_every_n_wiki_status(processed_articles, 10, timer.get_duration())
 	logger.log_wiki_status(processed_articles)
 
 def main():
@@ -30,7 +31,7 @@ def main():
 		print(f'[+] Use raw text "{file_path}"')
 		print("[+] Starting to lemmatize text")
 		timer = Timer()
-		lemmatize_text(file_path)
+		lemmatize_text(file_path, timer)
 		print(f"\n[+] Finished: {timer.get_duration()}s")
 	else:
 		print(f"[-] Could not find file: {file_path}")
