@@ -5,6 +5,7 @@ from gensim.models.word2vec import LineSentence
 from util.Timer import Timer
 from util.FileOpener import FileOpener
 from util.Logger import Logger
+from util.FileName import FileName
 
 def trim_unneeded_RAM(model: Word2Vec):
 	model.init_sims(replace=True)
@@ -23,7 +24,8 @@ def train_model(file_path: str):
 	model.save(FileOpener().get_new_file("wiki.en.word2vec.model", "wb"))
 
 def main():
-	script_name = sys.argv[0]
+	script_name: str = FileName().get_file_name_from_path(sys.argv[0])
+
 	if len(sys.argv) != 2:
 		Logger().info(f'python {script_name} <wiki.en.clean.txt>')
 		return

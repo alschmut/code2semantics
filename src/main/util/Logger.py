@@ -20,7 +20,7 @@ class Logger():
         print(f"\r... Analyzing: {message}", end="")
 
     def finish_analyzing(self, seconds: float, message: str):
-        print(f"\rINFO Finished ({seconds}s): {message}")
+        print(f"\rINFO : Finished ({seconds}s): {message}")
             
     def every_n_wiki_status(self, num_articles: int, n: int, duration: float = 0):
         if (num_articles % n == 0):

@@ -3,6 +3,7 @@ from model.ProjectModel import ProjectModel
 from util.FileOpener import FileOpener
 from util.Timer import Timer
 from util.Logger import Logger
+from util.FileName import FileName
 from service import Word2VecModel
 
 def get_project_name(is_file: bool, is_dir: bool, path: str):
@@ -27,14 +28,14 @@ def parse(is_file: bool, is_dir: bool, path: str):
 	FileOpener().save_file_as_json(project_model.to_print(), output_file_name)
 
 def main():
-	script_name: str = sys.argv[0]
+	script_name: str = FileName().get_file_name_from_path(sys.argv[0])
 
 	if len(sys.argv) != 3:
 		Logger().usage(f"python {script_name} <file_or_directory_path> <word2vec.model>")
 		return
 
-	project_path = os.path.abspath(sys.argv[1])
-	model_path = os.path.abspath(sys.argv[2])
+	project_path = FileName().get_absolute_path(sys.argv[1])
+	model_path = FileName().get_absolute_path(sys.argv[2])
 	is_file = os.path.isfile(project_path)
 	is_dir = os.path.isdir(project_path)
 	is_model_file = os.path.isfile(model_path)
