@@ -3,7 +3,7 @@ from model.IdentifierModel import IdentifierModel
 from model.DictionaryModel import DictionaryModel
 from util.FileOpener import FileOpener
 from util.Timer import Timer
-from LanguageParser import LanguageParser
+from fileParser.LanguageParser import LanguageParser
 
 class FileModel():
 	path: str = None

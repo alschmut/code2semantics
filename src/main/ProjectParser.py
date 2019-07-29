@@ -3,8 +3,6 @@ from model.ProjectModel import ProjectModel
 from util.FileOpener import FileOpener
 from util.Timer import Timer
 
-sys.path.append(os.path.join(os.path.dirname(__file__), 'fileParser'))
-
 def get_project_name(is_file: bool, is_dir: bool, path: str):
 	file_name: str = path.split("/")[-1]
 	if is_file:

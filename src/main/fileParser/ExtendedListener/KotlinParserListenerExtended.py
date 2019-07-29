@@ -1,6 +1,6 @@
-from Kotlin.KotlinParserListener import KotlinParserListener
-from Kotlin.KotlinParser import KotlinParser
-from BaseListener import BaseListener
+from fileParser.Kotlin.KotlinParserListener import KotlinParserListener
+from fileParser.Kotlin.KotlinParser import KotlinParser
+from fileParser.BaseListener import BaseListener
 
 class KotlinParserListenerExtended(KotlinParserListener, BaseListener):
     def enterClassDeclaration(self, ctx:KotlinParser.ClassDeclarationContext):
