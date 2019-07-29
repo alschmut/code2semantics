@@ -6,7 +6,7 @@ from model.DictionaryModel import DictionaryModel
 from model.FileModel import FileModel
 
 class ProjectModel():
-	files: [] = None
+	files: [FileModel] = None
 	project_path: str = None
 	supported_extensions: [int] = None
 	project_name: str = None
