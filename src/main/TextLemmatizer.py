@@ -16,24 +16,25 @@ def lemmatize_text(file_path: str, timer: Timer):
 			lemmazized_line = " ".join(lemmatized_list)
 			output_file.write(lemmazized_line)
 			processed_articles = processed_articles + 1
-			logger.log_every_n_wiki_status(processed_articles, 10, timer.get_duration())
-	logger.log_wiki_status(processed_articles)
+			logger.every_n_wiki_status(processed_articles, 10, timer.get_duration())
+	logger.wiki_status(processed_articles)
 
 def main():
+	script_name = sys,argv[0]
 	if len(sys.argv) != 2:
-		print(f'[-] Usage: python {sys.argv[0]} <wiki.en.filtered.txt>')
+		Logger().usage(f"python {script_name} <wiki.en.filtered.txt>")
 		return
 
 	file_path = sys.argv[1]
 
 	if os.path.isfile(file_path):
-		print(f'[+] Use raw text "{file_path}"')
-		print("[+] Starting to lemmatize text")
+		Logger().info(f'Use raw text "{file_path}"')
+		Logger().info("Starting to lemmatize text")
 		timer = Timer()
 		lemmatize_text(file_path, timer)
-		print(f"\n[+] Finished: {timer.get_duration()}s")
+		Logger().finish_script(timer.get_duration(), script_name)
 	else:
-		print(f"[-] Could not find file: {file_path}")
+		Logger().error(f"Could not find file: {file_path}")
 
 if __name__ == '__main__':
     main()

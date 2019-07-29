@@ -1,4 +1,5 @@
 import json
+from util.Logger import Logger
 
 class FileOpener():
 
@@ -7,7 +8,7 @@ class FileOpener():
             with open(file_name, "r") as file:
                 return file.read()
         except Exception as err:
-            print(f"Could not open file: {type(err)}: {err}")
+            Logger().error(f"Could not open file: {type(err)}: {err}")
             return None
 
     def get_new_file(self, file_path: str, flags: str = "w"):

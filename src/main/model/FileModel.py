@@ -3,6 +3,7 @@ from model.IdentifierModel import IdentifierModel
 from model.DictionaryModel import DictionaryModel
 from util.FileOpener import FileOpener
 from util.Timer import Timer
+from util.Logger import Logger
 from fileParser.LanguageParser import LanguageParser
 
 class FileModel():
@@ -16,9 +17,9 @@ class FileModel():
 	file_content: str = None
 
 	def __init__(self, path: str, supported_extensions: [int]):
+		self.timer = Timer()
 		self.path = path
 		self.supported_extensions = supported_extensions
-		self.timer = Timer()
 		self.file_name = path.split("/")[-1]
 		self.file_extension = path.split(".")[-1]
 
@@ -35,13 +36,7 @@ class FileModel():
 			return True if self.file_content else False
 
 	def parse(self):
-		self.print_analyzing()
+		Logger().start_analyzing(self.path)
 		self.identifier_model = LanguageParser().parse_file(self.file_extension, self.file_content)
 		self.dictionary_model = DictionaryModel(self.identifier_model)
-		self.print_finished()
-
-	def print_analyzing(self):
-		print(f"\r[+] Analyzing: {self.path}", end="")
-
-	def print_finished(self):
-		print(f"\r[+] Finished ({self.timer.get_duration()}s): {self.path}")
+		Logger().finish_analyzing(self.timer.get_duration(), self.path)

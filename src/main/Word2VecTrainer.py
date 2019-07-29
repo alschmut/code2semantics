@@ -4,6 +4,7 @@ from gensim.models import Word2Vec
 from gensim.models.word2vec import LineSentence
 from util.Timer import Timer
 from util.FileOpener import FileOpener
+from util.Logger import Logger
 
 def trim_unneeded_RAM(model: Word2Vec):
 	model.init_sims(replace=True)
@@ -22,20 +23,21 @@ def train_model(file_path: str):
 	model.save(FileOpener().get_new_file("wiki.en.word2vec.model", "wb"))
 
 def main():
+	script_name = sys.argv[0]
 	if len(sys.argv) != 2:
-		print(f'[-] Usage: python {sys.argv[0]} <wiki.en.clean.txt>')
+		Logger().info(f'python {script_name} <wiki.en.clean.txt>')
 		return
 
 	file_path = sys.argv[1]
 
 	if os.path.isfile(file_path):
-		print(f'[+] Use corpus "{file_path}"')
-		print("[+] Starting to train word2vec model")
+		Logger().info(f'Use corpus "{file_path}"')
+		Logger().info("Starting to train word2vec model")
 		timer = Timer()
 		train_model(file_path)
-		print(f"[+] Finished: {timer.get_duration()}s")
+		Logger().finish_script(timer.get_duration(), script_name)
 	else:
-		print(f"[-] Could not find file: {file_path}")
+		Logger().error(f"Could not find file: {file_path}")
 
 if __name__ == '__main__':
     main()

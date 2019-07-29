@@ -13,25 +13,26 @@ def get_corpus(file_path: str):
 	for text in wiki.get_texts():
 		output_file.write(" ".join(text) + "\n")
 		processed_articles = processed_articles + 1
-		logger.log_every_n_wiki_status(processed_articles, 100)
+		logger.every_n_wiki_status(processed_articles, 100)
 
 	output_file.close()
-	logger.log_wiki_status(processed_articles)
+	logger.wiki_status(processed_articles)
 
 def main():
+	script_name = sys.argv[0]
 	if len(sys.argv) != 2:
-		print(f'[-] Usage: python {sys.argv[0]} <en.wiki-latest-pages-articles.xml.bz2>')
+		Logger().usage(f'python {script_name} <en.wiki-latest-pages-articles.xml.bz2>')
 		return
 
 	file_path: str = sys.argv[1]
 
 	if os.path.isfile(file_path):
-		print(f'[+] Starting to create wiki corpus from "{file_path}"')
+		Logger().info(f'Starting to create wiki corpus from "{file_path}"')
 		timer = Timer()
 		get_corpus(file_path)
-		print(f"[+] Finished: {timer.get_duration()} seconds")
+		Logger().finish_script(timer.get_duration(), script_name)
 	else:
-		print(f"[-] Could not find file: {file_path}")
+		Logger().error(f"Could not find file: {file_path}")
 
 if __name__ == '__main__':
     main()

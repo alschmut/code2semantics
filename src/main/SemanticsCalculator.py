@@ -3,6 +3,7 @@ from gensim.models import Word2Vec
 from gensim.models.word2vec import LineSentence
 from util.FileOpener import FileOpener
 from util.Timer import Timer
+from util.Logger import Logger
 from model.ProjectModel import ProjectModel
 
 def get_avg_distance(model: str, word_list: [str]):
@@ -37,22 +38,23 @@ def calculate_semantic_distance(model_file_path: str, project_file_path: str):
 		output_file.writelines(file.get("name") + "," + str(avg_distance) + "\n")
 
 def main():
+	script_name = sys.argv[0]
 	if len(sys.argv) != 3:
-		print(f'[-] Usage: python {sys.argv[0]} <word2vec.model> <project_data.json>')
+		Logger().usage(f"python {script_name} <word2vec.model> <project_data.json>")
 		return
 
 	model_file_path = sys.argv[1]
 	project_file_path = sys.argv[2]
 
 	if os.path.isfile(model_file_path) and os.path.isfile(project_file_path):
-		print(f'[+] Use model "{model_file_path}"')
-		print(f'[+] Use project_data "{project_file_path}"')
-		print("[+] Starting to calculate semantic distance")
+		Logger().info(f'Use model "{model_file_path}"')
+		Logger().info(f'Use project_data "{project_file_path}"')
+		Logger().info("Starting to calculate semantic distance")
 		timer = Timer()
 		calculate_semantic_distance(model_file_path, project_file_path)
-		print(f"[+] Finished: {timer.get_duration()}s")
+		Logger().finish_script(timer.get_duration(), script_name)
 	else:
-		print(f"[-] Could not find file: {model_file_path} or {project_file_path}")
+		Logger().error(f"Could not find file: {model_file_path} or {project_file_path}")
 
 if __name__ == '__main__':
     main()
