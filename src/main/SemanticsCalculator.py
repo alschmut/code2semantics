@@ -1,4 +1,3 @@
-import multiprocessing
 import sys, os, json
 from gensim.models import Word2Vec
 from gensim.models.word2vec import LineSentence

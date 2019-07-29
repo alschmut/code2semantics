@@ -2,6 +2,7 @@ import sys, os, time, json
 from model.ProjectModel import ProjectModel
 from util.FileOpener import FileOpener
 from util.Timer import Timer
+from service import Word2VecModel
 
 def get_project_name(is_file: bool, is_dir: bool, path: str):
 	file_name: str = path.split("/")[-1]
@@ -25,20 +26,23 @@ def parse(is_file: bool, is_dir: bool, path: str):
 	FileOpener().save_file_as_json(project_model.to_print(), output_file_name)
 
 def main():
-	if len(sys.argv) != 2:
-		print(f'[-] Usage: python {sys.argv[0]} <file_or_directory_path>')
+	if len(sys.argv) != 3:
+		print(f'[-] Usage: python {sys.argv[0]} <file_or_directory_path> <word2vec.model>')
 		return
 
-	path = os.path.abspath(sys.argv[1])
-	is_file = os.path.isfile(path)
-	is_dir = os.path.isdir(path)
+	project_path = os.path.abspath(sys.argv[1])
+	model_path = os.path.abspath(sys.argv[2])
+	is_file = os.path.isfile(project_path)
+	is_dir = os.path.isdir(project_path)
+	is_model_file = os.path.isfile(model_path)
 
-	if is_file or is_dir:
+	if (is_file or is_dir) and is_model_file:
 		timer = Timer()
-		parse(is_file, is_dir, path)
+		Word2VecModel.instance.set_model(model_path)
+		parse(is_file, is_dir, project_path)
 		print(f"[+] Finished: {timer.get_duration()}s")
 	else: 
-		print(f'[-] Could not find file or directory: "{path}"')
+		print(f'[-] Could not find file or directory: "{project_path}"')
 
 if __name__ == '__main__':
     main()
