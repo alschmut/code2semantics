@@ -2,18 +2,18 @@ import sys, os, spacy
 from util.Timer import Timer
 from util.FileOpener import FileOpener
 from util.Logger import Logger
+from model.SpacyModel import SpacyModel
 from model.StopWordModel import StopWordModel
 
 def lemmatize_text(file_path: str, timer: Timer):
 	logger = Logger()
-	nlp = spacy.load("en", disable=["parser", "tagger", "ner", "textcat"])
-
+	spacy_nlp = SpacyModel().get_spacy_nlp()
 	output_file = FileOpener().get_new_file("wiki.en.lemmatized.txt", "a")
 	processed_articles = 0
+	
 	with open(file_path, "r") as file:
 		for line in file:
-			spacy_line = nlp(line)
-			lemmatized_list = [word.lemma_ for word in spacy_line if not word.is_stop]
+			lemmatized_list = [word.lemma_ for word in spacy_nlp(line) if not word.is_stop]
 			lemmazized_line = " ".join(lemmatized_list)
 			output_file.write(lemmazized_line)
 			processed_articles = processed_articles + 1
