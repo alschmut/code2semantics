@@ -12,6 +12,9 @@ class DictionaryModel():
 	def to_print(self):
 		return { name: word_model.to_print() for name, word_model in self.dictionary.items() }
 
+	def get_dictionary(self):
+		return self.dictionary
+
 	def create_dictionary(self, identifier_model: IdentifierModel):
 		for raw_identifier in identifier_model.get_identifiers():
 			name = raw_identifier.get_name()

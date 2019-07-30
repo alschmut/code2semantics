@@ -18,8 +18,11 @@ class WordModel():
     def to_print(self):
         return {
             "line_numbers": self.line_numbers,
-            "separated_words": [separated_word.to_print() for separated_word in self.separated_words]
+            "separated_words": self.separated_words
         }
+
+    def get_separated_words(self):
+        return self.separated_words
 
     def append_line_number(self, line_number: int):
         self.line_numbers.append(line_number)
@@ -49,4 +52,4 @@ class WordModel():
         return separated_word[:index - 1] + "_" + separated_word[index - 1:]
 
     def split_word_at_underscores(self, separated_words):
-        self.separated_words = [SeparatedWordModel(word) for word in separated_words.lower().split("_") if len(word) > 0]
+        self.separated_words = [word for word in separated_words.lower().split("_") if len(word) > 0]
