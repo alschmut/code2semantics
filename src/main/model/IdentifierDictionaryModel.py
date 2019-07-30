@@ -2,7 +2,7 @@ from model.WordModel import WordModel
 from model.IdentifierModel import IdentifierModel
 from model.RawIdentifierModel import RawIdentifierModel
 
-class DictionaryModel():
+class IdentifierDictionaryModel():
 	dictionary: dict = None
 
 	def __init__(self, identifier_model: IdentifierModel):

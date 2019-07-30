@@ -56,17 +56,17 @@ class ProjectModelTest(unittest.TestCase):
         self.assertEqual(len(method_names), 4)
 
     def test_file_has_9_dictionary_entries(self):
-        dictionary = self.project_model.files[0].dictionary_model.dictionary
+        dictionary = self.project_model.files[0].identifier_dictionary_model.dictionary
         self.assertEqual(len(dictionary), 9)
 
     def test_dictionary_contains_correct_class_name(self):
-        dictionary = self.project_model.files[0].dictionary_model.dictionary
+        dictionary = self.project_model.files[0].identifier_dictionary_model.dictionary
         class_identifier = dictionary.get(self.project_name)
         self.assertEqual(class_identifier.line_numbers[0], 3)
         self.assertEqual(len(class_identifier.separated_words), 3)
 
     def test_dictionary_contains_correct_foo_identifier(self):
-        dictionary = self.project_model.files[0].dictionary_model.dictionary
+        dictionary = self.project_model.files[0].identifier_dictionary_model.dictionary
         foo_identifier = dictionary.get("foo")
         self.assertEqual(len(foo_identifier.line_numbers), 2)
         self.assertEqual(len(foo_identifier.separated_words), 1)

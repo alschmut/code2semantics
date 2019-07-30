@@ -2,7 +2,7 @@
 import os
 from fileParser.LanguageParser import LanguageParser
 from model.IdentifierModel import IdentifierModel
-from model.DictionaryModel import DictionaryModel
+from model.IdentifierDictionaryModel import IdentifierDictionaryModel
 from model.FileModel import FileModel
 
 class ProjectModel():
