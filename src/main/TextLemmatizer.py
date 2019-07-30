@@ -2,7 +2,7 @@ import sys, os, spacy
 from util.Timer import Timer
 from util.FileOpener import FileOpener
 from util.Logger import Logger
-from util.FileName import FileName
+from util.PathExtractor import PathExtractor
 from model.SpacyModel import SpacyModel
 from model.StopWordModel import StopWordModel
 
@@ -21,7 +21,7 @@ def lemmatize_text(file_path: str, timer: Timer):
 	logger.wiki_status(processed_articles)
 
 def main():
-	script_name: str = FileName().get_file_name(sys.argv[0])
+	script_name: str = PathExtractor().get_file_name(sys.argv[0])
 
 	if len(sys.argv) != 2:
 		Logger().usage(f"python {script_name} <wiki.en.filtered.txt>")

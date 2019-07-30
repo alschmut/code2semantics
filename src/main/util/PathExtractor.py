@@ -1,6 +1,6 @@
 import os
 
-class FileName():
+class PathExtractor():
 
     def get_absolute_path(self, path: str):
         return os.path.abspath(path)
