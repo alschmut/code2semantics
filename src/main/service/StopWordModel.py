@@ -15,3 +15,5 @@ class StopWordModel():
 
     def get_stop_words(self):
         return self.stop_words
+
+instance: StopWordModel = StopWordModel()

@@ -3,7 +3,7 @@ from util.Timer import Timer
 from util.FileOpener import FileOpener
 from util.Logger import Logger
 from util.PathExtractor import PathExtractor
-from model.StopWordModel import StopWordModel
+from service.StopWordModel import StopWordModel
 
 def remove_stopwords(file_path: str):
 	logger = Logger()

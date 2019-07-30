@@ -4,7 +4,6 @@ from util.FileOpener import FileOpener
 from util.Logger import Logger
 from util.PathExtractor import PathExtractor
 from model.SpacyModel import SpacyModel
-from model.StopWordModel import StopWordModel
 
 def lemmatize_text(file_path: str, timer: Timer):
 	logger = Logger()

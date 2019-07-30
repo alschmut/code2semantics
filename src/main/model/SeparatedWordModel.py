@@ -1,7 +1,7 @@
 from model.RawIdentifierModel import RawIdentifierModel
-from model.StopWordModel import StopWordModel
 from model.SpacyModel import SpacyModel
 from service import Word2VecModel
+from service import StopWordModel
 from gensim.models import Word2Vec
 
 class SeparatedWordModel():
@@ -13,7 +13,7 @@ class SeparatedWordModel():
     def __init__(self, name: str):
         self.name = name
         self.lemmatized_word = self.get_lemmaized_word(name)
-        self.is_stop_word = name in StopWordModel().get_stop_words()
+        self.is_stop_word = name in StopWordModel.instance.get_stop_words()
         if Word2VecModel.instance.exists():
             self.is_in_word2vec_dictionary = Word2VecModel.instance.is_word_in_dictionary(name)
 
