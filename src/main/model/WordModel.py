@@ -1,4 +1,4 @@
-from model.RawIdentifierModel import RawIdentifierModel
+from model.IdentifierModel import IdentifierModel
 from model.SeparatedWordModel import SeparatedWordModel
 
 class WordModel():
@@ -6,13 +6,13 @@ class WordModel():
     line_numbers: [int] = None
     separated_words = None
 
-    def __init__(self, raw_identifier_model: RawIdentifierModel):
-        self.init_data(raw_identifier_model)
+    def __init__(self, identifier_model: IdentifierModel):
+        self.init_data(identifier_model)
         self.separate_identifier()
 
-    def init_data(self, raw_identifier_model: RawIdentifierModel):
-        self.name = raw_identifier_model.get_name()
-        self.line_numbers = [raw_identifier_model.get_line()]
+    def init_data(self, identifier_model: IdentifierModel):
+        self.name = identifier_model.get_name()
+        self.line_numbers = [identifier_model.get_line()]
         self.separated_words = []
 
     def to_print(self):

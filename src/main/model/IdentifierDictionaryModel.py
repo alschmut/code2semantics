@@ -1,6 +1,6 @@
 from model.WordModel import WordModel
 from model.IdentifierListModel import IdentifierListModel
-from model.RawIdentifierModel import RawIdentifierModel
+from model.IdentifierModel import IdentifierModel
 
 class IdentifierDictionaryModel():
 	dictionary: dict = None
@@ -16,10 +16,10 @@ class IdentifierDictionaryModel():
 		return self.dictionary
 
 	def create_dictionary(self, identifier_list_model: IdentifierListModel):
-		for raw_identifier in identifier_list_model.get_identifiers():
-			name = raw_identifier.get_name()
+		for identifier in identifier_list_model.get_identifiers():
+			name = identifier.get_name()
 			if self.dictionary.get(name) == None:
-				self.dictionary[name] = WordModel(raw_identifier)
+				self.dictionary[name] = WordModel(identifier)
 			else:
-				self.dictionary[name].append_line_number(raw_identifier.get_line())
+				self.dictionary[name].append_line_number(identifier.get_line())
 

@@ -1,6 +1,6 @@
 from model.SeparatedWordModel import SeparatedWordModel
 from model.IdentifierDictionaryModel import IdentifierDictionaryModel
-from model.RawIdentifierModel import RawIdentifierModel
+from model.IdentifierModel import IdentifierModel
 
 class WordDictionaryModel():
 	word_dictionary: dict = None

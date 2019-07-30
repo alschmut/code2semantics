@@ -1,5 +1,5 @@
 import string
-from model.RawIdentifierModel import RawIdentifierModel
+from model.IdentifierModel import IdentifierModel
 from nltk.corpus import stopwords
 
 class StopWordModel():

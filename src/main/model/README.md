@@ -6,7 +6,7 @@ The following shows the structure of used models:
 +-- ProjectModel
 |   +-- FileModel
 |   |   +-- IdentifierListModel
-|   |   |   +-- RawIdentifierModel
+|   |   |   +-- IdentifierModel
 |   |   +-- IdentifierDictionaryModel
 |   |   |   +-- WordModel
 |   |   +-- WordDictionaryModel

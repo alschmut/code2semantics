@@ -1,6 +1,6 @@
 from model.IdentifierType import IdentifierType
 
-class RawIdentifierModel():
+class IdentifierModel():
 	name: str = None
 	line: int = None
 	type: IdentifierType = None

@@ -1,4 +1,4 @@
-from model.RawIdentifierModel import RawIdentifierModel
+from model.IdentifierModel import IdentifierModel
 from model.SpacyModel import SpacyModel
 from service import Word2VecModel
 from service import StopWordModel
