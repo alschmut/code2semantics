@@ -1,53 +1,35 @@
 from model.WordModel import WordModel
 from model.RawIdentifierModel import RawIdentifierModel
+from model.IdentifierType import IdentifierType
 
 class IdentifierModel():
-	class_names = None
-	method_names = None
-	variable_names = None
-	any_identifiers = None
+	identifiers: [RawIdentifierModel] = None
 
 	def __init__(self):
-		self.class_names = []
-		self.method_names = []
-		self.variable_names = []
-		self.any_identifiers = []
+		self.identifiers = []
 	
 	def to_print(self):
 		return {
-            "class_names": self.get_object_printed(self.class_names),
-            "method_names": self.get_object_printed(self.method_names),
-			"variable_names": self.get_object_printed(self.variable_names),
-			"any_identifiers": self.get_object_printed(self.any_identifiers)
+            "class_names": self.get_filtered_identfiers(IdentifierType.Class),
+            "method_names": self.get_filtered_identfiers(IdentifierType.Method),
+			"variable_names": self.get_filtered_identfiers(IdentifierType.Variable),
+			"any_identifiers": self.get_filtered_identfiers(IdentifierType.Any)
         }
 
-	def get_object_printed(self, obj):
-		return [raw_identifier_model.to_print() for raw_identifier_model in obj]
+	def get_filtered_identfiers(self, type: IdentifierType):
+		return [obj.to_print() for obj in self.identifiers if obj.get_type() == type]
 
-	def to_object(self):
-		return {
-            "class_names": self.class_names,
-            "method_names": self.method_names,
-			"variable_names": self.variable_names,
-			"any_identifiers": self.any_identifiers,
-        }
-
-	def get_all_identifiers_as_list(self):
-		raw_identifier_list = []
-		identifier_dict = self.to_object()
-		for key in identifier_dict:
-			for raw_identifier in identifier_dict.get(key):
-				raw_identifier_list.append(raw_identifier)
-		return raw_identifier_list
+	def get_identifiers(self):
+		return self.identifiers
 
 	def set_class_name(self, name: str, line: int):
-		self.class_names.append(RawIdentifierModel(name, line))
+		self.identifiers.append(RawIdentifierModel(name, line, IdentifierType.Class))
 
 	def set_method_name(self, name: str, line: int):
-		self.method_names.append(RawIdentifierModel(name, line))
+		self.identifiers.append(RawIdentifierModel(name, line, IdentifierType.Method))
 
 	def set_variable_name(self, name: str, line: int):
-		self.variable_names.append(RawIdentifierModel(name, line))
+		self.identifiers.append(RawIdentifierModel(name, line, IdentifierType.Variable))
 
 	def set_any_identifier(self, name: str, line: int):
-		self.any_identifiers.append(RawIdentifierModel(name, line))
+		self.identifiers.append(RawIdentifierModel(name, line, IdentifierType.Any))

@@ -13,7 +13,7 @@ class DictionaryModel():
 		return { name: word_model.to_print() for name, word_model in self.dictionary.items() }
 
 	def create_dictionary(self, identifier_model: IdentifierModel):
-		for raw_identifier in identifier_model.get_all_identifiers_as_list():
+		for raw_identifier in identifier_model.get_identifiers():
 			name = raw_identifier.get_name()
 			if self.dictionary.get(name) == None:
 				self.dictionary[name] = WordModel(raw_identifier)
