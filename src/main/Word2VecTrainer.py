@@ -24,7 +24,7 @@ def train_model(file_path: str):
 	model.save(FileOpener().get_new_file("wiki.en.word2vec.model", "wb"))
 
 def main():
-	script_name: str = FileName().get_file_name_from_path(sys.argv[0])
+	script_name: str = FileName().get_file_name(sys.argv[0])
 
 	if len(sys.argv) != 2:
 		Logger().info(f'python {script_name} <wiki.en.clean.txt>')

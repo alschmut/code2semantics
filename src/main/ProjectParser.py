@@ -4,31 +4,31 @@ from util.FileOpener import FileOpener
 from util.Timer import Timer
 from util.Logger import Logger
 from util.FileName import FileName
+from util.PathValidator import PathValidator
 from service import Word2VecModel
 
-def get_project_name(is_file: bool, is_dir: bool, path: str):
-	file_name: str = path.split("/")[-1]
-	if is_file:
-		return "".join(file_name.split(".")[:-1])
-	elif is_dir:
-		return file_name
-
-def parse(is_file: bool, is_dir: bool, path: str):
-	project_name = get_project_name(is_file, is_dir, path)
-	output_file_name = f"{project_name}.json"
+def parse_file(path: str, project_name: str):
+	Logger().info(f'Parse file "{project_name}"')
 	project_model = ProjectModel(path, project_name)
+	project_model.parse_file()
+	FileOpener().save_file_as_json(project_model.to_print(), project_name + ".json")
 
-	if is_file:
-		Logger().info(f'Parse file "{project_name}"')
-		project_model.parse_file()
-	elif is_dir:
-		Logger().info(f'Parse all supported files in directory "{project_name}"')
-		project_model.traverse_directory()
-	
-	FileOpener().save_file_as_json(project_model.to_print(), output_file_name)
+def parse_directory(path: str, project_name: str):
+	Logger().info(f'Parse all supported files in directory "{project_name}"')
+	project_model = ProjectModel(path, project_name)
+	project_model.traverse_directory()
+	FileOpener().save_file_as_json(project_model.to_print(), project_name + ".json")
+
+def parse(project_path: str, model_path: str):
+	Word2VecModel.instance.set_model(model_path)
+	project_name = FileName().get_file_name(project_path)
+	if PathValidator().is_valid_directories([project_path], True):
+		parse_directory(project_path, project_name)
+	else: 
+		parse_file(project_path, project_name)
 
 def main():
-	script_name: str = FileName().get_file_name_from_path(sys.argv[0])
+	script_name: str = FileName().get_file_name(sys.argv[0])
 
 	if len(sys.argv) != 3:
 		Logger().usage(f"python {script_name} <file_or_directory_path> <word2vec.model>")
@@ -36,17 +36,11 @@ def main():
 
 	project_path = FileName().get_absolute_path(sys.argv[1])
 	model_path = FileName().get_absolute_path(sys.argv[2])
-	is_file = os.path.isfile(project_path)
-	is_dir = os.path.isdir(project_path)
-	is_model_file = os.path.isfile(model_path)
 
-	if (is_file or is_dir) and is_model_file:
+	if PathValidator().is_valid_paths([project_path]) and PathValidator().is_valid_files([model_path]):
 		timer = Timer()
-		Word2VecModel.instance.set_model(model_path)
-		parse(is_file, is_dir, project_path)
+		parse(project_path, model_path)
 		Logger().finish_script(timer.get_duration(), script_name)
-	else: 
-		Logger().error(f'Could not find file or directory: "{project_path}" or {model_path}')
 
 if __name__ == '__main__':
     main()

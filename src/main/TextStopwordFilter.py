@@ -21,7 +21,7 @@ def remove_stopwords(file_path: str):
 	logger.wiki_status(processed_articles)
 
 def main():
-	script_name: str = FileName().get_file_name_from_path(sys.argv[0])
+	script_name: str = FileName().get_file_name(sys.argv[0])
 
 	if len(sys.argv) != 2:
 		Logger().usage(f'python {script_name} <wiki.en.raw.txt>')

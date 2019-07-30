@@ -38,7 +38,7 @@ def calculate_semantic_distance(model_file_path: str, project_file_path: str):
 		output_file.writelines(file.get("name") + "," + str(avg_distance) + "\n")
 
 def main():
-	script_name: str = FileName().get_file_name_from_path(sys.argv[0])
+	script_name: str = FileName().get_file_name(sys.argv[0])
 
 	if len(sys.argv) != 3:
 		Logger().usage(f"python {script_name} <word2vec.model> <project_data.json>")
