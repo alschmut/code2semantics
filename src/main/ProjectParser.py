@@ -19,8 +19,7 @@ def parse_directory(path: str, project_name: str):
 	project_model.traverse_directory()
 	FileOpener().save_file_as_json(project_model.to_print(), project_name + ".json")
 
-def parse(project_path: str, model_path: str):
-	Word2VecModel.instance.set_model(model_path)
+def parse(project_path: str):
 	project_name = FileName().get_file_name(project_path)
 	if PathValidator().is_valid_directories([project_path], True):
 		parse_directory(project_path, project_name)
@@ -29,17 +28,22 @@ def parse(project_path: str, model_path: str):
 
 def main():
 	script_name: str = FileName().get_file_name(sys.argv[0])
-
-	if len(sys.argv) != 3:
-		Logger().usage(f"python {script_name} <file_or_directory_path> <word2vec.model>")
+	timer = Timer()
+	
+	if len(sys.argv) == 3:
+		model_path = FileName().get_absolute_path(sys.argv[2])
+		if not PathValidator().is_valid_files([model_path]):
+			return
+		Word2VecModel.instance.set_model(model_path)
+	
+	if len(sys.argv) < 2 or len(sys.argv) > 3:
+		Logger().usage(f"python {script_name} <file_or_directory_path> [<word2vec.model>]")
 		return
 
 	project_path = FileName().get_absolute_path(sys.argv[1])
-	model_path = FileName().get_absolute_path(sys.argv[2])
 
-	if PathValidator().is_valid_paths([project_path]) and PathValidator().is_valid_files([model_path]):
-		timer = Timer()
-		parse(project_path, model_path)
+	if PathValidator().is_valid_paths([project_path]):
+		parse(project_path)
 		Logger().finish_script(timer.get_duration(), script_name)
 
 if __name__ == '__main__':

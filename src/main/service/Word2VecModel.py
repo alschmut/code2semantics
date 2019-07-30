@@ -6,6 +6,9 @@ class Word2VecModel():
 
     model: Word2Vec = None
 
+    def exists(self):
+        return self.model != None
+
     def set_model(self, model_file_path: str):
         timer: Timer = Timer()
         Logger().start_analyzing("Loading Word2VecModel")
