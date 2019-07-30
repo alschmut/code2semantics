@@ -2,7 +2,7 @@ from model.WordModel import WordModel
 from model.RawIdentifierModel import RawIdentifierModel
 from model.IdentifierType import IdentifierType
 
-class IdentifierModel():
+class IdentifierListModel():
 	identifiers: [RawIdentifierModel] = None
 
 	def __init__(self):

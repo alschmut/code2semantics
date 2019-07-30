@@ -35,24 +35,24 @@ class ProjectModelTest(unittest.TestCase):
 
     def test_file_has_4_identifier_types(self):
         file = self.project_model.files[0]
-        self.assertEqual(len(file.identifier_model.to_print()), 4)
+        self.assertEqual(len(file.identifier_list_model.to_print()), 4)
 
     def test_file_has_1_class_name(self):
         file = self.project_model.files[0]
-        self.assertEqual(len(file.identifier_model.class_names), 1)
+        self.assertEqual(len(file.identifier_list_model.class_names), 1)
 
     def test_file_has_correct_class_name(self):
         file = self.project_model.files[0]
-        class_name = file.identifier_model.class_names[0]
+        class_name = file.identifier_list_model.class_names[0]
         self.assertEqual(class_name.name, "ExampleJavaClass")   
 
     def test_file_has_correct_class_name_line(self):
         file = self.project_model.files[0]
-        class_name = file.identifier_model.class_names[0]
+        class_name = file.identifier_list_model.class_names[0]
         self.assertEqual(class_name.line, 3)
 
     def test_file_has_4_method_names(self):
-        method_names = self.project_model.files[0].identifier_model.method_names
+        method_names = self.project_model.files[0].identifier_list_model.method_names
         self.assertEqual(len(method_names), 4)
 
     def test_file_has_9_dictionary_entries(self):

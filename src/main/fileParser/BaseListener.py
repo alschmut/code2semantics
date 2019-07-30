@@ -1,10 +1,10 @@
-from model.IdentifierModel import IdentifierModel
+from model.IdentifierListModel import IdentifierListModel
 
 class BaseListener():
     identifiers = None
 
     def __init__(self):
-        self.identifiers = IdentifierModel()
+        self.identifiers = IdentifierListModel()
 
     def get_identifiers(self):
         return self.identifiers

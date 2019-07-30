@@ -1,5 +1,5 @@
 from model.WordModel import WordModel
-from model.IdentifierModel import IdentifierModel
+from model.IdentifierListModel import IdentifierListModel
 from model.IdentifierDictionaryModel import IdentifierDictionaryModel
 from model.WordDictionaryModel import WordDictionaryModel
 from util.FileOpener import FileOpener
@@ -9,7 +9,7 @@ from fileParser.LanguageParser import LanguageParser
 
 class FileModel():
 	path: str = None
-	identifier_model: IdentifierModel = None
+	identifier_list_model: IdentifierListModel = None
 	identifier_dictionary_model: IdentifierDictionaryModel = None
 	word_dictionary_model: WordDictionaryModel = None
 	supported_extensions: [str] = None
@@ -28,10 +28,9 @@ class FileModel():
 	def to_print(self):
 		return {
 			"path": self.path,
-			"identifier_list": self.identifier_model.to_print(),
+			"identifier_list": self.identifier_list_model.to_print(),
 			"identifier_dictionary": self.identifier_dictionary_model.to_print(),
-			"word_dictionary": self.word_dictionary_model.to_print(),
-
+			"word_dictionary": self.word_dictionary_model.to_print()
 		}
 
 	def is_valid(self):
@@ -41,7 +40,7 @@ class FileModel():
 
 	def parse(self):
 		Logger().start_analyzing(self.path)
-		self.identifier_model = LanguageParser().parse_file(self.file_extension, self.file_content)
-		self.identifier_dictionary_model = IdentifierDictionaryModel(self.identifier_model)
+		self.identifier_list_model = LanguageParser().parse_file(self.file_extension, self.file_content)
+		self.identifier_dictionary_model = IdentifierDictionaryModel(self.identifier_list_model)
 		self.word_dictionary_model = WordDictionaryModel(self.identifier_dictionary_model)
 		Logger().finish_analyzing(self.timer.get_duration(), self.path)
