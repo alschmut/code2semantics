@@ -21,4 +21,10 @@ class Word2VecModel():
     def is_word_in_dictionary(self, word: str):
         return self.model.wv.vocab.get(word) != None
 
+    def get_vector(self, word: str):
+        return self.model.wv[word]
+
+    def get_distance(self, vector1, vector2):
+        return self.model.wv.distance(vector1, vector2)
+
 instance: Word2VecModel = Word2VecModel()
