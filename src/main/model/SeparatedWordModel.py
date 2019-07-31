@@ -4,6 +4,7 @@ from service import StopWordModel
 
 class SeparatedWordModel():
     name: str = None
+    frequency: int = None
     lemmatized_word: str = None
     is_spacy_stop_word: bool = None
     is_nltk_stop_word: bool = None
@@ -15,6 +16,7 @@ class SeparatedWordModel():
 
     def __init__(self, name: str):
         self.name = name
+        self.frequency = 1
         spacy_word = SpacyModel().get_en_spacy_line(name)[0]
         self.lemmatized_word = spacy_word.lemma_
         self.is_spacy_stop_word = spacy_word.is_stop
@@ -31,7 +33,11 @@ class SeparatedWordModel():
     def to_print(self):
         return {
             "name": self.name,
+            "frequency": self.frequency,
             "lemmatized_word": self.lemmatized_word,
             "is_nltk_stop_word": self.is_nltk_stop_word,
             "is_dictionary_word": self.is_dictionary_word
         }
+
+    def increment_frequency(self):
+        self.frequency = self.frequency + 1

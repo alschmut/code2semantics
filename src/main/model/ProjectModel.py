@@ -6,6 +6,7 @@ from model.FileModel import FileModel
 
 class ProjectModel():
 	files: [FileModel] = None
+	
 	project_path: str = None
 	supported_extensions: [int] = None
 	project_name: str = None

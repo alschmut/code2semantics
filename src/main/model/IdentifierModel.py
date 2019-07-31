@@ -19,9 +19,6 @@ class IdentifierModel():
 
 	def get_name(self):
 		return self.name
-	
-	def get_line(self):
-		return self.line
 
 	def get_type(self):
 		return self.type

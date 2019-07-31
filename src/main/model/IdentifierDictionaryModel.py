@@ -21,5 +21,5 @@ class IdentifierDictionaryModel():
 			if self.dictionary.get(name) == None:
 				self.dictionary[name] = WordModel(identifier)
 			else:
-				self.dictionary[name].append_line_number(identifier.get_line())
+				self.dictionary[name].increment_frequency()
 

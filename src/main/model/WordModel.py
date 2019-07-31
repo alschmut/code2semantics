@@ -3,29 +3,26 @@ from model.SeparatedWordModel import SeparatedWordModel
 
 class WordModel():
     name: str = None
-    line_numbers: [int] = None
+    frequency: int = None
     separated_words = None
 
     def __init__(self, identifier_model: IdentifierModel):
-        self.init_data(identifier_model)
-        self.separate_identifier()
-
-    def init_data(self, identifier_model: IdentifierModel):
         self.name = identifier_model.get_name()
-        self.line_numbers = [identifier_model.get_line()]
+        self.frequency = 1
         self.separated_words = []
+        self.separate_identifier()        
 
     def to_print(self):
         return {
-            "line_numbers": self.line_numbers,
+            "frequency": self.frequency,
             "separated_words": self.separated_words
         }
 
     def get_separated_words(self):
         return self.separated_words
 
-    def append_line_number(self, line_number: int):
-        self.line_numbers.append(line_number)
+    def increment_frequency(self):
+        self.frequency = self.frequency + 1
     
     def separate_identifier(self):
         separated_word: str = self.name

@@ -18,3 +18,5 @@ class WordDictionaryModel():
 			for word in dictionary.get(key).get_separated_words():
 				if self.word_dictionary.get(word) == None:
 					self.word_dictionary[word] = SeparatedWordModel(word)
+				else:
+					self.word_dictionary[word].increment_frequency()
