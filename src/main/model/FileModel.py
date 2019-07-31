@@ -5,13 +5,17 @@ from model.WordDictionaryModel import WordDictionaryModel
 from util.FileOpener import FileOpener
 from util.Timer import Timer
 from util.Logger import Logger
+from util.PathExtractor import PathExtractor
+from util.PathExtractor import PathExtractor
 from fileParser.LanguageParser import LanguageParser
 
 class FileModel():
-	path: str = None
+	relative_path: str = None
 	identifier_list_model: IdentifierListModel = None
 	identifier_dictionary_model: IdentifierDictionaryModel = None
 	word_dictionary_model: WordDictionaryModel = None
+
+	path: str = None
 	supported_extensions: [str] = None
 	file_name: str = None
 	file_extension: str = None
@@ -21,13 +25,14 @@ class FileModel():
 	def __init__(self, path: str, supported_extensions: [int]):
 		self.timer = Timer()
 		self.path = path
+		self.relative_path = PathExtractor().get_relative_path(path)
 		self.supported_extensions = supported_extensions
-		self.file_name = path.split("/")[-1]
-		self.file_extension = path.split(".")[-1]
+		self.file_name = PathExtractor().get_file_name(path)
+		self.file_extension = PathExtractor().get_file_extension(self.file_name)
 
 	def to_print(self):
 		return {
-			"path": self.path,
+			"relative_path": self.relative_path,
 			"identifier_list": self.identifier_list_model.to_print(),
 			"identifier_dictionary": self.identifier_dictionary_model.to_print(),
 			"word_dictionary": self.word_dictionary_model.to_print()

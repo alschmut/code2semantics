@@ -24,6 +24,6 @@ class PathValidator():
     def is_valid_paths(self, paths: [str]):
         all_paths_valid = True
         for path in paths:
-            if not self.is_valid_files([path], True) and not self.is_valid_directories([path], True):
+            if not os.path.exists(path):
                 all_paths_valid = False
         return all_paths_valid
