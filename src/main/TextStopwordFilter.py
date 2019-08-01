@@ -7,7 +7,7 @@ from service.StopWordModel import StopWordModel
 
 def remove_stopwords(file_path: str):
 	logger = Logger()
-	stop_words = StopWordModel().get_stop_words()
+	stop_words = StopWordModel().get_stop_words_nltk()
 	output_file = FileOpener().get_new_file("wiki.en.filtered.txt", "a")
 	processed_articles = 0
 	with open(file_path, "r") as file:

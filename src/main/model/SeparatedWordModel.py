@@ -6,8 +6,9 @@ class SeparatedWordModel():
     name: str = None
     frequency: int = None
     lemmatized_word: str = None
-    is_spacy_stop_word: bool = None
-    is_nltk_stop_word: bool = None
+    is_stop_word_spacy: bool = None
+    is_stop_word_nltk: bool = None
+    is_stop_word_smart: bool = None
     is_dictionary_word: bool = None
     distance_to_class_name: float = None
     distance_to_file_context: float = None
@@ -19,9 +20,10 @@ class SeparatedWordModel():
         self.frequency = 1
         spacy_word = SpacyModel().get_en_spacy_line(name)[0]
         self.lemmatized_word = spacy_word.lemma_
-        self.is_spacy_stop_word = spacy_word.is_stop
-        self.is_nltk_stop_word = self.lemmatized_word in StopWordModel.instance.get_stop_words()
-        
+        self.is_stop_word_spacy = spacy_word.is_stop
+        self.is_stop_word_nltk = self.lemmatized_word in StopWordModel.instance.get_stop_words_nltk()
+        self.is_stop_word_smart = self.lemmatized_word in StopWordModel.instance.get_stop_words_smart()
+
         if Word2VecModel.instance.exists():
             self.is_dictionary_word = Word2VecModel.instance.is_word_in_dictionary(self.lemmatized_word)
             if self.is_dictionary_word:
@@ -42,9 +44,10 @@ class SeparatedWordModel():
             "name": self.name,
             "frequency": self.frequency,
             "lemmatized_word": self.lemmatized_word,            
-            "is_spacy_stop_word": self.is_spacy_stop_word,
-            "is_nltk_stop_word": self.is_nltk_stop_word,
-            "is_dictionary_word": self.is_dictionary_word,
+            "is_stop_word_spacy": self.is_stop_word_spacy,
+            "is_stop_word_nltk": self.is_stop_word_nltk,
+            "is_stop_word_smart": self.is_stop_word_smart,
+            "is_w2v_dictionary_word": self.is_dictionary_word,
             "distance_to_class_name": self.distance_to_class_name,
             "distance_to_file_context": self.distance_to_file_context
         }
