@@ -27,4 +27,10 @@ class Word2VecModel():
     def get_distance(self, vector1, vector2):
         return self.model.wv.distance(vector1, vector2)
 
+    def get_most_similar_word(self, vector_list):
+        if vector_list is []:
+            return None
+        else:
+            return self.model.wv.most_similar(positive=vector_list, topn=1)[0][0]
+
 instance: Word2VecModel = Word2VecModel()

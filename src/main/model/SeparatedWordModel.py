@@ -24,20 +24,33 @@ class SeparatedWordModel():
         
         if Word2VecModel.instance.exists():
             self.is_dictionary_word = Word2VecModel.instance.is_word_in_dictionary(self.lemmatized_word)
-            self.vector = Word2VecModel.instance.get_vector(self.lemmatized_word)
+            if self.is_dictionary_word:
+                self.vector = Word2VecModel.instance.get_vector(self.lemmatized_word)
 
 
     def get_lemmaized_word(self, name: str):
         return SpacyModel().get_en_spacy_line(name)[0].lemma_
 
+    def get_is_dictionary_word(self):
+        return self.is_dictionary_word
+
+    def get_vector(self):
+        return self.vector
+
     def to_print(self):
         return {
             "name": self.name,
             "frequency": self.frequency,
-            "lemmatized_word": self.lemmatized_word,
+            "lemmatized_word": self.lemmatized_word,            
+            "is_spacy_stop_word": self.is_spacy_stop_word,
             "is_nltk_stop_word": self.is_nltk_stop_word,
-            "is_dictionary_word": self.is_dictionary_word
+            "is_dictionary_word": self.is_dictionary_word,
+            "distance_to_class_name": self.distance_to_class_name
         }
 
     def increment_frequency(self):
         self.frequency = self.frequency + 1
+
+    def calculate_semantic_distances(self, class_name_vector_word):
+        if class_name_vector_word is not None and self.is_dictionary_word:
+            self.distance_to_class_name = Word2VecModel.instance.get_distance(self.lemmatized_word, class_name_vector_word)

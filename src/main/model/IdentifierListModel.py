@@ -19,6 +19,9 @@ class IdentifierListModel():
 	def get_filtered_identfiers(self, type: IdentifierType):
 		return [obj.to_print() for obj in self.identifiers if obj.get_type() == type]
 
+	def get_filtered_identfier_names(self, type: IdentifierType):
+		return [obj.get_name() for obj in self.identifiers if obj.get_type() == type]
+
 	def get_identifiers(self):
 		return self.identifiers
 

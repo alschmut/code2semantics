@@ -15,6 +15,14 @@ class IdentifierDictionaryModel():
 	def get_dictionary(self):
 		return self.dictionary
 
+	def get_filtered_words(self, keys: [str]):
+		separated_words = []
+		for (key, word_model) in self.dictionary.items():
+			if key in keys:
+				for word in word_model.get_separated_words():
+					separated_words.append(word)
+		return separated_words
+
 	def create_dictionary(self, identifier_list_model: IdentifierListModel):
 		for identifier in identifier_list_model.get_identifiers():
 			name = identifier.get_name()

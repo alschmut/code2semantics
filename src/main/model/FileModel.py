@@ -2,12 +2,14 @@ from model.WordModel import WordModel
 from model.IdentifierListModel import IdentifierListModel
 from model.IdentifierDictionaryModel import IdentifierDictionaryModel
 from model.WordDictionaryModel import WordDictionaryModel
+from model.IdentifierType import IdentifierType
 from util.FileOpener import FileOpener
 from util.Timer import Timer
 from util.Logger import Logger
 from util.PathExtractor import PathExtractor
 from util.PathExtractor import PathExtractor
 from fileParser.LanguageParser import LanguageParser
+from service import Word2VecModel
 
 class FileModel():
 	relative_path: str = None
@@ -48,4 +50,13 @@ class FileModel():
 		self.identifier_list_model = LanguageParser().parse_file(self.file_extension, self.file_content)
 		self.identifier_dictionary_model = IdentifierDictionaryModel(self.identifier_list_model)
 		self.word_dictionary_model = WordDictionaryModel(self.identifier_dictionary_model)
+
+		if Word2VecModel.instance.exists():
+			class_name_vector_word = self.get_class_name_vector_word()
+			self.word_dictionary_model.calculate_semantic_distances(class_name_vector_word)
 		Logger().finish_analyzing(self.timer.get_duration(), self.path)
+
+	def get_class_name_vector_word(self):
+		class_identifiers: [str] = self.identifier_list_model.get_filtered_identfier_names(IdentifierType.Class)
+		class_identifier_words: [str] = self.identifier_dictionary_model.get_filtered_words(class_identifiers)
+		return Word2VecModel.instance.get_most_similar_word(class_identifier_words)

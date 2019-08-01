@@ -18,6 +18,9 @@ class WordModel():
             "separated_words": self.separated_words
         }
 
+    def get_name(self):
+        return self.name
+        
     def get_separated_words(self):
         return self.separated_words
 
