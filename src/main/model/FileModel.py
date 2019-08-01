@@ -48,7 +48,7 @@ class FileModel():
 			return True if self.file_content else False
 
 	def parse(self):
-		Logger().start_analyzing(self.path)
+		Logger().start_analyzing(self.relative_path)
 		self.identifier_list_model = LanguageParser().parse_file(self.file_extension, self.file_content)
 		self.identifier_dictionary_model = IdentifierDictionaryModel(self.identifier_list_model)
 		self.word_dictionary_model = WordDictionaryModel(self.identifier_dictionary_model)
@@ -56,7 +56,7 @@ class FileModel():
 			self.set_class_name_vector_tuple()
 			self.set_file_context_vector_tuple()
 			self.word_dictionary_model.calculate_semantic_distances(self.get_word(self.class_name_vector_tuple), self.get_word(self.file_context_vector_tuple))
-		Logger().finish_analyzing(self.timer.get_duration(), self.path)
+		Logger().finish_analyzing(self.timer.get_duration(), self.relative_path)
 
 	def set_class_name_vector_tuple(self):
 		class_identifiers: [str] = self.identifier_list_model.get_filtered_identfier_names(IdentifierType.Class)
