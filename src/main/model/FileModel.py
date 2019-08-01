@@ -50,13 +50,15 @@ class FileModel():
 		self.identifier_list_model = LanguageParser().parse_file(self.file_extension, self.file_content)
 		self.identifier_dictionary_model = IdentifierDictionaryModel(self.identifier_list_model)
 		self.word_dictionary_model = WordDictionaryModel(self.identifier_dictionary_model)
-
 		if Word2VecModel.instance.exists():
-			class_name_vector_word = self.get_class_name_vector_word()
-			self.word_dictionary_model.calculate_semantic_distances(class_name_vector_word)
+			self.word_dictionary_model.calculate_semantic_distances(self.get_class_name_vector_word(), self.get_file_context_vector_word())
 		Logger().finish_analyzing(self.timer.get_duration(), self.path)
 
 	def get_class_name_vector_word(self):
 		class_identifiers: [str] = self.identifier_list_model.get_filtered_identfier_names(IdentifierType.Class)
 		class_identifier_words: [str] = self.identifier_dictionary_model.get_filtered_words(class_identifiers)
 		return Word2VecModel.instance.get_most_similar_word(class_identifier_words)
+
+	def get_file_context_vector_word(self):
+		all_words: [str] = self.word_dictionary_model.get_dictionary_keys()
+		return Word2VecModel.instance.get_most_similar_word(all_words)

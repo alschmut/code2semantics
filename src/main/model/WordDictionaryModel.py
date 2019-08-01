@@ -12,6 +12,9 @@ class WordDictionaryModel():
 	def to_print(self):
 		return { name: separated_word_model.to_print() for name, separated_word_model in self.word_dictionary.items() }
 
+	def get_dictionary_keys(self):
+		return [key for key in self.word_dictionary]
+
 	def create_dictionary(self, identifier_dictionary_model: IdentifierDictionaryModel):
 		dictionary = identifier_dictionary_model.get_dictionary()
 		for key in dictionary:
@@ -21,6 +24,6 @@ class WordDictionaryModel():
 				else:
 					self.word_dictionary[word].increment_frequency()
 
-	def calculate_semantic_distances(self, class_name_vector_word):
+	def calculate_semantic_distances(self, class_name_vector_word, file_context_vector_word):
 		for key in self.word_dictionary:
-			self.word_dictionary[key].calculate_semantic_distances(class_name_vector_word)
+			self.word_dictionary[key].calculate_semantic_distances(class_name_vector_word, file_context_vector_word)

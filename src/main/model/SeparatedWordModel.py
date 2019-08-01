@@ -10,7 +10,7 @@ class SeparatedWordModel():
     is_nltk_stop_word: bool = None
     is_dictionary_word: bool = None
     distance_to_class_name: float = None
-    distance_to_file_name: float = None
+    distance_to_file_context: float = None
 
     vector = None
 
@@ -45,12 +45,16 @@ class SeparatedWordModel():
             "is_spacy_stop_word": self.is_spacy_stop_word,
             "is_nltk_stop_word": self.is_nltk_stop_word,
             "is_dictionary_word": self.is_dictionary_word,
-            "distance_to_class_name": self.distance_to_class_name
+            "distance_to_class_name": self.distance_to_class_name,
+            "distance_to_file_context": self.distance_to_file_context
         }
 
     def increment_frequency(self):
         self.frequency = self.frequency + 1
 
-    def calculate_semantic_distances(self, class_name_vector_word):
-        if class_name_vector_word is not None and self.is_dictionary_word:
-            self.distance_to_class_name = Word2VecModel.instance.get_distance(self.lemmatized_word, class_name_vector_word)
+    def calculate_semantic_distances(self, class_name_vector_word, file_context_vector_word):
+        if self.is_dictionary_word:
+            if class_name_vector_word is not None:
+                self.distance_to_class_name = Word2VecModel.instance.get_distance(self.lemmatized_word, class_name_vector_word)
+            if file_context_vector_word is not None:
+                self.distance_to_file_context = Word2VecModel.instance.get_distance(self.lemmatized_word, file_context_vector_word)
