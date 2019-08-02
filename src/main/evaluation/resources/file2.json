@@ -1,6 +1,11 @@
 [
     {
         "Path": 1,
+        "semantic_context_identifier": {
+            "first": "Normalization",
+            "second": "Pattern",
+            "third": "Cast"
+        },
         "method_names": {
             "getInstance2": 2,
             "addStrings": 1,
@@ -64,6 +69,11 @@
     },
     {
         "Path": 2,
+        "semantic_context_identifier": {
+            "first": "Normalization",
+            "second": "Cast",
+            "third": "Pattern"
+        },
         "method_names": {
             "getInstance2": 0,
             "addStrings": 0,
@@ -127,6 +137,11 @@
     },
     {
         "Path": 3,
+        "semantic_context_identifier": {
+            "first": "Normalization",
+            "second": "Cast",
+            "third": "Pattern"
+        },
         "method_names": {
             "getInstance2": 3,
             "addStrings": 3,
@@ -190,6 +205,11 @@
     },
     {
         "Path": 4,
+        "semantic_context_identifier": {
+            "first": "Cast",
+            "second": "Pattern",
+            "third": "Normalization"
+        },
         "method_names": {
             "getInstance2": 4,
             "addStrings": 2,
@@ -253,6 +273,11 @@
     },
     {
         "Path": 5,
+        "semantic_context_identifier": {
+            "first": "Pattern",
+            "second": "Cast",
+            "third": "Normalization"
+        },
         "method_names": {
             "getInstance2": 2,
             "addStrings": 2,
@@ -316,6 +341,11 @@
     },
     {
         "Path": 6,
+        "semantic_context_identifier": {
+            "first": "Cast",
+            "second": "Normalization",
+            "third": "Pattern"
+        },
         "method_names": {
             "getInstance2": 3,
             "addStrings": 2,
@@ -379,6 +409,11 @@
     },
     {
         "Path": 7,
+        "semantic_context_identifier": {
+            "first": "Cast",
+            "second": "Normalization",
+            "third": "Pattern"
+        },
         "method_names": {
             "getInstance2": 3,
             "addStrings": 2,
@@ -442,6 +477,11 @@
     },
     {
         "Path": 8,
+        "semantic_context_identifier": {
+            "first": "Normalization",
+            "second": "Pattern",
+            "third": "Cast"
+        },
         "method_names": {
             "getInstance2": 2,
             "addStrings": 2,
@@ -505,6 +545,11 @@
     },
     {
         "Path": 9,
+        "semantic_context_identifier": {
+            "first": "Pattern",
+            "second": "Cast",
+            "third": "Normalization"
+        },
         "method_names": {
             "getInstance2": 4,
             "addStrings": 1,
@@ -568,6 +613,11 @@
     },
     {
         "Path": 10,
+        "semantic_context_identifier": {
+            "first": "Pattern",
+            "second": "Cast",
+            "third": "Normalization"
+        },
         "method_names": {
             "getInstance2": 1,
             "addStrings": 2,
@@ -631,6 +681,11 @@
     },
     {
         "Path": 11,
+        "semantic_context_identifier": {
+            "first": "Pattern",
+            "second": "Normalization",
+            "third": "Cast"
+        },
         "method_names": {
             "getInstance2": 4,
             "addStrings": 2,
@@ -694,6 +749,11 @@
     },
     {
         "Path": 12,
+        "semantic_context_identifier": {
+            "first": "Pattern",
+            "second": "Normalization",
+            "third": "Cast"
+        },
         "method_names": {
             "getInstance2": 3,
             "addStrings": 0,
@@ -757,6 +817,11 @@
     },
     {
         "Path": 13,
+        "semantic_context_identifier": {
+            "first": "Normalization",
+            "second": "Pattern",
+            "third": "Cast"
+        },
         "method_names": {
             "getInstance2": 2,
             "addStrings": 2,
@@ -820,6 +885,11 @@
     },
     {
         "Path": 14,
+        "semantic_context_identifier": {
+            "first": "Normalization",
+            "second": "Pattern",
+            "third": "Cast"
+        },
         "method_names": {
             "getInstance2": 3,
             "addStrings": 0,
@@ -883,6 +953,11 @@
     },
     {
         "Path": 15,
+        "semantic_context_identifier": {
+            "first": "Normalization",
+            "second": "Cast",
+            "third": "Pattern"
+        },
         "method_names": {
             "getInstance2": 0,
             "addStrings": 0,
@@ -946,6 +1021,11 @@
     },
     {
         "Path": 16,
+        "semantic_context_identifier": {
+            "first": "Normalization",
+            "second": "Pattern",
+            "third": "Cast"
+        },
         "method_names": {
             "getInstance2": 3,
             "addStrings": 3,

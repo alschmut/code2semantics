@@ -1,530 +1,498 @@
 [
-	{
-		"ID": 1,
-		"method_names": {
-			"examineAction": 3,
-			"processNested": 2,
-			"attr": 0,
-			"qualifiedAttr": 1,
-			"setAttr": 1,
-			"setNonLocalAttr": 2,
-			"trackRef": 2
-		},
-		"variable_names": {
-			"g": 0,
-			"r": 0,
-			"alt": 1,
-			"node": 1,
-			"actionToken": 3,
-			"errMgr": 2,
-			"in": 0,
-			"splitter": 3,
-			"expr": 2,
-			"x": 0,
-			"y": 0,
-			"rhs": 0,
-			"xRefs": 1,
-			"rRefs": 1,
-			"refs": 1
-		},
-		"class_names": {
-			"ActionSniffer": 2,
-			"ActionSniffer_describes_context": 1
-		}
-	},
-	{
-		"ID": 2,
-		"method_names": {
-			"examineAction": 1,
-			"processNested": 1,
-			"attr": 0,
-			"qualifiedAttr": 0,
-			"setAttr": 0,
-			"setNonLocalAttr": 0,
-			"trackRef": 0
-		},
-		"variable_names": {
-			"g": 0,
-			"r": 0,
-			"alt": 0,
-			"node": 1,
-			"actionToken": 3,
-			"errMgr": 1,
-			"in": 0,
-			"splitter": 2,
-			"expr": 2,
-			"x": 0,
-			"y": 0,
-			"rhs": 2,
-			"xRefs": 1,
-			"rRefs": 1,
-			"refs": 1
-		},
-		"class_names": {
-			"ActionSniffer": 1,
-			"ActionSniffer_describes_context": 1
-		}
-	},
-	{
-		"ID": 3,
-		"method_names": {
-			"examineAction": 0,
-			"processNested": 0,
-			"attr": 0,
-			"qualifiedAttr": 0,
-			"setAttr": 1,
-			"setNonLocalAttr": 0,
-			"trackRef": 0
-		},
-		"variable_names": {
-			"g": 0,
-			"r": 0,
-			"alt": 0,
-			"node": 2,
-			"actionToken": 2,
-			"errMgr": 0,
-			"in": 0,
-			"splitter": 1,
-			"expr": 0,
-			"x": 0,
-			"y": 0,
-			"rhs": 0,
-			"xRefs": 0,
-			"rRefs": 0,
-			"refs": 0
-		},
-		"class_names": {
-			"ActionSniffer": 2,
-			"ActionSniffer_describes_context": 2
-		}
-	},
-	{
-		"ID": 4,
-		"method_names": {
-			"examineAction": 2,
-			"processNested": 2,
-			"attr": 2,
-			"qualifiedAttr": 2,
-			"setAttr": 2,
-			"setNonLocalAttr": 2,
-			"trackRef": 1
-		},
-		"variable_names": {
-			"g": 0,
-			"r": 0,
-			"alt": 0,
-			"node": 2,
-			"actionToken": 3,
-			"errMgr": 3,
-			"in": 2,
-			"splitter": 2,
-			"expr": 2,
-			"x": 0,
-			"y": 0,
-			"rhs": 2,
-			"xRefs": 0,
-			"rRefs": 0,
-			"refs": 1
-		},
-		"class_names": {
-			"ActionSniffer": 1,
-			"ActionSniffer_describes_context": 1
-		}
-	},
-	{
-		"ID": 5,
-		"method_names": {
-			"examineAction": 2,
-			"processNested": 2,
-			"attr": 1,
-			"qualifiedAttr": 1,
-			"setAttr": 2,
-			"setNonLocalAttr": 2,
-			"trackRef": 2
-		},
-		"variable_names": {
-			"g": 0,
-			"r": 0,
-			"alt": 1,
-			"node": 2,
-			"actionToken": 3,
-			"errMgr": 1,
-			"in": 1,
-			"splitter": 3,
-			"expr": 3,
-			"x": 0,
-			"y": 0,
-			"rhs": 1,
-			"xRefs": 0,
-			"rRefs": 0,
-			"refs": 1
-		},
-		"class_names": {
-			"ActionSniffer": 2,
-			"ActionSniffer_describes_context": 2
-		}
-	},
-	{
-		"ID": 6,
-		"method_names": {
-			"examineAction": 1,
-			"processNested": 2,
-			"attr": 0,
-			"qualifiedAttr": 0,
-			"setAttr": 1,
-			"setNonLocalAttr": 2,
-			"trackRef": 0
-		},
-		"variable_names": {
-			"g": 0,
-			"r": 0,
-			"alt": 0,
-			"node": 1,
-			"actionToken": 2,
-			"errMgr": 0,
-			"in": 0,
-			"splitter": 2,
-			"expr": 1,
-			"x": 0,
-			"y": 0,
-			"rhs": 0,
-			"xRefs": 0,
-			"rRefs": 0,
-			"refs": 0
-		},
-		"class_names": {
-			"ActionSniffer": 2,
-			"ActionSniffer_describes_context": 2
-		}
-	},
-	{
-		"ID": 7,
-		"method_names": {
-			"examineAction": 4,
-			"processNested": 2,
-			"attr": 1,
-			"qualifiedAttr": 1,
-			"setAttr": 2,
-			"setNonLocalAttr": 2,
-			"trackRef": 2
-		},
-		"variable_names": {
-			"g": 0,
-			"r": 0,
-			"alt": 1,
-			"node": 2,
-			"actionToken": 3,
-			"errMgr": 2,
-			"in": 1,
-			"splitter": 2,
-			"expr": 2,
-			"x": 0,
-			"y": 0,
-			"rhs": 0,
-			"xRefs": 2,
-			"rRefs": 2,
-			"refs": 1
-		},
-		"class_names": {
-			"ActionSniffer": 2,
-			"ActionSniffer_describes_context": 2
-		}
-	},
-	{
-		"ID": 8,
-		"method_names": {
-			"examineAction": 2,
-			"processNested": 2,
-			"attr": 1,
-			"qualifiedAttr": 2,
-			"setAttr": 1,
-			"setNonLocalAttr": 3,
-			"trackRef": 2
-		},
-		"variable_names": {
-			"g": 0,
-			"r": 0,
-			"alt": 1,
-			"node": 1,
-			"actionToken": 2,
-			"errMgr": 2,
-			"in": 1,
-			"splitter": 2,
-			"expr": 2,
-			"x": 0,
-			"y": 0,
-			"rhs": 1,
-			"xRefs": 2,
-			"rRefs": 2,
-			"refs": 1
-		},
-		"class_names": {
-			"ActionSniffer": 2,
-			"ActionSniffer_describes_context": 2
-		}
-	},
-	{
-		"ID": 9,
-		"method_names": {
-			"examineAction": 3,
-			"processNested": 2,
-			"attr": 2,
-			"qualifiedAttr": 3,
-			"setAttr": 2,
-			"setNonLocalAttr": 2,
-			"trackRef": 3
-		},
-		"variable_names": {
-			"g": 0,
-			"r": 0,
-			"alt": 0,
-			"node": 2,
-			"actionToken": 4,
-			"errMgr": 0,
-			"in": 0,
-			"splitter": 4,
-			"expr": 2,
-			"x": 0,
-			"y": 0,
-			"rhs": 0,
-			"xRefs": 0,
-			"rRefs": 0,
-			"refs": 1
-		},
-		"class_names": {
-			"ActionSniffer": 3,
-			"ActionSniffer_describes_context": 3
-		}
-	},
-	{
-		"ID": 10,
-		"method_names": {
-			"examineAction": 2,
-			"processNested": 1,
-			"attr": 1,
-			"qualifiedAttr": 1,
-			"setAttr": 1,
-			"setNonLocalAttr": 1,
-			"trackRef": 1
-		},
-		"variable_names": {
-			"g": 0,
-			"r": 0,
-			"alt": 0,
-			"node": 1,
-			"actionToken": 2,
-			"errMgr": 2,
-			"in": 1,
-			"splitter": 1,
-			"expr": 1,
-			"x": 0,
-			"y": 0,
-			"rhs": 0,
-			"xRefs": 1,
-			"rRefs": 1,
-			"refs": 1
-		},
-		"class_names": {
-			"ActionSniffer": 2,
-			"ActionSniffer_describes_context": 1
-		}
-	},
-	{
-		"ID": 11,
-		"method_names": {
-			"examineAction": 2,
-			"processNested": 0,
-			"attr": 0,
-			"qualifiedAttr": 0,
-			"setAttr": 1,
-			"setNonLocalAttr": 1,
-			"trackRef": 0
-		},
-		"variable_names": {
-			"g": 0,
-			"r": 0,
-			"alt": 0,
-			"node": 1,
-			"actionToken": 1,
-			"errMgr": 2,
-			"in": 0,
-			"splitter": 1,
-			"expr": 1,
-			"x": 0,
-			"y": 0,
-			"rhs": 0,
-			"xRefs": 0,
-			"rRefs": 0,
-			"refs": 0
-		},
-		"class_names": {
-			"ActionSniffer": 0,
-			"ActionSniffer_describes_context": 0
-		}
-	},
-	{
-		"ID": 12,
-		"method_names": {
-			"examineAction": 1,
-			"processNested": 0,
-			"attr": 0,
-			"qualifiedAttr": 1,
-			"setAttr": 1,
-			"setNonLocalAttr": 1,
-			"trackRef": 1
-		},
-		"variable_names": {
-			"g": 0,
-			"r": 0,
-			"alt": 0,
-			"node": 1,
-			"actionToken": 1,
-			"errMgr": 1,
-			"in": 0,
-			"splitter": 1,
-			"expr": 1,
-			"x": 0,
-			"y": 0,
-			"rhs": 0,
-			"xRefs": 0,
-			"rRefs": 0,
-			"refs": 1
-		},
-		"class_names": {
-			"ActionSniffer": 1,
-			"ActionSniffer_describes_context": 1
-		}
-	},
-	{
-		"ID": 13,
-		"method_names": {
-			"examineAction": 3,
-			"processNested": 3,
-			"attr": 2,
-			"qualifiedAttr": 2,
-			"setAttr": 2,
-			"setNonLocalAttr": 2,
-			"trackRef": 2
-		},
-		"variable_names": {
-			"g": 0,
-			"r": 0,
-			"alt": 0,
-			"node": 0,
-			"actionToken": 2,
-			"errMgr": 3,
-			"in": 0,
-			"splitter": 2,
-			"expr": 2,
-			"x": 0,
-			"y": 0,
-			"rhs": 0,
-			"xRefs": 0,
-			"rRefs": 0,
-			"refs": 0
-		},
-		"class_names": {
-			"ActionSniffer": 2,
-			"ActionSniffer_describes_context": 2
-		}
-	},
-	{
-		"ID": 14,
-		"method_names": {
-			"examineAction": 2,
-			"processNested": 2,
-			"attr": 1,
-			"qualifiedAttr": 1,
-			"setAttr": 1,
-			"setNonLocalAttr": 0,
-			"trackRef": 0
-		},
-		"variable_names": {
-			"g": 0,
-			"r": 0,
-			"alt": 0,
-			"node": 2,
-			"actionToken": 4,
-			"errMgr": 0,
-			"in": 0,
-			"splitter": 2,
-			"expr": 2,
-			"x": 0,
-			"y": 0,
-			"rhs": 0,
-			"xRefs": 1,
-			"rRefs": 1,
-			"refs": 2
-		},
-		"class_names": {
-			"ActionSniffer": 2,
-			"ActionSniffer_describes_context": 2
-		}
-	},
-	{
-		"ID": 15,
-		"method_names": {
-			"examineAction": 1,
-			"processNested": 0,
-			"attr": 0,
-			"qualifiedAttr": 0,
-			"setAttr": 0,
-			"setNonLocalAttr": 0,
-			"trackRef": 0
-		},
-		"variable_names": {
-			"g": 0,
-			"r": 0,
-			"alt": 0,
-			"node": 0,
-			"actionToken": 1,
-			"errMgr": 1,
-			"in": 0,
-			"splitter": 0,
-			"expr": 0,
-			"x": 0,
-			"y": 0,
-			"rhs": 0,
-			"xRefs": 0,
-			"rRefs": 0,
-			"refs": 0
-		},
-		"class_names": {
-			"ActionSniffer": 1,
-			"ActionSniffer_describes_context": 0
-		}
-	},
-	{
-		"ID": 16,
-		"method_names": {
-			"examineAction": 3,
-			"processNested": 2,
-			"attr": 1,
-			"qualifiedAttr": 2,
-			"setAttr": 2,
-			"setNonLocalAttr": 2,
-			"trackRef": 1
-		},
-		"variable_names": {
-			"g": 0,
-			"r": 0,
-			"alt": 0,
-			"node": 2,
-			"actionToken": 2,
-			"errMgr": 0,
-			"in": 0,
-			"splitter": 1,
-			"expr": 1,
-			"x": 0,
-			"y": 0,
-			"rhs": 0,
-			"xRefs": 0,
-			"rRefs": 0,
-			"refs": 0
-		},
-		"class_names": {
-			"ActionSniffer": 3,
-			"ActionSniffer_describes_context": 1
-		}
-	}
+    {
+        "ID": 1,
+        "semantic_context_identifier": {
+            "first": "Authentication",
+            "second": "Login",
+            "third": "Redirection"
+        },
+        "method_names": {
+            "getInstance": 2,
+            "setDeviceRedirectUri": 3,
+            "getDeviceRedirectUri": 3,
+            "setDeviceAuthTargetUserId": 4,
+            "getDeviceAuthTargetUserId": 4,
+            "createLoginRequest": 4
+        },
+        "variable_names": {
+            "deviceRedirectUri": 3,
+            "deviceAuthTargetUserId": 3,
+            "instance": 0,
+            "uri": 1,
+            "targetUserId": 2,
+            "permissions": 4,
+            "request": 0,
+            "redirectUri": 3,
+            "deviceTargetUserId": 3
+        },
+        "class_names": {
+            "DeviceLoginManager": 3,
+            "DeviceLoginManager_describes_context": 3
+        }
+    },
+    {
+        "ID": 2,
+        "semantic_context_identifier": {
+            "first": "Authentication",
+            "second": "Login",
+            "third": "Redirection"
+        },
+        "method_names": {
+            "getInstance": 1,
+            "setDeviceRedirectUri": 4,
+            "getDeviceRedirectUri": 4,
+            "setDeviceAuthTargetUserId": 2,
+            "getDeviceAuthTargetUserId": 2,
+            "createLoginRequest": 3
+        },
+        "variable_names": {
+            "deviceRedirectUri": 4,
+            "deviceAuthTargetUserId": 2,
+            "instance": 0,
+            "uri": 1,
+            "targetUserId": 2,
+            "permissions": 4,
+            "request": 3,
+            "redirectUri": 3,
+            "deviceTargetUserId": 2
+        },
+        "class_names": {
+            "DeviceLoginManager": 3,
+            "DeviceLoginManager_describes_context": 3
+        }
+    },
+    {
+        "ID": 3,
+        "semantic_context_identifier": {
+            "first": "Redirection",
+            "second": "Authentication",
+            "third": "Login"
+        },
+        "method_names": {
+            "getInstance": 2,
+            "setDeviceRedirectUri": 3,
+            "getDeviceRedirectUri": 3,
+            "setDeviceAuthTargetUserId": 2,
+            "getDeviceAuthTargetUserId": 2,
+            "createLoginRequest": 2
+        },
+        "variable_names": {
+            "deviceRedirectUri": 3,
+            "deviceAuthTargetUserId": 3,
+            "instance": 3,
+            "uri": 0,
+            "targetUserId": 2,
+            "permissions": 2,
+            "request": 2,
+            "redirectUri": 1,
+            "deviceTargetUserId": 2
+        },
+        "class_names": {
+            "DeviceLoginManager": 3,
+            "DeviceLoginManager_describes_context": 3
+        }
+    },
+    {
+        "ID": 4,
+        "semantic_context_identifier": {
+            "first": "Authentication",
+            "second": "Redirection",
+            "third": "Login"
+        },
+        "method_names": {
+            "getInstance": 4,
+            "setDeviceRedirectUri": 2,
+            "getDeviceRedirectUri": 2,
+            "setDeviceAuthTargetUserId": 1,
+            "getDeviceAuthTargetUserId": 1,
+            "createLoginRequest": 4
+        },
+        "variable_names": {
+            "deviceRedirectUri": 2,
+            "deviceAuthTargetUserId": 1,
+            "instance": 4,
+            "uri": 1,
+            "targetUserId": 1,
+            "permissions": 2,
+            "request": 3,
+            "redirectUri": 2,
+            "deviceTargetUserId": 1
+        },
+        "class_names": {
+            "DeviceLoginManager": 3,
+            "DeviceLoginManager_describes_context": 2
+        }
+    },
+    {
+        "ID": 5,
+        "semantic_context_identifier": {
+            "first": "Login",
+            "second": "Authentication",
+            "third": "Redirection"
+        },
+        "method_names": {
+            "getInstance": 2,
+            "setDeviceRedirectUri": 4,
+            "getDeviceRedirectUri": 4,
+            "setDeviceAuthTargetUserId": 2,
+            "getDeviceAuthTargetUserId": 2,
+            "createLoginRequest": 4
+        },
+        "variable_names": {
+            "deviceRedirectUri": 2,
+            "deviceAuthTargetUserId": 2,
+            "instance": 0,
+            "uri": 3,
+            "targetUserId": 2,
+            "permissions": 4,
+            "request": 4,
+            "redirectUri": 3,
+            "deviceTargetUserId": 2
+        },
+        "class_names": {
+            "DeviceLoginManager": 3,
+            "DeviceLoginManager_describes_context": 3
+        }
+    },
+    {
+        "ID": 6,
+        "semantic_context_identifier": {
+            "first": "Redirection",
+            "second": "Login",
+            "third": "Authentication"
+        },
+        "method_names": {
+            "getInstance": 3,
+            "setDeviceRedirectUri": 4,
+            "getDeviceRedirectUri": 4,
+            "setDeviceAuthTargetUserId": 2,
+            "getDeviceAuthTargetUserId": 2,
+            "createLoginRequest": 4
+        },
+        "variable_names": {
+            "deviceRedirectUri": 4,
+            "deviceAuthTargetUserId": 2,
+            "instance": 3,
+            "uri": 1,
+            "targetUserId": 2,
+            "permissions": 1,
+            "request": 1,
+            "redirectUri": 3,
+            "deviceTargetUserId": 2
+        },
+        "class_names": {
+            "DeviceLoginManager": 3,
+            "DeviceLoginManager_describes_context": 3
+        }
+    },
+    {
+        "ID": 7,
+        "semantic_context_identifier": {
+            "first": "Redirection",
+            "second": "Login",
+            "third": "Authentication"
+        },
+        "method_names": {
+            "getInstance": 2,
+            "setDeviceRedirectUri": 3,
+            "getDeviceRedirectUri": 3,
+            "setDeviceAuthTargetUserId": 3,
+            "getDeviceAuthTargetUserId": 3,
+            "createLoginRequest": 4
+        },
+        "variable_names": {
+            "deviceRedirectUri": 4,
+            "deviceAuthTargetUserId": 4,
+            "instance": 2,
+            "uri": 2,
+            "targetUserId": 3,
+            "permissions": 2,
+            "request": 2,
+            "redirectUri": 3,
+            "deviceTargetUserId": 4
+        },
+        "class_names": {
+            "DeviceLoginManager": 3,
+            "DeviceLoginManager_describes_context": 3
+        }
+    },
+    {
+        "ID": 8,
+        "semantic_context_identifier": {
+            "first": "Login",
+            "second": "Authentication",
+            "third": "Redirection"
+        },
+        "method_names": {
+            "getInstance": 1,
+            "setDeviceRedirectUri": 2,
+            "getDeviceRedirectUri": 2,
+            "setDeviceAuthTargetUserId": 2,
+            "getDeviceAuthTargetUserId": 2,
+            "createLoginRequest": 3
+        },
+        "variable_names": {
+            "deviceRedirectUri": 2,
+            "deviceAuthTargetUserId": 3,
+            "instance": 1,
+            "uri": 0,
+            "targetUserId": 2,
+            "permissions": 1,
+            "request": 1,
+            "redirectUri": 2,
+            "deviceTargetUserId": 3
+        },
+        "class_names": {
+            "DeviceLoginManager": 3,
+            "DeviceLoginManager_describes_context": 2
+        }
+    },
+    {
+        "ID": 9,
+        "semantic_context_identifier": {
+            "first": "Authentication",
+            "second": "Login",
+            "third": "Redirection"
+        },
+        "method_names": {
+            "getInstance": 4,
+            "setDeviceRedirectUri": 4,
+            "getDeviceRedirectUri": 4,
+            "setDeviceAuthTargetUserId": 2,
+            "getDeviceAuthTargetUserId": 2,
+            "createLoginRequest": 4
+        },
+        "variable_names": {
+            "deviceRedirectUri": 4,
+            "deviceAuthTargetUserId": 2,
+            "instance": 3,
+            "uri": 2,
+            "targetUserId": 3,
+            "permissions": 3,
+            "request": 3,
+            "redirectUri": 3,
+            "deviceTargetUserId": 2
+        },
+        "class_names": {
+            "DeviceLoginManager": 0,
+            "DeviceLoginManager_describes_context": 0
+        }
+    },
+    {
+        "ID": 10,
+        "semantic_context_identifier": {
+            "first": "Authentication",
+            "second": "Redirection",
+            "third": "Login"
+        },
+        "method_names": {
+            "getInstance": 1,
+            "setDeviceRedirectUri": 2,
+            "getDeviceRedirectUri": 2,
+            "setDeviceAuthTargetUserId": 2,
+            "getDeviceAuthTargetUserId": 2,
+            "createLoginRequest": 3
+        },
+        "variable_names": {
+            "deviceRedirectUri": 2,
+            "deviceAuthTargetUserId": 2,
+            "instance": 1,
+            "uri": 1,
+            "targetUserId": 2,
+            "permissions": 1,
+            "request": 2,
+            "redirectUri": 2,
+            "deviceTargetUserId": 2
+        },
+        "class_names": {
+            "DeviceLoginManager": 3,
+            "DeviceLoginManager_describes_context": 1
+        }
+    },
+    {
+        "ID": 11,
+        "semantic_context_identifier": {
+            "first": "Authentication",
+            "second": "Login",
+            "third": "Redirection"
+        },
+        "method_names": {
+            "getInstance": 4,
+            "setDeviceRedirectUri": 3,
+            "getDeviceRedirectUri": 3,
+            "setDeviceAuthTargetUserId": 3,
+            "getDeviceAuthTargetUserId": 3,
+            "createLoginRequest": 4
+        },
+        "variable_names": {
+            "deviceRedirectUri": 2,
+            "deviceAuthTargetUserId": 1,
+            "instance": 4,
+            "uri": 0,
+            "targetUserId": 1,
+            "permissions": 3,
+            "request": 2,
+            "redirectUri": 2,
+            "deviceTargetUserId": 1
+        },
+        "class_names": {
+            "DeviceLoginManager": 3,
+            "DeviceLoginManager_describes_context": 3
+        }
+    },
+    {
+        "ID": 12,
+        "semantic_context_identifier": {
+            "first": "Redirection",
+            "second": "Login",
+            "third": "Authentication"
+        },
+        "method_names": {
+            "getInstance": 4,
+            "setDeviceRedirectUri": 4,
+            "getDeviceRedirectUri": 4,
+            "setDeviceAuthTargetUserId": 1,
+            "getDeviceAuthTargetUserId": 1,
+            "createLoginRequest": 0
+        },
+        "variable_names": {
+            "deviceRedirectUri": 4,
+            "deviceAuthTargetUserId": 1,
+            "instance": 3,
+            "uri": 1,
+            "targetUserId": 2,
+            "permissions": 3,
+            "request": 0,
+            "redirectUri": 2,
+            "deviceTargetUserId": 2
+        },
+        "class_names": {
+            "DeviceLoginManager": 3,
+            "DeviceLoginManager_describes_context": 3
+        }
+    },
+    {
+        "ID": 13,
+        "semantic_context_identifier": {
+            "first": "Login",
+            "second": "Authentication",
+            "third": "Redirection"
+        },
+        "method_names": {
+            "getInstance": 4,
+            "setDeviceRedirectUri": 4,
+            "getDeviceRedirectUri": 4,
+            "setDeviceAuthTargetUserId": 4,
+            "getDeviceAuthTargetUserId": 4,
+            "createLoginRequest": 4
+        },
+        "variable_names": {
+            "deviceRedirectUri": 4,
+            "deviceAuthTargetUserId": 4,
+            "instance": 1,
+            "uri": 1,
+            "targetUserId": 3,
+            "permissions": 1,
+            "request": 1,
+            "redirectUri": 3,
+            "deviceTargetUserId": 4
+        },
+        "class_names": {
+            "DeviceLoginManager": 4,
+            "DeviceLoginManager_describes_context": 4
+        }
+    },
+    {
+        "ID": 14,
+        "semantic_context_identifier": {
+            "first": "Authentication",
+            "second": "Login",
+            "third": "Redirection"
+        },
+        "method_names": {
+            "getInstance": 4,
+            "setDeviceRedirectUri": 2,
+            "getDeviceRedirectUri": 2,
+            "setDeviceAuthTargetUserId": 1,
+            "getDeviceAuthTargetUserId": 1,
+            "createLoginRequest": 3
+        },
+        "variable_names": {
+            "deviceRedirectUri": 2,
+            "deviceAuthTargetUserId": 2,
+            "instance": 0,
+            "uri": 0,
+            "targetUserId": 2,
+            "permissions": 3,
+            "request": 2,
+            "redirectUri": 3,
+            "deviceTargetUserId": 4
+        },
+        "class_names": {
+            "DeviceLoginManager": 3,
+            "DeviceLoginManager_describes_context": 3
+        }
+    },
+    {
+        "ID": 15,
+        "semantic_context_identifier": {
+            "first": "Redirection",
+            "second": "Authentication",
+            "third": "Login"
+        },
+        "method_names": {
+            "getInstance": 0,
+            "setDeviceRedirectUri": 1,
+            "getDeviceRedirectUri": 1,
+            "setDeviceAuthTargetUserId": 2,
+            "getDeviceAuthTargetUserId": 2,
+            "createLoginRequest": 3
+        },
+        "variable_names": {
+            "deviceRedirectUri": 2,
+            "deviceAuthTargetUserId": 3,
+            "instance": 1,
+            "uri": 1,
+            "targetUserId": 3,
+            "permissions": 1,
+            "request": 2,
+            "redirectUri": 2,
+            "deviceTargetUserId": 2
+        },
+        "class_names": {
+            "DeviceLoginManager": 3,
+            "DeviceLoginManager_describes_context": 3
+        }
+    },
+    {
+        "ID": 16,
+        "semantic_context_identifier": {
+            "first": "Login",
+            "second": "Redirection",
+            "third": "Authentication"
+        },
+        "method_names": {
+            "getInstance": 2,
+            "setDeviceRedirectUri": 3,
+            "getDeviceRedirectUri": 3,
+            "setDeviceAuthTargetUserId": 4,
+            "getDeviceAuthTargetUserId": 4,
+            "createLoginRequest": 4
+        },
+        "variable_names": {
+            "deviceRedirectUri": 3,
+            "deviceAuthTargetUserId": 4,
+            "instance": 2,
+            "uri": 2,
+            "targetUserId": 4,
+            "permissions": 3,
+            "request": 1,
+            "redirectUri": 3,
+            "deviceTargetUserId": 4
+        },
+        "class_names": {
+            "DeviceLoginManager": 4,
+            "DeviceLoginManager_describes_context": 4
+        }
+    }
 ]

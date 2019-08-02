@@ -1,6 +1,11 @@
 [
     {
         "ID": 1,
+        "semantic_context_identifier": {
+            "first": "Action",
+            "second": "Expression",
+            "third": "Tokenisation"
+        },
         "method_names": {
             "examineAction": 3,
             "processNested": 2,
@@ -34,6 +39,11 @@
     },
     {
         "ID": 2,
+        "semantic_context_identifier": {
+            "first": "Expression",
+            "second": "Tokenisation",
+            "third": "Action"
+        },
         "method_names": {
             "examineAction": 1,
             "processNested": 1,
@@ -67,6 +77,11 @@
     },
     {
         "ID": 3,
+        "semantic_context_identifier": {
+            "first": "Action",
+            "second": "Tokenisation",
+            "third": "Expression"
+        },
         "method_names": {
             "examineAction": 0,
             "processNested": 0,
@@ -100,6 +115,11 @@
     },
     {
         "ID": 4,
+        "semantic_context_identifier": {
+            "first": "Tokenisation",
+            "second": "Expression",
+            "third": "Action"
+        },
         "method_names": {
             "examineAction": 2,
             "processNested": 2,
@@ -133,6 +153,11 @@
     },
     {
         "ID": 5,
+        "semantic_context_identifier": {
+            "first": "Action",
+            "second": "Tokenisation",
+            "third": "Expression"
+        },
         "method_names": {
             "examineAction": 2,
             "processNested": 2,
@@ -166,6 +191,11 @@
     },
     {
         "ID": 6,
+        "semantic_context_identifier": {
+            "first": "Expression",
+            "second": "Action",
+            "third": "Tokenisation"
+        },
         "method_names": {
             "examineAction": 1,
             "processNested": 2,
@@ -199,6 +229,11 @@
     },
     {
         "ID": 7,
+        "semantic_context_identifier": {
+            "first": "Action",
+            "second": "Tokenisation",
+            "third": "Expression"
+        },
         "method_names": {
             "examineAction": 4,
             "processNested": 2,
@@ -232,6 +267,11 @@
     },
     {
         "ID": 8,
+        "semantic_context_identifier": {
+            "first": "Tokenisation",
+            "second": "Expression",
+            "third": "Action"
+        },
         "method_names": {
             "examineAction": 2,
             "processNested": 2,
@@ -265,6 +305,11 @@
     },
     {
         "ID": 9,
+        "semantic_context_identifier": {
+            "first": "Action",
+            "second": "Tokenisation",
+            "third": "Expression"
+        },
         "method_names": {
             "examineAction": 3,
             "processNested": 2,
@@ -298,6 +343,11 @@
     },
     {
         "ID": 10,
+        "semantic_context_identifier": {
+            "first": "Tokenisation",
+            "second": "Action",
+            "third": "Expression"
+        },
         "method_names": {
             "examineAction": 2,
             "processNested": 1,
@@ -331,6 +381,11 @@
     },
     {
         "ID": 11,
+        "semantic_context_identifier": {
+            "first": "Tokenisation",
+            "second": "Expression",
+            "third": "Action"
+        },
         "method_names": {
             "examineAction": 2,
             "processNested": 0,
@@ -364,6 +419,11 @@
     },
     {
         "ID": 12,
+        "semantic_context_identifier": {
+            "first": "Tokenisation",
+            "second": "Action",
+            "third": "Expression"
+        },
         "method_names": {
             "examineAction": 1,
             "processNested": 0,
@@ -397,6 +457,11 @@
     },
     {
         "ID": 13,
+        "semantic_context_identifier": {
+            "first": "Action",
+            "second": "Tokenisation",
+            "third": "Expression"
+        },
         "method_names": {
             "examineAction": 3,
             "processNested": 3,
@@ -430,6 +495,11 @@
     },
     {
         "ID": 14,
+        "semantic_context_identifier": {
+            "first": "Tokenisation",
+            "second": "Action",
+            "third": "Expression"
+        },
         "method_names": {
             "examineAction": 2,
             "processNested": 2,
@@ -463,6 +533,11 @@
     },
     {
         "ID": 15,
+        "semantic_context_identifier": {
+            "first": "Expression",
+            "second": "Action",
+            "third": "Tokenisation"
+        },
         "method_names": {
             "examineAction": 1,
             "processNested": 0,
@@ -496,6 +571,11 @@
     },
     {
         "ID": 16,
+        "semantic_context_identifier": {
+            "first": "Tokenisation",
+            "second": "Action",
+            "third": "Expression"
+        },
         "method_names": {
             "examineAction": 3,
             "processNested": 2,
