@@ -5,11 +5,10 @@ class DataSetModel():
 	participant = None
 	files: dict = None
 
-	def __init__(self, participant_data, files):
-		self.participant = ParticipantModel(participant_data)
+	def __init__(self, data_set):
+		self.participant = ParticipantModel(data_set.get("participant"))
 		self.files = {}
-		for file in files:
-			file_name = list(file.get("class_names").keys())[0]
+		for (file_name, file) in data_set.get("files").items():
 			self.files[file_name] = FileModel(file)
 
 

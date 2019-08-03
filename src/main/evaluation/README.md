@@ -1,24 +1,17 @@
 ### Evaluation Model Structue
 
+```
 SurveyModel
 	DataSetModel
 		ParticipantModel
-			work_path
-			experience
-				min
-				max
-			clean_code_practicioner
-		FileDictionaryModel
-			FileModel
-				SemanticContextIdentifier
-					first
-					second
-					third
-				MethodNameDictionary
-				VariableNameDictionary
-				ClassNameDictionary
-				FileContextModel
+			ExperienceModel
+		FileModel
+			ContextIdentifierModel
+			FileContextModel
+			IdentifierModel
+```
 
+#### Example json
 ```
 [
 	{
@@ -33,9 +26,9 @@ SurveyModel
 		files: {
 			"file1": {
 				"semantic_context_identifier": {
-					"first": "Name1",
-					"second": "Name2",
-					"third": "Name3"
+					"one": "Name1",
+					"two": "Name2",
+					"three": "Name3"
 				},
 				"method_names": {
 					"name1": {
