@@ -67,12 +67,12 @@ The Word2Vec model is a vector space model storing word with a semantic relatend
 
 ### Generate Python classes for a new grammar
 - Find the <new_language> grammar on [antlr-grammars-v4](https://github.com/antlr/grammars-v4)
-- Create a new folder `<new_language>` inside `src/main/fileParser/`
+- Create a new folder `<new_language>` inside `src/main/parser/`
 - Copy paste all `.g4` files like Parser, Lexer or UnicodeClasses into the <new_language> folder
 - Execute `antlr4 -Dlanguage=Python3 *.g4` inside your <new_language> folder. This generates some Python3 classes and other files.
 
 ### Override generated listener methods
-- Create a new file `<new_language>ListenerExtended.py` inside `src/main/fileParser/ExtendedListener/`
+- Create a new file `<new_language>ListenerExtended.py` inside `src/main/parser/ExtendedListener/`
 - Create a new class which just looks similar to the other existing classes like `JavaParserListenerExtended` and extend the BaseListener class
 - Every grammer is potentiall different. That's why you need to have a look into the `<your_language>Parser.g4` file and find the appropriate class, method, variable and general identifier declarartion.
 - The Listener function names always match up with the grammar rule-name. Override the Listener functions and store the obtained values inside the predefined BaseListener variables.
@@ -90,7 +90,7 @@ The Word2Vec model is a vector space model storing word with a semantic relatend
         return self.walk(listener, tree)
     ```
 ### Add your supported language extension
-- Inside `src/main/fileParser/Lanague.py` an enum with all supported programming languages is stored. Add your language name with its file-extension.
+- Inside `src/main/parser/Lanague.py` an enum with all supported programming languages is stored. Add your language name with its file-extension.
 
 
 ### Add new option use your parse_<your_language>_file function

@@ -8,7 +8,7 @@ from util.Timer import Timer
 from util.Logger import Logger
 from util.PathExtractor import PathExtractor
 from util.PathExtractor import PathExtractor
-from fileParser.LanguageParser import LanguageParser
+from parser.LanguageParser import LanguageParser
 from service import Word2VecModel
 
 class FileModel():

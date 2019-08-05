@@ -1,9 +1,8 @@
 import re
 from antlr4 import Lexer
-from fileParser.Language import Language
-from fileParser.Java.JavaLexer import JavaLexer
-from fileParser.Java9.Java9Lexer import Java9Lexer
-from fileParser.Kotlin.KotlinLexer import KotlinLexer
+from parser.Java.JavaLexer import JavaLexer
+from parser.Java9.Java9Lexer import Java9Lexer
+from parser.Kotlin.KotlinLexer import KotlinLexer
 
 class LanguageKeywords(object):
     keywords = []

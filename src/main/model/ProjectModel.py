@@ -1,6 +1,6 @@
 
 import os
-from fileParser.LanguageParser import LanguageParser
+from parser.LanguageParser import LanguageParser
 from model.IdentifierDictionaryModel import IdentifierDictionaryModel
 from model.FileModel import FileModel
 

@@ -1,5 +1,5 @@
-from fileParser.Java9.Java9Listener import Java9Listener
-from fileParser.BaseListener import BaseListener
+from parser.Java9.Java9Listener import Java9Listener
+from parser.BaseListener import BaseListener
 
 class Java9ListenerExtended(Java9Listener, BaseListener):
 	def enterNormalClassDeclaration(self, ctx):
