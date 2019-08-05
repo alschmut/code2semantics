@@ -28,7 +28,7 @@ def main():
 	file_path = sys.argv[1]
 
 	if PathValidator().is_valid_files([file_path]):
-		Logger().info(f'Use raw text "{file_path}"')
+		Logger().info(f'Input file: "{file_path}"')
 		Logger().info("Starting to lemmatize text")
 		timer = Timer()
 		lemmatize_text(file_path, timer)

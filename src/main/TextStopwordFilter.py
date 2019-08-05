@@ -10,7 +10,7 @@ def remove_stopwords(file_path: str):
 	logger = Logger()
 	stop_words = StopWordModel().get_stop_words_nltk()
 	output_file = FileOpener().get_new_file("wiki.en.filtered.txt", "a")
-	
+
 	with open(file_path, "r") as file:
 		for line in file:
 			split_line = line.split(" ")
@@ -30,7 +30,7 @@ def main():
 	file_path = sys.argv[1]
 
 	if PathValidator().is_valid_files([file_path]):
-		Logger().info(f'Use raw text "{file_path}"')
+		Logger().info(f'Input file: "{file_path}"')
 		Logger().info("Starting to remove stopwords")
 		timer = Timer()
 		remove_stopwords(file_path)

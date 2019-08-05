@@ -28,6 +28,7 @@ def main():
 	file_path: str = sys.argv[1]
 
 	if PathValidator().is_valid_files([file_path]):
+		Logger().info(f'Input file: "{file_path}"')
 		Logger().info(f'Starting to create wiki corpus from "{file_path}"')
 		timer = Timer()
 		get_corpus(file_path)
