@@ -36,11 +36,9 @@ Source code contains a lot more than just the logic structure. Developsers somet
   alias antlr4='java -jar /usr/local/lib/antlr-4.7.2-complete.jar'
   ```
 
-## How to extract semantics from source code
+## How to get a Word2Wec model using Wikipedia data
 
-- Extract identifiers and split those into words by underscore and CamelCase notation
-  
-  `python ProjectParser.py <file_or_directory_path>`
+The Word2Vec model is a vector space model storing word with a semantic relatendess. This model is needed for the following step analyzing the source code data.
 
 - Download the wikipedia dump (16GB) [enwiki-latest-pages-articles.xml.bz2](https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2)
 - Extract the articles text as training data from wikipedia dump (takes between 5-6 hours)
@@ -58,11 +56,13 @@ Source code contains a lot more than just the logic structure. Developsers somet
 - Train a gensim Word2Vec model using train data (takes 5-6 hours for the raw wiki text)
   
   `python Word2VecTrainer.py <wiki.en.lemmatized.txt>`
-  
-- Evaluate identifiers using the Word2Vec model. This currently just calculates the average semantic distance for each file between each identifier and the files context and creates a *CSV*-file containing the path and the overall semantic distance per file
-  
-  `python SemanticsCalculator.py <word2vec.model> <project_data.json>`
 
+## How to extract semantics from source code
+
+- Extract identifiers and split those into words by underscore and CamelCase notation. If the optional Word2Vec model is provided it analyzes each word using the semantic relatedness to its class name and its file-context.
+  
+  `python ProjectParser.py <file_or_directory_path> [<word2vec.model>]`
+  
 ## How to add a new programming language with antlr4
 
 ### Generate Python classes for a new grammar
