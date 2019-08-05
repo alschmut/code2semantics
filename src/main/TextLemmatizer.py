@@ -1,8 +1,9 @@
-import sys, os, spacy
+import sys
 from util.Timer import Timer
 from util.FileOpener import FileOpener
 from util.Logger import Logger
 from util.PathExtractor import PathExtractor
+from util.PathValidator import PathValidator
 from model.SpacyModel import SpacyModel
 
 def lemmatize_text(file_path: str, timer: Timer):
@@ -28,14 +29,12 @@ def main():
 
 	file_path = sys.argv[1]
 
-	if os.path.isfile(file_path):
+	if PathValidator().is_valid_files([file_path]):
 		Logger().info(f'Use raw text "{file_path}"')
 		Logger().info("Starting to lemmatize text")
 		timer = Timer()
 		lemmatize_text(file_path, timer)
 		Logger().finish_script(timer.get_duration(), script_name)
-	else:
-		Logger().error(f"Could not find file: {file_path}")
 
 if __name__ == '__main__':
     main()

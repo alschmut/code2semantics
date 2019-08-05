@@ -6,6 +6,7 @@ from util.Timer import Timer
 from util.FileOpener import FileOpener
 from util.Logger import Logger
 from util.PathExtractor import PathExtractor
+from util.PathValidator import PathValidator
 
 def trim_unneeded_RAM(model: Word2Vec):
 	model.init_sims(replace=True)
@@ -32,14 +33,12 @@ def main():
 
 	file_path = sys.argv[1]
 
-	if os.path.isfile(file_path):
+	if PathValidator().is_valid_files([file_path]):
 		Logger().info(f'Use corpus "{file_path}"')
 		Logger().info("Starting to train word2vec model")
 		timer = Timer()
 		train_model(file_path)
 		Logger().finish_script(timer.get_duration(), script_name)
-	else:
-		Logger().error(f"Could not find file: {file_path}")
 
 if __name__ == '__main__':
     main()

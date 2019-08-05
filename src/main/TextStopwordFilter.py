@@ -1,8 +1,9 @@
-import sys, os
+import sys
 from util.Timer import Timer
 from util.FileOpener import FileOpener
 from util.Logger import Logger
 from util.PathExtractor import PathExtractor
+from util.PathValidator import PathValidator
 from service.StopWordModel import StopWordModel
 
 def remove_stopwords(file_path: str):
@@ -29,14 +30,12 @@ def main():
 
 	file_path = sys.argv[1]
 
-	if os.path.isfile(file_path):
+	if PathValidator().is_valid_files([file_path]):
 		Logger().info(f'Use raw text "{file_path}"')
 		Logger().info("Starting to remove stopwords")
 		timer = Timer()
 		remove_stopwords(file_path)
 		Logger().finish_script(timer.get_duration(), script_name)
-	else:
-		Logger().error(f"Could not find file: {file_path}")
 
 if __name__ == '__main__':
     main()

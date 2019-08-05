@@ -3,6 +3,7 @@ from gensim.corpora import WikiCorpus
 from util.FileOpener import FileOpener
 from util.Timer import Timer
 from util.Logger import Logger
+from util.PathValidator import PathValidator
 from util.PathExtractor import PathExtractor
 
 def get_corpus(file_path: str):
@@ -28,13 +29,11 @@ def main():
 
 	file_path: str = sys.argv[1]
 
-	if os.path.isfile(file_path):
+	if PathValidator().is_valid_files([file_path]):
 		Logger().info(f'Starting to create wiki corpus from "{file_path}"')
 		timer = Timer()
 		get_corpus(file_path)
 		Logger().finish_script(timer.get_duration(), script_name)
-	else:
-		Logger().error(f"Could not find file: {file_path}")
 
 if __name__ == '__main__':
     main()
