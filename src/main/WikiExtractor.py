@@ -10,15 +10,13 @@ def get_corpus(file_path: str):
 	logger = Logger()
 	output_file = FileOpener().get_new_file("wiki.en.raw.txt")
 	wiki: WikiCorpus = WikiCorpus(file_path, lemmatize=False, dictionary={})
-	processed_articles = 0
 
 	for text in wiki.get_texts():
 		output_file.write(" ".join(text) + "\n")
-		processed_articles = processed_articles + 1
-		logger.every_n_wiki_status(processed_articles, 100)
+		logger.every_n_wiki_status(100)
 
 	output_file.close()
-	logger.wiki_status(processed_articles)
+	logger.every_n_wiki_status(1)
 
 def main():
 	script_name: str = PathExtractor().get_file_name(sys.argv[0])
