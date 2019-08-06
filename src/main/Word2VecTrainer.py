@@ -18,8 +18,14 @@ def train_model(file_path: str):
 	min_count = 5
 	model_type = {"cbow": 0, "skip_gram": 1}
 
-	model = Word2Vec(LineSentence(file_path), sg = model_type["cbow"], 
-		size=size, window=window, min_count=min_count, workers=multiprocessing.cpu_count())
+	model = Word2Vec(
+		LineSentence(file_path),
+		sg = model_type.get("cbow"),
+		size = size,
+		window = window,
+		min_count = min_count,
+		workers = multiprocessing.cpu_count()
+	)
 
 	model = trim_unneeded_RAM(model)
 	model.save(FileOpener().get_new_file("wiki.en.word2vec.model", "wb"))
@@ -28,7 +34,7 @@ def main():
 	script_name: str = PathExtractor().get_file_name(sys.argv[0])
 
 	if len(sys.argv) != 2:
-		Logger().info(f'python {script_name} <wiki.en.clean.txt>')
+		Logger().info(f'python {script_name} <wiki.en.lemmatized.txt>')
 		return
 
 	file_path = sys.argv[1]
