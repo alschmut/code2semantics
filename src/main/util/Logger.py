@@ -5,7 +5,7 @@ class Logger():
     RAW_WIKI_LINES: int = 4672758
     processed_articles = None
 
-    def __init__:
+    def __init__(self):
         self.processed_articles = 0
 
     def info(self, message: str):
