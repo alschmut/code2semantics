@@ -15,17 +15,27 @@ Source code contains a lot more than just the logic structure. Developsers somet
 - Java
 - Kotlin
 
-## Requirements
+## Installation Requirements
+Depending on what you have already installed you might need to install more or less of the following list:
+- Install python3 (including pip3)
+
+  `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+  
+  `brew install python`
+  
+- Install the [SciPy](https://www.scipy.org/install.html) stack (gensim makes use of those)
+
+  `python -m pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose`
 
 - Install [Gensim](https://github.com/rare-technologies/gensim)
 
-  `pip install -U gensim`
+  `pip3 install -U gensim`
 
 - Install [spaCy](https://github.com/explosion/spaCy) module and its english vocabulary
 
-  `pip install -U spacy`
+  `pip3 install -U spacy`
   
-  `python -m spacy download en`
+  `python3 -m spacy download en`
 
 - Install the [antlr4](https://www.antlr.org) runnable and add it to the classpath. This allows using the predefined antlr4 parser
 
