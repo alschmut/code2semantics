@@ -9,14 +9,14 @@ from service import Word2VecModel
 
 def parse(project_path: str):
 	project_name = PathExtractor().get_file_name(project_path)
- 	Logger().info(f'Analyze "{project_name}"')
+	Logger().info(f'Analyze "{project_name}"')
 	project_model = ProjectModel(project_path, project_name)
 
 	if PathValidator().is_valid_directories([project_path], True):
 		project_model.traverse_directory()
 	else:
-     	project_model.parse_file()
-    FileOpener().save_file_as_json(project_model.to_print(), project_name + ".json")
+		project_model.parse_file()
+	FileOpener().save_file_as_json(project_model.to_print(), project_name + ".json")
 
 def main():
 	script_name: str = PathExtractor().get_file_name(sys.argv[0])

@@ -30,7 +30,7 @@ class ProjectModel():
 				self.parse_file(file_path)
 
 	def parse_file(self, path: str = project_path):
-    	Logger().info("Traverse directory")
+		Logger().info("Traverse directory")
 		path = self.project_path if path == None else path
 		file_model = FileModel(path, self.supported_extensions)
 		if file_model.is_valid():
