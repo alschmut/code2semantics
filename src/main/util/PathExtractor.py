@@ -2,9 +2,6 @@ import os
 
 class PathExtractor():
 
-    def get_current_dir(self):
-        return os.path.curdir()
-
     def get_absolute_path(self, path: str):
         return os.path.abspath(path)
 
