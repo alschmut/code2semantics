@@ -4,15 +4,15 @@ from util.FileOpener import FileOpener
 from util.Logger import Logger
 from util.PathExtractor import PathExtractor
 from util.PathValidator import PathValidator
-from model.SpacyModel import SpacyModel
+from service import SpacyModel
 
 def lemmatize_text(file_path: str, timer: Timer):
 	logger = Logger()
 	output_file = FileOpener().get_new_file("wiki.en.lemmatized.txt", "a")
-	
+
 	with open(file_path, "r") as file:
 		for line in file:
-			lemmatized_list = [word.lemma_ for word in SpacyModel().get_en_spacy_line(line)]
+			lemmatized_list = [word.lemma_ for word in SpacyModel.instance.get_en_spacy_line(line)]
 			lemmazized_line = " ".join(lemmatized_list)
 			output_file.write(lemmazized_line)
 			logger.every_n_wiki_status(10, timer.get_duration())

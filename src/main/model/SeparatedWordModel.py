@@ -1,4 +1,4 @@
-from model.SpacyModel import SpacyModel
+from service import SpacyModel
 from service import Word2VecModel
 from service import StopWordModel
 
@@ -18,7 +18,7 @@ class SeparatedWordModel():
     def __init__(self, name: str):
         self.name = name
         self.frequency = 1
-        spacy_word = SpacyModel().get_en_spacy_line(name)[0]
+        spacy_word = SpacyModel.instance.get_en_spacy_line(name)[0]
         self.lemmatized_word = spacy_word.lemma_
         self.is_stop_word_spacy = spacy_word.is_stop
         self.is_stop_word_nltk = self.lemmatized_word in StopWordModel.instance.get_stop_words_nltk()
@@ -31,7 +31,7 @@ class SeparatedWordModel():
 
 
     def get_lemmaized_word(self, name: str):
-        return SpacyModel().get_en_spacy_line(name)[0].lemma_
+        return SpacyModel.instance.get_en_spacy_line(name)[0].lemma_
 
     def get_is_dictionary_word(self):
         return self.is_dictionary_word
