@@ -59,11 +59,11 @@ The Word2Vec model is a vector space model storing word with a semantic relatend
 
   `python TextStopwordFilter.py <wiki.en.raw.txt>`
 
-- Lemmatize the words using of spaCy inside the wiki articles (takes 10 days)
+- Lemmatize the words using of spaCy inside the wiki articles (takes 7-8 hours)
 
   `python TextLemmatizer.py <wiki.en.filtered.txt>`
 
-- Train a gensim Word2Vec model using train data (takes 5-6 hours for the raw wiki text)
+- Train a gensim Word2Vec model using train data (takes 3 hours)
   
   `python Word2VecTrainer.py <wiki.en.lemmatized.txt>`
 
