@@ -1,6 +1,3 @@
-# SMART stopwords retrieved from
-# http://www.ai.mit.edu/projects/jmlr/papers/volume5/lewis04a/a11-smart-stop-list/english.stop
-
 import string
 from model.IdentifierModel import IdentifierModel
 from nltk.corpus import stopwords
