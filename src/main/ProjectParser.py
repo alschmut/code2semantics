@@ -7,6 +7,8 @@ from util.PathExtractor import PathExtractor
 from util.PathValidator import PathValidator
 from service import Word2VecModel
 
+FILE_EXTENSION = ".c2s.json"
+
 def parse(project_path: str):
 	project_name = PathExtractor().get_file_name(project_path)
 	Logger().info(f'Analyze "{project_name}"')
@@ -16,7 +18,7 @@ def parse(project_path: str):
 		project_model.traverse_directory()
 	else:
 		project_model.parse_file()
-	FileOpener().save_file_as_json(project_model.to_print(), project_name + ".json")
+	FileOpener().save_file_as_json(project_model.to_print(), project_name + FILE_EXTENSION)
 
 def main():
 	script_name: str = PathExtractor().get_file_name(sys.argv[0])
