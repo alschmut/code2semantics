@@ -48,9 +48,6 @@ class SeparatedWordModel():
     def increment_frequency(self):
         self.frequency = self.frequency + 1
 
-    def calculate_semantic_distances(self, class_name_vector_word, file_context_vector_word):
-        if self.is_dictionary_word:
-            if class_name_vector_word is not None:
-                self.distance_to_class_name = Word2VecModel.instance.get_distance(self.lemmatized_word, class_name_vector_word)
-            if file_context_vector_word is not None:
-                self.distance_to_file_context = Word2VecModel.instance.get_distance(self.lemmatized_word, file_context_vector_word)
+    def calculate_semantic_distances(self):
+        self.distance_to_class_name = Word2VecModel.instance.get_distance_to_class(self.lemmatized_word)
+        self.distance_to_file_context = Word2VecModel.instance.get_distance_to_file_context(self.lemmatized_word)

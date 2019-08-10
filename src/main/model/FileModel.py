@@ -51,19 +51,16 @@ class FileModel():
 		self.identifier_dictionary_model = IdentifierDictionaryModel(self.identifier_list_model)
 		self.word_dictionary_model = WordDictionaryModel(self.identifier_dictionary_model)
 		if Word2VecModel.instance.exists():
-			class_word = self.get_word(self.get_class_name_vector_tuple())
-			file_word = self.get_word(self.get_file_context_vector_tuple())
-			self.word_dictionary_model.calculate_semantic_distances(class_word, file_word)
+			Word2VecModel.instance.set_class_name(self.get_class_vector_name())
+			Word2VecModel.instance.set_file_context_name(self.get_file_context_vector_name())
+			self.word_dictionary_model.calculate_semantic_distances()
 		Logger().finish_analyzing(self.timer.get_duration(), self.relative_path)
 
-	def set_class_name_vector_tuple(self):
+	def get_class_vector_name(self):
 		class_identifiers: [str] = self.identifier_list_model.get_filtered_identfier_names(IdentifierType.Class)
 		class_identifier_words: [str] = self.identifier_dictionary_model.get_filtered_words(class_identifiers)
-		return Word2VecModel.instance.get_most_similar(class_identifier_words)
+		return Word2VecModel.instance.get_most_similar(class_identifier_words)[0]
 
-	def set_file_context_vector_tuple(self):
+	def get_file_context_vector_name(self):
 		all_words: [str] = self.word_dictionary_model.get_dictionary_keys()
-		return Word2VecModel.instance.get_most_similar(all_words)
-
-	def get_word(self, vector_tuple):
-		return vector_tuple[0]
+		return Word2VecModel.instance.get_most_similar(all_words)[0]

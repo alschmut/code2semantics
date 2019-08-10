@@ -24,6 +24,6 @@ class WordDictionaryModel():
 				else:
 					self.word_dictionary[word].increment_frequency()
 
-	def calculate_semantic_distances(self, class_name_vector_word, file_context_vector_word):
+	def calculate_semantic_distances(self):
 		for key in self.word_dictionary:
-			self.word_dictionary[key].calculate_semantic_distances(class_name_vector_word, file_context_vector_word)
+			self.word_dictionary[key].calculate_semantic_distances()
