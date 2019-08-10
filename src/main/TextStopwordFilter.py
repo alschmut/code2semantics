@@ -4,11 +4,11 @@ from util.FileOpener import FileOpener
 from util.Logger import Logger
 from util.PathExtractor import PathExtractor
 from util.PathValidator import PathValidator
-from service.StopWordModel import StopWordModel
+from service import StopWordModel
 
 def remove_stopwords(file_path: str):
 	logger = Logger()
-	stop_words = StopWordModel().get_stop_words_nltk()
+	stop_words = StopWordModel.instance.get_stop_words_nltk()
 	output_file = FileOpener().get_new_file("wiki.en.filtered.txt", "a")
 
 	with open(file_path, "r") as file:
