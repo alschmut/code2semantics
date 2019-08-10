@@ -8,3 +8,5 @@ class SpacyModel():
 
     def get_en_spacy_line(self, line: str):
         return self.spacy_en_nlp(line)
+
+instance: SpacyModel = SpacyModel()
