@@ -17,7 +17,7 @@ class ProjectModelTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.ignore_numpy_warning()
-        cls.project_model = ProjectModel(cls.path, cls.project_name)
+        cls.project_model = ProjectModel(cls.path)
         cls.project_model.parse_file()
         cls.project_print = cls.project_model.to_print()
         FileOpener().save_file_as_json(cls.project_print, cls.project_output_file)

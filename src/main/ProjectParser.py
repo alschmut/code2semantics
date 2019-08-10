@@ -12,7 +12,7 @@ FILE_EXTENSION = ".c2s.json"
 def parse(project_path: str):
 	project_name = PathExtractor().get_file_name(project_path)
 	Logger().info(f'Analyze "{project_name}"')
-	project_model = ProjectModel(project_path, project_name)
+	project_model = ProjectModel(project_path)
 
 	if PathValidator().is_valid_directories([project_path], True):
 		project_model.traverse_directory()

@@ -10,14 +10,11 @@ class ProjectModel():
 	
 	project_path: str = None
 	supported_extensions: [int] = None
-	project_name: str = None
-	output_file_name: str = None
 
-	def __init__(self, project_path: str, project_name: str):
+	def __init__(self, project_path: str):
 		self.files = []
 		self.project_path = project_path
 		self.supported_extensions = LanguageParser().get_supported_extensions()
-		self.project_name = project_name
 
 	def to_print(self):
 		return [file.to_print() for file in self.files]

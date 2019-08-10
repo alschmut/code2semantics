@@ -3,7 +3,6 @@ from service import Word2VecModel
 from service import StopWordModel
 
 class SeparatedWordModel():
-    name: str = None
     frequency: int = None
     lemmatized_word: str = None
     is_stop_word_spacy: bool = None
@@ -16,7 +15,6 @@ class SeparatedWordModel():
     vector = None
 
     def __init__(self, name: str):
-        self.name = name
         self.frequency = 1
         spacy_word = SpacyModel().get_en_spacy_line(name)[0]
         self.lemmatized_word = spacy_word.lemma_
@@ -29,10 +27,6 @@ class SeparatedWordModel():
             if self.is_dictionary_word:
                 self.vector = Word2VecModel.instance.get_vector(self.lemmatized_word)
 
-
-    def get_lemmaized_word(self, name: str):
-        return SpacyModel().get_en_spacy_line(name)[0].lemma_
-
     def get_is_dictionary_word(self):
         return self.is_dictionary_word
 
@@ -41,7 +35,6 @@ class SeparatedWordModel():
 
     def to_print(self):
         return {
-            "name": self.name,
             "frequency": self.frequency,
             "lemmatized_word": self.lemmatized_word,            
             "is_stop_word_spacy": self.is_stop_word_spacy,
