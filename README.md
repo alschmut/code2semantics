@@ -88,7 +88,7 @@ The Word2Vec model is a vector space model storing word with a semantic relatend
 - The Listener function names always match up with the grammar rule-name. Override the Listener functions and store the obtained values inside the predefined BaseListener variables.
 
 ### Walk through the new grammar
-- Create another function inside the `src/main/filerParser/LanguageParser` and substitute your generated/created classes like shown below
+- Create another function inside the `src/main/parser/LanguageParser` and substitute your generated/created classes like shown below
 
     ```python
     def parse_<your_language>_file(self, input_stream: InputStream):
