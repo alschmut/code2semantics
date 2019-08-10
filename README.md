@@ -1,6 +1,6 @@
 # What is *code2semantics*?
 
-Source code contains a lot more than just the logic structure. Developsers sometimes take a deep breath while having a coffee, when a new identifier* needs a good, precise and meaningful name. Have you ever had to read code, where identifiers were cryptic and not comprehensible at all? *code2semantics* aims to find those hotspots using Word2Vec machine learning models. It calculates semantic distances between identifiers and the overall file context. In more detail, this means, the project...
+Source code contains a lot more than just the logic structure. Developers sometimes take a deep breath while having a coffee, when a new identifier* needs a good, precise and meaningful name. Have you ever had to read code, where identifiers were cryptic and not comprehensible at all? *code2semantics* aims to find those hotspots using Word2Vec machine learning models. It calculates semantic distances between identifiers and the overall file context. In more detail, this means, the project...
 
 - extracts identifiers from source code using [antlr4](https://www.antlr.org)
 - splits each identifier into separated words when using underscores or CamelCase notation
@@ -88,7 +88,7 @@ The Word2Vec model is a vector space model storing word with a semantic relatend
 - The Listener function names always match up with the grammar rule-name. Override the Listener functions and store the obtained values inside the predefined BaseListener variables.
 
 ### Walk through the new grammar
-- Create another function inside the `src/main/filerParser/LanguageParser` and substitute your generated/created classes like shown below
+- Create another function inside the `src/main/parser/LanguageParser` and substitute your generated/created classes like shown below
 
     ```python
     def parse_<your_language>_file(self, input_stream: InputStream):
