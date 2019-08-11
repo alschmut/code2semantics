@@ -1,6 +1,6 @@
 
 import os
-from parser.LanguageParser import LanguageParser
+from antlrParser.LanguageParser import LanguageParser
 from model.FileModel import FileModel
 from util.Logger import Logger
 

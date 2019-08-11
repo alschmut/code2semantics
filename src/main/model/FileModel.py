@@ -6,7 +6,7 @@ from util.FileOpener import FileOpener
 from util.Timer import Timer
 from util.Logger import Logger
 from util.PathExtractor import PathExtractor
-from parser.LanguageParser import LanguageParser
+from antlrParser.LanguageParser import LanguageParser
 from service import Word2VecModel
 
 class FileModel():

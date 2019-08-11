@@ -1,18 +1,18 @@
 from antlr4 import CommonTokenStream, ParseTreeWalker, InputStream
-from parser.Language import Language
-from parser.Language import Language
+from antlrParser.Language import Language
+from antlrParser.Language import Language
 
-from parser.Java.JavaLexer import JavaLexer
-from parser.Java.JavaParser import JavaParser
-from parser.ExtendedListener.JavaParserListenerExtended import JavaParserListenerExtended
+from antlrParser.Java.JavaLexer import JavaLexer
+from antlrParser.Java.JavaParser import JavaParser
+from antlrParser.ExtendedListener.JavaParserListenerExtended import JavaParserListenerExtended
 
-from parser.Java9.Java9Lexer import Java9Lexer
-from parser.Java9.Java9Parser import Java9Parser
-from parser.ExtendedListener.Java9ListenerExtended import Java9ListenerExtended
+from antlrParser.Java9.Java9Lexer import Java9Lexer
+from antlrParser.Java9.Java9Parser import Java9Parser
+from antlrParser.ExtendedListener.Java9ListenerExtended import Java9ListenerExtended
 
-from parser.Kotlin.KotlinLexer import KotlinLexer
-from parser.Kotlin.KotlinParser import KotlinParser
-from parser.ExtendedListener.KotlinParserListenerExtended import KotlinParserListenerExtended
+from antlrParser.Kotlin.KotlinLexer import KotlinLexer
+from antlrParser.Kotlin.KotlinParser import KotlinParser
+from antlrParser.ExtendedListener.KotlinParserListenerExtended import KotlinParserListenerExtended
 
 class LanguageParser():
 

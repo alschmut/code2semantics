@@ -1,6 +1,6 @@
-from parser.Java.JavaParserListener import JavaParserListener
-from parser.Java.JavaParser import JavaParser
-from parser.BaseListener import BaseListener
+from antlrParser.Java.JavaParserListener import JavaParserListener
+from antlrParser.Java.JavaParser import JavaParser
+from antlrParser.BaseListener import BaseListener
 
 class JavaParserListenerExtended(JavaParserListener, BaseListener):
 	def enterClassDeclaration(self, ctx:JavaParser.ClassDeclarationContext):
