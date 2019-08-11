@@ -53,10 +53,14 @@ class FileModel():
 		self.identifier_dictionary_model = IdentifierDictionaryModel(self.identifier_list_model)
 		self.word_dictionary_model = WordDictionaryModel(self.identifier_dictionary_model)
 		if Word2VecModel.instance.exists():
-			Word2VecModel.instance.set_class_name(self.get_class_vector_name())
-			Word2VecModel.instance.set_file_context_name(self.get_file_context_vector_name())
-			self.word_dictionary_model.calculate_semantic_distances()
+			self.calculate_semantic_metrics()
+		self.identifier_dictionary_model.set_word_metrics(self.word_dictionary_model)
 		Logger().finish_analyzing(self.timer.get_duration(), self.relative_path)
+
+	def calculate_semantic_metrics(self):
+		Word2VecModel.instance.set_class_name(self.get_class_vector_name())
+		Word2VecModel.instance.set_file_context_name(self.get_file_context_vector_name())
+		self.word_dictionary_model.calculate_semantic_metrics()
 
 	def get_class_vector_name(self):
 		class_identifiers: [str] = self.identifier_list_model.get_filtered_identfier_names(IdentifierType.Class)

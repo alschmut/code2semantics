@@ -23,6 +23,6 @@ class WordDictionaryModel():
 				else:
 					self.word_dictionary[word].increment_frequency()
 
-	def calculate_semantic_distances(self):
+	def calculate_semantic_metrics(self):
 		for key in self.word_dictionary:
-			self.word_dictionary[key].calculate_semantic_distances()
+			self.word_dictionary[key].calculate_semantic_metrics()

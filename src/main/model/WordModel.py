@@ -1,4 +1,5 @@
 from model.IdentifierModel import IdentifierModel
+from model.IdentifierDictionaryModel import IdentifierDictionaryModel
 from util.IdentifierSeparator import IdentifierSeparator
 
 class WordModel():
@@ -43,5 +44,8 @@ class WordModel():
 
     def increment_frequency(self):
         self.frequency = self.frequency + 1
+
+    def set_word_metrics(self, identifier_dictionary_model: IdentifierDictionaryModel):
+        pass
     
  
