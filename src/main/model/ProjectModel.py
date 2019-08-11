@@ -2,6 +2,7 @@
 import os
 from antlrParser.LanguageParser import LanguageParser
 from model.FileModel import FileModel
+from model.WordModel import WordModel
 from util.Logger import Logger
 
 class ProjectModel():
@@ -17,6 +18,10 @@ class ProjectModel():
 
 	def to_print(self):
 		return [file.to_print() for file in self.files]
+
+	def to_csv(self):
+		content = [file.to_csv() for file in self.files]
+		return WordModel.get_csv_header() + "".join(content)
 
 	def traverse_directory(self):
 		Logger().info("Parse file")

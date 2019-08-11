@@ -15,5 +15,9 @@ class FileOpener():
         return open(file_path, flags)
 
     def save_file_as_json(self, project, output_file_name: str):
-	    with open(output_file_name, "w") as file:
-		    file.write(json.dumps(project))
+        with open(output_file_name, "w") as file:
+            file.write(json.dumps(project))
+    
+    def save_file_as_csv(self, project, output_file_name: str):
+        with open(output_file_name, "w") as file:
+            file.write(project)

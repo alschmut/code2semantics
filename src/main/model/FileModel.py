@@ -38,6 +38,10 @@ class FileModel():
 			"word_dictionary": self.word_dictionary_model.to_print()
 		}
 
+	def to_csv(self):
+		content = [identifier.to_csv(self.relative_path, name) for (name, identifier) in self.identifier_dictionary_model.get_dictionary().items()]
+		return "".join(content)
+
 	def is_valid(self):
 		if self.file_extension in self.supported_extensions:
 			self.file_content = FileOpener().get_file_content(self.path)

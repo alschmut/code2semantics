@@ -7,7 +7,8 @@ from util.PathExtractor import PathExtractor
 from util.PathValidator import PathValidator
 from service import Word2VecModel
 
-FILE_EXTENSION = ".c2s.json"
+JSON_EXTENSION = ".c2s.json"
+CSV_EXTENSION = ".c2s.csv"
 
 def parse(project_path: str):
 	project_name = PathExtractor().get_file_name(project_path)
@@ -18,7 +19,8 @@ def parse(project_path: str):
 		project_model.traverse_directory()
 	else:
 		project_model.parse_file()
-	FileOpener().save_file_as_json(project_model.to_print(), project_name + FILE_EXTENSION)
+	FileOpener().save_file_as_json(project_model.to_print(), project_name + JSON_EXTENSION)
+	FileOpener().save_file_as_csv(project_model.to_csv(), project_name + CSV_EXTENSION)
 
 def main():
 	script_name: str = PathExtractor().get_file_name(sys.argv[0])
