@@ -1,7 +1,5 @@
 from evaluation.IdentifierModel import IdentifierModel
-from evaluation.FileContext import FileContext
 from evaluation.ContextIdentifier import ContextIdentifier
-from model.IdentifierType import IdentifierType
 
 class FileModel():
 	semantic_context_identifier = None
@@ -10,16 +8,8 @@ class FileModel():
 
 	def __init__(self, file):
 		self.semantic_context_identifier = ContextIdentifier(file.get("semantic_context_identifier"))
-		self.class_name_describes_context = file.get("file_context").get("numeric")
-		self.identifier_list = []
-		for (key, value) in file.get("class_names").items():
-			self.identifier_list.append(IdentifierModel(key, value, IdentifierType.Class))
-
-		for (key, value) in file.get("method_names").items():
-			self.identifier_list.append(IdentifierModel(key, value, IdentifierType.Method))
-
-		for (key, value) in file.get("variable_names").items():
-			self.identifier_list.append(IdentifierModel(key, value, IdentifierType.Variable))
+		self.class_name_describes_context = file.get("class_name_describes_context")
+		self.identifier_list = [IdentifierModel(identifier) for identifier in file.get("identifier_list")]
 
 	def to_print(self):
 		return {

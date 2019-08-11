@@ -5,10 +5,10 @@ class IdentifierModel():
 	usefulness: str = None
 	type: IdentifierType = None
 
-	def __init__(self, name, identifier, type: IdentifierType):
-		self.name = name
-		self.usefulness = identifier.get("numeric")
-		self.type = type
+	def __init__(self, identifier):
+		self.name = identifier.get("name")
+		self.usefulness = identifier.get("usefulness")
+		self.type = IdentifierType(identifier.get("type"))
 
 	def to_print(self):
 		return {
