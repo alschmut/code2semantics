@@ -4,6 +4,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '../main'))
 
 from model.ProjectModel import ProjectModel
 from util.FileOpener import FileOpener
+from model.IdentifierType import IdentifierType
 
 class ProjectModelTest(unittest.TestCase):
 
@@ -32,27 +33,27 @@ class ProjectModelTest(unittest.TestCase):
         file = self.project_model.files[0]
         self.assertEqual(file.path, self.path)
 
-    def test_file_has_4_identifier_types(self):
+    def test_file_has_10_identifiers_in_list(self):
         file = self.project_model.files[0]
-        self.assertEqual(len(file.identifier_list_model.to_print()), 4)
+        self.assertEqual(len(file.identifier_list_model.to_print()), 10)
 
-    def test_file_has_1_class_name(self):
+    def test_file_has_1_class_identifier(self):
         file = self.project_model.files[0]
-        self.assertEqual(len(file.identifier_list_model.class_names), 1)
+        self.assertEqual(len(file.identifier_list_model.get_filtered_identfiers(IdentifierType.Class)), 1)
 
     def test_file_has_correct_class_name(self):
         file = self.project_model.files[0]
-        class_name = file.identifier_list_model.class_names[0]
-        self.assertEqual(class_name.name, "ExampleJavaClass")   
+        first_class_identifier = file.identifier_list_model.get_filtered_identfiers(IdentifierType.Class)[0]
+        self.assertEqual(first_class_identifier.get("name"), "ExampleJavaClass")   
 
     def test_file_has_correct_class_name_line(self):
         file = self.project_model.files[0]
-        class_name = file.identifier_list_model.class_names[0]
-        self.assertEqual(class_name.line, 3)
+        first_class_identifier = file.identifier_list_model.get_filtered_identfiers(IdentifierType.Class)[0]
+        self.assertEqual(first_class_identifier.get("line"), 3)
 
     def test_file_has_4_method_names(self):
-        method_names = self.project_model.files[0].identifier_list_model.method_names
-        self.assertEqual(len(method_names), 4)
+        method_identifiers = self.project_model.files[0].identifier_list_model.get_filtered_identfiers(IdentifierType.Method)
+        self.assertEqual(len(method_identifiers), 4)
 
     def test_file_has_9_dictionary_entries(self):
         dictionary = self.project_model.files[0].identifier_dictionary_model.dictionary
@@ -61,13 +62,13 @@ class ProjectModelTest(unittest.TestCase):
     def test_dictionary_contains_correct_class_name(self):
         dictionary = self.project_model.files[0].identifier_dictionary_model.dictionary
         class_identifier = dictionary.get(self.project_name)
-        self.assertEqual(class_identifier.line_numbers[0], 3)
+        self.assertEqual(class_identifier.frequency, 1)
         self.assertEqual(len(class_identifier.separated_words), 3)
 
     def test_dictionary_contains_correct_foo_identifier(self):
         dictionary = self.project_model.files[0].identifier_dictionary_model.dictionary
         foo_identifier = dictionary.get("foo")
-        self.assertEqual(len(foo_identifier.line_numbers), 2)
+        self.assertEqual(foo_identifier.frequency, 2)
         self.assertEqual(len(foo_identifier.separated_words), 1)
 
 
