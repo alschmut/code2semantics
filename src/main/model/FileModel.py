@@ -1,4 +1,3 @@
-from model.WordModel import WordModel
 from model.IdentifierListModel import IdentifierListModel
 from model.IdentifierDictionaryModel import IdentifierDictionaryModel
 from model.WordDictionaryModel import WordDictionaryModel
@@ -6,7 +5,6 @@ from model.IdentifierType import IdentifierType
 from util.FileOpener import FileOpener
 from util.Timer import Timer
 from util.Logger import Logger
-from util.PathExtractor import PathExtractor
 from util.PathExtractor import PathExtractor
 from parser.LanguageParser import LanguageParser
 from service import Word2VecModel

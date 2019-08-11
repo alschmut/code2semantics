@@ -1,5 +1,4 @@
 from model.IdentifierModel import IdentifierModel
-from model.SeparatedWordModel import SeparatedWordModel
 
 class WordModel():
     name: str = None

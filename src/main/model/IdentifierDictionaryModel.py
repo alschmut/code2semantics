@@ -1,6 +1,5 @@
 from model.WordModel import WordModel
 from model.IdentifierListModel import IdentifierListModel
-from model.IdentifierModel import IdentifierModel
 
 class IdentifierDictionaryModel():
 	dictionary: dict = None
