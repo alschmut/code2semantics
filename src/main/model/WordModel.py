@@ -9,7 +9,6 @@ class WordModel():
     def __init__(self, identifier_model: IdentifierModel):
         self.name = identifier_model.get_name()
         self.frequency = 1
-        self.separated_words = []
         self.separated_words = IdentifierSeparator(self.name).get_separated_identifier()
 
     def to_print(self):
@@ -21,6 +20,7 @@ class WordModel():
     def to_csv(self, path, name):
         csv_line = [
             path + "/" + name,
+            str(len(self.name)),
             str(self.frequency),
             str(len(self.separated_words))
         ]
@@ -29,7 +29,8 @@ class WordModel():
     def get_csv_header():
         csv_header = [
             "path",
-            "frequency_per_file",
+            "identifier_length",
+            "identifier_per_file",
             "number_of_separated_words"
         ] 
         return ";".join(csv_header) + "\n"
