@@ -20,8 +20,9 @@ class ProjectModel():
 		return [file.to_print() for file in self.files]
 
 	def to_csv(self):
-		content = [file.to_csv() for file in self.files]
-		return WordModel.get_csv_header() + "".join(content)
+		content = [self.files[0].identifier_dictionary_model.get_first_word_model().get_csv_header()]
+		content += [file.to_csv() for file in self.files]
+		return "".join(content)
 
 	def traverse_directory(self):
 		Logger().info("Parse file")

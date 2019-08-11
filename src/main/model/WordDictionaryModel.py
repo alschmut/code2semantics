@@ -11,6 +11,9 @@ class WordDictionaryModel():
 	def to_print(self):
 		return { name: separated_word_model.to_print() for name, separated_word_model in self.word_dictionary.items() }
 
+	def get_dictionary(self):
+		return self.word_dictionary
+	
 	def get_dictionary_keys(self):
 		return [key for key in self.word_dictionary]
 

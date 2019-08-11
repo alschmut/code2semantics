@@ -14,6 +14,10 @@ class IdentifierDictionaryModel():
 	def get_dictionary(self):
 		return self.dictionary
 
+	def get_first_word_model(self):
+		first_word_model_key = list(self.dictionary.keys())[0]
+		return self.dictionary.get(first_word_model_key)
+
 	def get_filtered_words(self, keys: [str]):
 		separated_words = []
 		for (key, word_model) in self.dictionary.items():
@@ -29,4 +33,8 @@ class IdentifierDictionaryModel():
 				self.dictionary[name] = WordModel(identifier)
 			else:
 				self.dictionary[name].increment_frequency()
+
+	def set_word_metrics(self, word_dictionary: dict):
+		for (word, word_model) in self.dictionary.items():
+			word_model.set_word_metrics(word_dictionary)
 

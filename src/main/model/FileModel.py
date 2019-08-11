@@ -54,7 +54,7 @@ class FileModel():
 		self.word_dictionary_model = WordDictionaryModel(self.identifier_dictionary_model)
 		if Word2VecModel.instance.exists():
 			self.calculate_semantic_metrics()
-		self.identifier_dictionary_model.set_word_metrics(self.word_dictionary_model)
+		self.identifier_dictionary_model.set_word_metrics(self.word_dictionary_model.get_dictionary())
 		Logger().finish_analyzing(self.timer.get_duration(), self.relative_path)
 
 	def calculate_semantic_metrics(self):
