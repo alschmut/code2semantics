@@ -1,7 +1,6 @@
 import sys, os, unittest, warnings
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '../main'))
-sys.path.append(os.path.join(os.path.dirname(__file__), '../main/parser'))
 
 from model.ProjectModel import ProjectModel
 from util.FileOpener import FileOpener
