@@ -13,7 +13,7 @@ class IdentifierModel():
 	def to_print(self):
 		return {
             "name": self.name,
-			#"type": self.type.value,
+			"type": self.type.value,
             "line": self.line
         }
 

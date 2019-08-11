@@ -1,4 +1,3 @@
-from model.WordModel import WordModel
 from model.IdentifierModel import IdentifierModel
 from model.IdentifierType import IdentifierType
 
@@ -9,12 +8,7 @@ class IdentifierListModel():
 		self.identifiers = []
 	
 	def to_print(self):
-		return {
-            "class_names": self.get_filtered_identfiers(IdentifierType.Class),
-            "method_names": self.get_filtered_identfiers(IdentifierType.Method),
-			"variable_names": self.get_filtered_identfiers(IdentifierType.Variable),
-			"any_identifiers": self.get_filtered_identfiers(IdentifierType.Any)
-        }
+		return [identfier.to_print() for identfier in self.identifiers]
 
 	def get_filtered_identfiers(self, type: IdentifierType):
 		return [obj.to_print() for obj in self.identifiers if obj.get_type() == type]
