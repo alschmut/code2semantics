@@ -7,7 +7,6 @@ SurveyModel
 			ExperienceModel
 		FileModel
 			ContextIdentifierModel
-			FileContextModel
 			IdentifierModel
 ```
 
@@ -30,28 +29,24 @@ SurveyModel
 					"two": "Name2",
 					"three": "Name3"
 				},
-				"method_names": {
-					"name1": {
-						"usefulness": "Very",
-						"numeric": 3
+				"class_name_describes_context": 2,
+				"identifier_list": [
+					{
+						"name": "name1"
+						"type": "class",
+						"usefulness": 3
+					},
+					{
+						"name": "name2"
+						"type": "method",
+						"usefulness": 2
+					},
+					{
+						"name": "name3"
+						"type": "variable",
+						"usefulness": 2
 					}
-				},
-				"variable_names": {
-					"name1": {
-						"usefulness": "Very",
-						"numeric": 3
-					}
-				},
-				"class_names": {
-					"name1": {
-						"usefulness": "Very",
-						"numeric": 3
-					}
-				},
-				"file_context": {
-					"class_name_describes_context": "Moderately",
-					"numeric": 2
-				}
+				]
 			}
 		}
 	}
