@@ -1,5 +1,5 @@
 from evaluation.DataSetModel import DataSetModel
-from evaluation.resources import survey
+from resources import survey
 
 class SurveyModel():
 	data_sets: [] = None
