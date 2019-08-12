@@ -14,6 +14,9 @@ class WordModel():
             self.frequency = 1
             self.separated_words = IdentifierSeparator(self.name).get_separated_identifier()
             self.metrics = {}
+            self.metrics["identifier_length"] = len(self.name)
+            self.metrics["identifier_frequency_per_file"] = self.frequency
+            self.metrics["number_of_separated_words"] = len(self.separated_words)
 
     def to_print(self):
         return {
@@ -23,23 +26,13 @@ class WordModel():
         }
 
     def to_csv(self, relative_path, name):
-        path = relative_path + "/" + name
-        csv_line = [
-            len(self.name),
-            self.frequency,
-            len(self.separated_words),
-        ]
+        csv_line = [relative_path + "/" + name]
         csv_line += [value for (key, value) in self.metrics.items()]
         csv_line_as_str = [str(line) for line in csv_line]
-        return path + ";" + ";".join(csv_line_as_str) + "\n"
+        return ";".join(csv_line_as_str) + "\n"
 
     def get_csv_header(self):
-        csv_header = [
-            "path",
-            "identifier_length",
-            "identifier_frequency_per_file",
-            "number_of_separated_words"
-        ] 
+        csv_header = ["path"] 
         csv_header += [str(key) for (key, value) in self.metrics.items()]
         return ";".join(csv_header) + "\n"
 
