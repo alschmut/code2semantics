@@ -18,20 +18,11 @@ class SeparatedWordModel():
 
         self.lemmatized_word = spacy_word.lemma_
 
-        is_stop_word_spacy = self.bool_to_int(spacy_word.is_stop)
-        self.metrics["percent_of_spacy_stop_words"] = MetricModel(MetricType.Relative, is_stop_word_spacy)
-
-        is_stop_word_nltk = self.bool_to_int(self.lemmatized_word in StopWordModel.instance.get_stop_words_nltk())
-        self.metrics["percent_of_nltk_stop_words"] = MetricModel(MetricType.Relative, is_stop_word_nltk)
-        
-        is_stop_word_smart = self.bool_to_int(self.lemmatized_word in StopWordModel.instance.get_stop_words_smart())
-        self.metrics["percent_of_smart_stop_words"] = MetricModel(MetricType.Relative, is_stop_word_smart)
-
         if Word2VecModel.instance.exists():
             is_dictionary_word = Word2VecModel.instance.is_word_in_dictionary(self.lemmatized_word)
-            self.metrics["percent_of_dictionary_words"] = MetricModel(MetricType.Relative, is_dictionary_word)
+            self.metrics["percent_of_word2vec_words"] = MetricModel(MetricType.Relative, is_dictionary_word)
 
-            if self.metrics.get("percent_of_dictionary_words").get_value():
+            if self.metrics.get("percent_of_word2vec_words").get_value():
                 self.vector = Word2VecModel.instance.get_vector(self.lemmatized_word)
 
     def bool_to_int(self, value: bool):
