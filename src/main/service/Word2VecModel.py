@@ -17,11 +17,11 @@ class Word2VecModel():
         self.model = Word2Vec.load(model_file_path)
         Logger().finish_analyzing(timer.get_duration(), "Loading Word2VecModel")
 
-    def set_class_name(self, class_name: str):
-        self.class_name = class_name
+    def set_class_name(self, class_identifier_words: []):
+        self.class_name = self.get_most_similar(class_identifier_words)[0]
 
-    def set_file_context_name(self, file_context_name: str):
-        self.file_context_name = file_context_name
+    def set_file_context_name(self, file_context_words: []):
+        self.file_context_name = self.get_most_similar(file_context_words)[0]
 
     def get_model(self):
         return self.model

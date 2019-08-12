@@ -58,15 +58,15 @@ class FileModel():
 		Logger().finish_analyzing(self.timer.get_duration(), self.relative_path)
 
 	def calculate_semantic_metrics(self):
-		Word2VecModel.instance.set_class_name(self.get_class_vector_name())
-		Word2VecModel.instance.set_file_context_name(self.get_file_context_vector_name())
+		self.set_word2vec_class_name()
+		self.set_word2vec_file_context_name()
 		self.word_dictionary_model.calculate_semantic_metrics()
 
-	def get_class_vector_name(self):
+	def set_word2vec_class_name(self):
 		class_identifiers: [str] = self.identifier_list_model.get_filtered_identfier_names(IdentifierType.Class)
 		class_identifier_words: [str] = self.identifier_dictionary_model.get_filtered_words(class_identifiers)
-		return Word2VecModel.instance.get_most_similar(class_identifier_words)[0]
+		Word2VecModel.instance.set_class_name(class_identifier_words)
 
-	def get_file_context_vector_name(self):
-		all_words: [str] = self.word_dictionary_model.get_dictionary_keys()
-		return Word2VecModel.instance.get_most_similar(all_words)[0]
+	def set_word2vec_file_context_name(self):
+		file_context_words: [str] = self.word_dictionary_model.get_dictionary_keys()
+		Word2VecModel.instance.set_file_context_name(file_context_words)
