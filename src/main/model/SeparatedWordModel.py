@@ -28,6 +28,12 @@ class SeparatedWordModel():
     def bool_to_int(self, value: bool):
         return 1 if value else 0
 
+    def get_metrics(self):
+        return self.metrics
+
+    def get_metric_by_key(self, key):
+        return self.metrics.get(key)
+
     def to_print(self):
         return {
             "lemmatized_word": self.lemmatized_word,            

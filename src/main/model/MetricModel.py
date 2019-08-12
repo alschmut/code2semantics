@@ -14,9 +14,18 @@ class MetricModel():
             "type": self.type.value,
             "value": self.value
         }
+
+    def get_type(self):
+        return self.type
     
     def get_value(self):
         return self.value
 
+    def is_absolute(self):
+        return self.type is MetricType.Absolute
+
+    def is_relative(self):
+        return self.type is MetricType.Relative
+
     def increment_value_by_1(self):
-        self.value = self.value + 1
+        self.value += 1

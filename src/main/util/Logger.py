@@ -27,7 +27,7 @@ class Logger():
         print(f"\rINFO : Finished ({seconds}s): {message}")
             
     def every_n_wiki_status(self, n: int, duration: float = 0):
-        self.processed_articles = self.processed_articles + 1
+        self.processed_articles += 1
         if (self.processed_articles % n == 0):
             self.wiki_status(duration)
 

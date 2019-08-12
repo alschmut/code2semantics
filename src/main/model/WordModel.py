@@ -1,5 +1,5 @@
 from model.IdentifierModel import IdentifierModel
-from model.MetricType import MetricType
+from model.MetricModel import MetricModel
 from util.IdentifierSeparator import IdentifierSeparator
 
 class WordModel():
@@ -50,26 +50,30 @@ class WordModel():
         return self.separated_words
 
     def increment_frequency(self):
-        self.frequency = self.frequency + 1
+        self.frequency += 1
 
     def set_word_metrics(self, word_dictionary):
-        metric_keys = word_dictionary.get(self.separated_words[0]).to_print().get("metrics").keys()
-
+        metric_keys = word_dictionary.get(self.separated_words[0]).get_metrics().keys()
         for metric_key in metric_keys:
-            number_of_valid_distances = 0
+            number_of_valid_values = 0
             summarized_value = 0
-            metric_type = None
             for word in self.separated_words:
-                metric = word_dictionary.get(word).to_print().get("metrics").get(metric_key)
-                value = metric.get("value")
-                metric_type = metric.get("type")
-                if value != None:
-                    number_of_valid_distances += 1
-                    summarized_value += value
-            if metric_type is MetricType.Absolute.value:
-                self.metrics[metric_key] = round(summarized_value, 0)
-            else:
-                if number_of_valid_distances is 0:
-                    self.metrics[metric_key] = 100
-                else:
-                    self.metrics[metric_key] = int(round(summarized_value * 100 / number_of_valid_distances, 0))
+                metric = word_dictionary.get(word).get_metric_by_key(metric_key)
+                if metric.get_value() is not None:
+                    number_of_valid_values += 1
+                    summarized_value += metric.get_value()
+            self.metrics[metric_key] = self.get_metric_value(metric, summarized_value, number_of_valid_values)
+
+    def get_metric_value(self, metric: MetricModel, summarized_value: int, number_of_valid_values: int):
+        if metric.is_absolute():
+            return round(summarized_value, 0)
+        elif metric.is_relative():
+            return self.get_relative_vmetric_alue(number_of_valid_values, summarized_value)
+
+
+    def get_relative_vmetric_alue(self, number_of_valid_values: int, summarized_value: int):
+        MAX_VALUE = 100
+        if number_of_valid_values is 0:
+            return MAX_VALUE
+        else:
+            return int(round(summarized_value * MAX_VALUE / number_of_valid_values, 0))
