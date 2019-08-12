@@ -66,10 +66,10 @@ class WordModel():
                 if value != None:
                     number_of_valid_distances += 1
                     summarized_value += value
-            if metric_type is MetricType.Absolute:
+            if metric_type is MetricType.Absolute.value:
                 self.metrics[metric_key] = round(summarized_value, 0)
             else:
                 if number_of_valid_distances is 0:
-                    self.metrics[metric_key] = None
+                    self.metrics[metric_key] = 100
                 else:
                     self.metrics[metric_key] = int(round(summarized_value * 100 / number_of_valid_distances, 0))
