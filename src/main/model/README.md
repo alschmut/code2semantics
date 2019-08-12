@@ -9,6 +9,8 @@ The following shows the structure of used models:
 |   |   |   +-- IdentifierModel
 |   |   +-- IdentifierDictionaryModel
 |   |   |   +-- WordModel
+|   |   |   |   +-- MetricModel
 |   |   +-- WordDictionaryModel
 |   |   |   +-- SeparatedWordModel
+|   |   |   |   +-- MetricModel
 ```
