@@ -63,7 +63,7 @@ The Word2Vec model is a vector space model storing word with a semantic relatend
 
   `python TextLemmatizer.py <wiki.en.filtered.txt>`
 
-- Train a gensim Word2Vec model using train data (takes 3 hours)
+- Train a gensim Word2Vec model using train data (takes 2:30 hours)
   
   `python Word2VecTrainer.py <wiki.en.lemmatized.txt>`
 

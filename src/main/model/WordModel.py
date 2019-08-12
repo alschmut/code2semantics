@@ -22,21 +22,22 @@ class WordModel():
             "metrics": {key: value for (key, value) in self.metrics.items()}
         }
 
-    def to_csv(self, path, name):
+    def to_csv(self, relative_path, name):
+        path = relative_path + "/" + name
         csv_line = [
-            path + "/" + name,
-            str(len(self.name)),
-            str(self.frequency),
-            str(len(self.separated_words)),
+            len(self.name),
+            self.frequency,
+            len(self.separated_words),
         ]
-        csv_line += [str(value) for (key, value) in self.metrics.items()]
-        return ";".join(csv_line) + "\n"
+        csv_line += [value for (key, value) in self.metrics.items()]
+        csv_line_as_str = [str(line) for line in csv_line]
+        return path + ";" + ";".join(csv_line_as_str) + "\n"
 
     def get_csv_header(self):
         csv_header = [
             "path",
             "identifier_length",
-            "identifier_per_file",
+            "identifier_frequency_per_file",
             "number_of_separated_words"
         ] 
         csv_header += [str(key) for (key, value) in self.metrics.items()]
@@ -66,9 +67,9 @@ class WordModel():
                     number_of_valid_distances += 1
                     summarized_value += value
             if metric_type is MetricType.Absolute:
-                self.metrics[metric_key] = round(summarized_value, 4)
+                self.metrics[metric_key] = round(summarized_value, 0)
             else:
                 if number_of_valid_distances is 0:
                     self.metrics[metric_key] = None
                 else:
-                    self.metrics[metric_key] = round(summarized_value / number_of_valid_distances, 4)
+                    self.metrics[metric_key] = int(round(summarized_value * 100 / number_of_valid_distances, 0))
