@@ -103,7 +103,7 @@ The Word2Vec model is a vector space model storing word with a semantic relatend
 - Inside `src/main/antlrParser/Lanague.py` an enum with all supported programming languages is stored. Add your language name with its file-extension.
 
 
-### Add new option use your parse_<your_language>_file function
+### Add new option to use your parse_<your_language>_file function
 - The `LanguageParser.parse_file()` function calls the appropriate parsing function for each language. Add yours with another if-statement
 
 
