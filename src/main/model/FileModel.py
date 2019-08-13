@@ -18,9 +18,9 @@ class FileModel():
 	path: str = None
 	supported_extensions: [str] = None
 	file_name: str = None
-	file_extension: str = None
+	extension: str = None
 	timer: Timer = None
-	file_content: str = None
+	content: str = None
 
 	def __init__(self, path: str, supported_extensions: [int]):
 		self.timer = Timer()
@@ -28,7 +28,7 @@ class FileModel():
 		self.relative_path = PathExtractor().get_relative_path(path)
 		self.supported_extensions = supported_extensions
 		self.file_name = PathExtractor().get_file_name(path)
-		self.file_extension = PathExtractor().get_file_extension(self.file_name)
+		self.extension = PathExtractor().get_file_extension(self.file_name)
 
 	def to_print(self):
 		return {
@@ -43,13 +43,13 @@ class FileModel():
 		return "".join(content)
 
 	def is_valid(self):
-		if self.file_extension in self.supported_extensions:
-			self.file_content = FileOpener().get_file_content(self.path)
-			return True if self.file_content else False
+		if self.extension in self.supported_extensions:
+			self.content = FileOpener().get_file_content(self.path)
+			return True if self.content else False
 
 	def parse(self):
 		Logger().start_analyzing(self.relative_path)
-		self.identifier_list_model = LanguageParser().parse_file(self.file_extension, self.file_content)
+		self.identifier_list_model = LanguageParser().parse_file(self.extension, self.content)
 		self.identifier_dictionary_model = IdentifierDictionaryModel(self.identifier_list_model)
 		self.word_dictionary_model = WordDictionaryModel(self.identifier_dictionary_model)
 		if Word2VecModel.instance.exists():
