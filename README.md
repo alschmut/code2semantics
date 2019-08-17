@@ -16,7 +16,7 @@ Source code contains a lot more than just the logic structure. Developers someti
 - splits each identifier into separated words when using underscores or CamelCase notation
 - extracts 16GB (4,600,000 wiki articles) of training data from [Wikipedia dumps](https://dumps.wikimedia.org/enwiki/latest/) *enwiki-latest-pages-articles.xml.bz2*
 - trains the [Gensim](https://github.com/rare-technologies/gensim) Word2Vec model with the wikipedia training data
-- evaluates the identifier words using the Word2Vec model
+- evaluates the identifier words using the Word2Vec model and creates multiple identifier metrics
 
 ###### \* identifier can be a class name, method name, interface name or any other variable name, which can be set by the developer
 
@@ -27,6 +27,57 @@ Source code contains a lot more than just the logic structure. Developers someti
 - Java
 - Kotlin
 
+## Simple example of what code2semantics does
+1.  Given this source code:
+    ```
+    1 public class Foo {
+    2     private String fooBar;
+    3
+    4     private setFooBar(String fooBar) {
+    5         this.fooBar = fooBar;
+    6     }
+    7 }
+    ```
+
+1.  Parses and extract each declared identifier together with its line number:
+    |identifier|line
+    |---|---|
+    |foo        |1
+    |fooBar     |2
+    |setFooBar  |4
+    |fooBar     |5
+
+1.  Separate each identifier by Camel Case and underscore notation into individual words:
+    |unique identifier  |frequency  |words
+    |---                |---        |---|
+    |foo                |1          |foo
+    |fooBar             |2          |foo, bar
+    |setFooBar          |1          |set, foo, bar
+
+1.  List all unique words:
+    |word   |frequency
+    |---    |---
+    |foo    |4
+    |bar    |3
+    |set    |1
+
+1. Generate metrics for each word
+1. Aggregate each word metric to represent the identifier (which contains of many words)
+
+## Generated metrics per identifier
+The results of the parsed source code will be exported as custom *.c2s.json* file as well as a *.csv* table containing all generated metrics:
+
+|metric                             |type       |description
+|---                                |---        |---
+|`distance_to_class_name`           |relative   |cosine distance between identifier and its class-name\* mulitplied by 100
+|`distance_to_file_context`         |relative   |cosine distance between identifier and its file-context\* mulitplied by 100
+|`identifier_frequency_per_file`    |absolute   |cumulative number of occurences of an identifier in its file
+|`identifier_length`                |absolute   |number of characters of an identifier
+|`number_of_separated_words`        |absolute   |number of individual words inside an identifier
+|`percent_of_word2vec_words`        |relative   |percent of words in an identifier that are stored inside the Word2Vec model
+|`word_frequency_per_file`          |absolute   |cumulative number of occurences of a word of an identifier in its file
+
+###### \* a class name vector is the most similar vector to all words in a class name and the file-context is the most similar vector to all individual words inside a class.
 
 
 ## Installation Requirements
