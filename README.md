@@ -90,11 +90,10 @@ The Word2Vec model is a vector space model storing word with a semantic relatend
 
 
 ## Useful links for pre-trained Word2Vec models
-- Google provides a 1.5GB Word2Vec model and describes its vocabulary in a [Blog post](http://mccormickml.com/2016/04/12/googles-pretrained-word2vec-model-in-python/). In short: 
+- Google provides a 1.5GB Word2Vec model and describes its vocabulary in [this Blog post](http://mccormickml.com/2016/04/12/googles-pretrained-word2vec-model-in-python/) and can be downloaded from [Google Drive](https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit?usp=sharing). In short: 
   - The data is obtained from 100 billion words from a Google News dataset
-  - The vocabulary includes many stopwords (not all)
+  - The vocabulary includes many stopwords
   - words are not lemmatized
-The Word2Vec model can be dowloaded from [Google Drive](https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit?usp=sharing)
 - A list of pre-trained models from different sources is provided on a [3Top GitHub project](https://github.com/3Top/word2vec-api).
 
 
