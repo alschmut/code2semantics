@@ -1,4 +1,6 @@
+import mimetypes
 from gensim.models import Word2Vec
+from gensim.models import KeyedVectors
 from util.Logger import Logger
 from util.Timer import Timer
 
@@ -12,10 +14,23 @@ class Word2VecModel():
         return self.model != None
 
     def set_model(self, model_file_path: str):
+        file_type = mimetypes.guess_type(model_file_path)[0]
+        if file_type == "application/octet-stream":
+            self.set_binary_model(model_file_path)
+        else:
+            self.set_normal_model(model_file_path)
+
+    def set_normal_model(self, model_file_path: str):
         timer: Timer = Timer()
         Logger().start_analyzing("Loading Word2VecModel")
         self.model = Word2Vec.load(model_file_path)
         Logger().finish_analyzing(timer.get_duration(), "Loading Word2VecModel")
+
+    def set_binary_model(self, model_file_path: str):
+        timer: Timer = Timer()
+        Logger().start_analyzing("Loading binary Word2VecModel")
+        self.model = KeyedVectors.load_word2vec_format(model_file_path, binary=True)
+        Logger().finish_analyzing(timer.get_duration(), "Loading binary Word2VecModel")
 
     def set_class_name(self, class_identifier_words: []):
         self.class_name = self.get_most_similar(class_identifier_words)[0]

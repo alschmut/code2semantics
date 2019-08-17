@@ -1,3 +1,13 @@
+## Jump to Section
+
+* [What is *code2semantics*?](#what-is-code2semantics)
+* [Target Languages](#target-languages)
+* [Installation Requirements](#installation-requirements)
+* [How to get a Word2Vec model using Wikipedia data](#how-to-get-a-word2vec-model-using-wikipedia-data)
+* [How to extract semantics from source code](#how-to-extract-semantics-from-source-code)
+* [How to add a new programming language with antlr4](#how-to-add-a-new-programming-language-with-antlr4)
+
+
 # What is *code2semantics*?
 
 Source code contains a lot more than just the logic structure. Developers sometimes take a deep breath while having a coffee, when a new identifier* needs a good, precise and meaningful name. Have you ever had to read code, where identifiers were cryptic and not comprehensible at all? *code2semantics* aims to find those hotspots using Word2Vec machine learning models. It calculates semantic distances between identifiers and the overall file context. In more detail, this means, the project...
@@ -10,10 +20,14 @@ Source code contains a lot more than just the logic structure. Developers someti
 
 ###### \* identifier can be a class name, method name, interface name or any other variable name, which can be set by the developer
 
+
+
 ## Target Languages
 
 - Java
 - Kotlin
+
+
 
 ## Installation Requirements
 Depending on what you have already installed you might need to install more or less of the following list:
@@ -46,7 +60,7 @@ Depending on what you have already installed you might need to install more or l
   alias antlr4='java -jar /usr/local/lib/antlr-4.7.2-complete.jar'
   ```
 
-## How to get a Word2Wec model using Wikipedia data
+## How to get a Word2Vec model using Wikipedia data
 
 The Word2Vec model is a vector space model storing word with a semantic relatendess. This model is needed for the following step analyzing the source code data.
 
@@ -69,10 +83,22 @@ The Word2Vec model is a vector space model storing word with a semantic relatend
 
 ## How to extract semantics from source code
 
-- Extract identifiers and split those into words by underscore and CamelCase notation. If the optional Word2Vec model is provided it analyzes each word using the semantic relatedness to its class name and its file-context.
+- Extract identifiers and split those into words by underscore and CamelCase notation. If the optional Word2Vec model (as binary or not) is provided, it analyzes each word using the semantic relatedness to its class name and its file-context.
   
   `python ProjectParser.py <file_or_directory_path> [<word2vec.model>]`
   
+
+
+## Useful links for pre-trained Word2Vec models
+- Google provides a 1.5GB Word2Vec model and describes its vocabulary in a [Blog post](http://mccormickml.com/2016/04/12/googles-pretrained-word2vec-model-in-python/). In short: 
+  - The data is obtained from 100 billion words from a Google News dataset
+  - The vocabulary includes many stopwords (not all)
+  - words are not lemmatized
+The Word2Vec model can be dowloaded from [Google Drive](https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit?usp=sharing)
+- A list of pre-trained models from different sources is provided on a [3Top GitHub project](https://github.com/3Top/word2vec-api).
+
+
+
 ## How to add a new programming language with antlr4
 
 ### Generate Python classes for a new grammar
