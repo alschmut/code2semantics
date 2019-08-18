@@ -65,7 +65,7 @@ Source code contains a lot more than just the logic structure. Developers someti
     |set    |1
 
 1. Generate metrics for each word
-1. Aggregate each word metric to represent the identifier (which contains of many words)
+1. Aggregate each word metric (summarize or aggregate) to represent the identifier metric
 
 ## Generated metrics per identifier
 The results of the parsed source code will be exported as custom *.c2s.json* file as well as a *.csv* table containing all generated metrics:
