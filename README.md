@@ -40,21 +40,24 @@ Source code contains a lot more than just the logic structure. Developers someti
     ```
 
 1.  Parses and extract each declared identifier together with its line number:
+
     |identifier|line
-    |---|---|
+    |---|---
     |foo        |1
     |fooBar     |2
     |setFooBar  |4
     |fooBar     |5
 
 1.  Separate each identifier by Camel Case and underscore notation into individual words:
+
     |unique identifier  |frequency  |words
-    |---                |---        |---|
+    |---                |---        |---
     |foo                |1          |foo
     |fooBar             |2          |foo, bar
     |setFooBar          |1          |set, foo, bar
 
 1.  List all unique words:
+
     |word   |frequency
     |---    |---
     |foo    |4
