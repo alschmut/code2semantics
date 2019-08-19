@@ -8,7 +8,7 @@ from util.PathValidator import PathValidator
 from service import Word2VecModel
 
 JSON_EXTENSION = ".c2s.json"
-CSV_EXTENSION = ".c2s.csv"
+CSV_EXTENSION = ".csv"
 
 def parse(project_path: str):
 	project_name = PathExtractor().get_file_name(project_path)
