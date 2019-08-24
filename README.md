@@ -105,6 +105,15 @@ Depending on what you have already installed you might need to install more or l
   
   `python3 -m spacy download en`
 
+- Download the NLTK python tool kit together with its english stopword list
+
+  ```
+  pip3 install nltk 
+  python3
+  >>> import nltk
+  >>> nltk.download('stopwords')
+  ```
+
 - Install the [antlr4](https://www.antlr.org) runnable and add it to the classpath. This allows using the predefined antlr4 parser
 
   ```
@@ -112,6 +121,7 @@ Depending on what you have already installed you might need to install more or l
   sudo curl -O https://www.antlr.org/download/antlr-4.7.2-complete.jar
   export CLASSPATH=".:/usr/local/lib/antlr-4.7.2-complete.jar:$CLASSPATH"
   alias antlr4='java -jar /usr/local/lib/antlr-4.7.2-complete.jar'
+  pip install antlr4-python3-runtime
   ```
 
 ## How to get a Word2Vec model using Wikipedia data
