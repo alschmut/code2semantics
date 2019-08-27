@@ -16,8 +16,10 @@ def parse(project_path: str):
 	project_model = ProjectModel(project_path)
 
 	if PathValidator().is_valid_directories([project_path], True):
+		Logger().info("Traverse directory")
 		project_model.traverse_directory()
 	else:
+		Logger().info("Parse file")
 		project_model.parse_file()
 	FileOpener().save_file_as_json(project_model.to_print(), project_name + JSON_EXTENSION)
 	FileOpener().save_file_as_csv(project_model.to_csv(), project_name + CSV_EXTENSION)

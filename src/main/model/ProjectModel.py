@@ -25,14 +25,12 @@ class ProjectModel():
 		return "".join(content)
 
 	def traverse_directory(self):
-		Logger().info("Parse file")
 		for base_path, _, file_names in os.walk(self.project_path):
 			for file_name in file_names:
 				file_path = self.get_absolute_file_path(base_path, file_name)
 				self.parse_file(file_path)
 
 	def parse_file(self, path: str = project_path):
-		Logger().info("Traverse directory")
 		path = self.project_path if path == None else path
 		file_model = FileModel(path, self.supported_extensions)
 		if file_model.is_valid():
