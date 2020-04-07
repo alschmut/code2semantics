@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "8"
+jobs:
+  include:
+    - stage: test
+      script:
+        - echo 'Testing!'
+    - stage: deploy
+      script:
+        - echo 'Deploying!'
